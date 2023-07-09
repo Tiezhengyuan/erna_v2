@@ -39,7 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
 
-    # customary app
+    # customary apps
     'api',
     'rna_seq',
     'sample',
