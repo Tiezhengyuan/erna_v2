@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-cg)5hm5jkgrog$v=6(*gshbiya@zn5)0^i4_kqphd5o(155e($
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -90,6 +90,9 @@ DATABASES = {
 }
 
 
+# customary user models
+AUTH_USER_MODEL = "rna_seq.User"
+
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
 
@@ -135,3 +138,6 @@ STATICFILES_DIRS = [
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
+# other related path
+TOOLS_DIR = os.environ['TOOLS_DIR'] if os.environ.get('TOOLS_DIR') \
+    else os.path.join(PROJECT_DIR, 'externals')

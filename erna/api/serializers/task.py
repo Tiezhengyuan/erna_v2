@@ -1,18 +1,18 @@
 from rest_framework import serializers
-from rna_seq.models.task import *
+from rna_seq.models import *
 
 class TaskSerializer(serializers.ModelSerializer):
     class Meta:
-        model = TaskModel
+        model = Task
         fields = '__all__'
 
 
 class TaskTreeSerializer(serializers.ModelSerializer):
     class Meta:
-        model = TaskTreeModel
+        model = TaskTree
         fields = '__all__'
 
 class TaskExecutionSerializer(serializers.ModelSerializer):
     class Meta:
-        model = TaskExecutionModel
+        model = TaskExecution
         fields = '__all__'

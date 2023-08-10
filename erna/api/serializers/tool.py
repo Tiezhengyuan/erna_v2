@@ -1,7 +1,7 @@
 from rest_framework import serializers
-from rna_seq.models.tool import *
+from rna_seq.models import Tool
 
 class ToolSerializer(serializers.ModelSerializer):
     class Meta:
-        model = ToolModel
+        model = Tool
         fields = '__all__'
