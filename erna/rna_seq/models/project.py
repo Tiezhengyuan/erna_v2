@@ -61,8 +61,7 @@ class Project(models.Model):
         max_length=50,
         blank=True
     )
-    owner = models.ForeignKey(
-        settings.AUTH_USER_MODEL,
+    owner = models.ForeignKey(settings.AUTH_USER_MODEL,
         on_delete=models.CASCADE,
         verbose_name="owner identified by user_id"
     )
