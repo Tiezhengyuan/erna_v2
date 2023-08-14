@@ -141,3 +141,6 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # other related path
 TOOLS_DIR = os.environ['TOOLS_DIR'] if os.environ.get('TOOLS_DIR') \
     else os.path.join(PROJECT_DIR, 'externals')
+
+DATA_DIR = os.environ['DATA_DIR'] if os.environ.get('DATA_DIR') \
+    else os.path.join(PROJECT_DIR, 'data')
