@@ -1,6 +1,5 @@
 from ddt import ddt, data, unpack
 import json
-import os
 from django.test import TestCase, override_settings
 from rna_seq.models import Tool
 

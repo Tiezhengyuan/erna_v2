@@ -1,6 +1,6 @@
 from rest_framework import viewsets, response, permissions, decorators
 
-from rna_seq.models import User
+from commons.models import User
 from api.serializers.sample import *
 
 class SampleViewSet(viewsets.ModelViewSet):

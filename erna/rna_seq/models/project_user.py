@@ -1,7 +1,7 @@
 
 from django.db import models
 from django.conf import settings
-from .user import User
+from commons.models.user import User
 from .project import Project
 
 class ProjectUserManager(models.Manager):

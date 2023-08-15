@@ -1,6 +1,6 @@
 from ddt import ddt, data, unpack
 from django.test import TestCase
-from rna_seq.models import  User
+from commons.models import  User
 
 
 @ddt

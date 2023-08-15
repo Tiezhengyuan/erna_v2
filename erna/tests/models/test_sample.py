@@ -1,6 +1,6 @@
 from django.test import TestCase
 from ddt import ddt, data, unpack
-from rna_seq.models import User
+from commons.models import User
 from sample.models import Sample
 
 @ddt
@@ -182,4 +182,3 @@ class TestSamples(TestCase):
         )
         res = Sample.objects.get_batch_names()
         assert res == {'batch1', 'batch2'}
-        print(f"###{res}")

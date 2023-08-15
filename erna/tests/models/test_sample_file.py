@@ -1,9 +1,8 @@
-from django.test import TestCase
-from django.test import override_settings
+from django.test import TestCase, override_settings
 from ddt import ddt, data, unpack
 from unittest.mock import patch
 import os
-from rna_seq.models import User
+from commons.models import User
 from sample.models import Sample, SampleFile
 
 @ddt

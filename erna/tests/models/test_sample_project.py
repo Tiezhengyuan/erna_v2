@@ -1,9 +1,9 @@
-from django.test import TestCase
-from django.test import override_settings
+from django.test import TestCase, override_settings
 from ddt import ddt, data, unpack
 from unittest.mock import patch
 import os
-from rna_seq.models import User, Project
+from rna_seq.models import Project
+from commons.models import User
 from sample.models import Sample, SampleFile, SampleProject
 
 @ddt
@@ -93,4 +93,3 @@ class TestSampleFile(TestCase):
         ]
         res = SampleProject.objects.load_project_sample_file(data)
         assert len(res) == 2
-        print(f"###{res}")

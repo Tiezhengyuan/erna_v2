@@ -3,7 +3,7 @@ from django.db import models
 # Create your models here.
 from .project import Project
 from .tool import Tool
-from .user import User
+from commons.models.user import User
 
 class TaskManager(models.Manager):
     def get_next_task_id(self, project_id):

@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from rna_seq.models import User
+from commons.models import User
 
 class UserSerializer(serializers.ModelSerializer):
     class Meta:

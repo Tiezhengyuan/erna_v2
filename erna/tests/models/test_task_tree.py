@@ -2,7 +2,8 @@ from ddt import ddt, data, unpack
 import json
 import os
 from django.test import TestCase, override_settings
-from rna_seq.models import User, Project,Tool, Task, TaskTree
+from rna_seq.models import Project,Tool, Task, TaskTree
+from commons.models import User
 
 @ddt
 class TestTaskTree(TestCase):

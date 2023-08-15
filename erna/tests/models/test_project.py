@@ -1,6 +1,7 @@
 from ddt import ddt, data, unpack
 from django.test import TestCase
-from rna_seq.models import  Project,User
+from rna_seq.models import  Project
+from commons.models import User
 
 @ddt
 class TestProject(TestCase):

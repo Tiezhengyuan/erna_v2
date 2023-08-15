@@ -1,7 +1,8 @@
 from django.test import TestCase
 from ddt import ddt, data, unpack
 import json
-from rna_seq.models import User, Project,Tool, Task, TaskExecution
+from rna_seq.models import Project,Tool, Task, TaskExecution
+from commons.models import User
 
 @ddt
 class TestTaskExecution(TestCase):

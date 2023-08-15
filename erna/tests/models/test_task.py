@@ -1,8 +1,7 @@
+from django.test import TestCase
 from ddt import ddt, data, unpack
-import json
-import os
-from django.test import TestCase, override_settings
-from rna_seq.models import User, Project,Tool, Task
+from rna_seq.models import Project,Tool, Task
+from commons.models import User
 
 @ddt
 class TestTask(TestCase):
