@@ -6,7 +6,7 @@ import os
 
 from .specie import Specie
 
-class GenomeDNAManager(models.Manager):
+class GenomeManager(models.Manager):
     def get_genome(self, specie_name:str, version:str=None):
         specie = Specie.objects.get(specie_name=specie_name)
         if version is None:
@@ -24,10 +24,11 @@ class GenomeDNAManager(models.Manager):
         return [f.full_path for f in files]
 
          
-class GenomeDNA(models.Model):
+class Genome(models.Model):
     '''
     Genome DNA, one chromosome one fasta file
     '''
+    label = 'genome_dna'
     specie = models.ForeignKey(Specie,
         on_delete=models.CASCADE)
     version = models.CharField(max_length=56)
@@ -35,20 +36,24 @@ class GenomeDNA(models.Model):
     # str type from json format
     metadata = models.CharField(max_length=1256)
 
-    objects = GenomeDNAManager()
+    objects = GenomeManager()
 
     class Meta:
         app_label = 'annot'
+        unique_together = ('specie', 'version')
         ordering = ['specie', 'version']
 
     @property
     def local_dir(self):
-        return os.path.join(settings.DATA_DIR, 'genome_dna')
-    
+        return os.path.join(settings.DATA_DIR, self.label)
+
+    @property
+    def sub_dir(self):
+        return os.path.join(self.specie.specie_name, self.version, self.file_name)
+
     @property
     def full_path(self):
-        return os.path.join(self.local_dir, self.specie.specie_name, \
-            self.version, self.file_name)
+        return os.path.join(self.local_dir, self.sub_dir)
 
     def __str__(self):
          return self.specie.specie_name

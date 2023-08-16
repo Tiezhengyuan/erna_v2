@@ -37,9 +37,12 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
+    # add modules
     'rest_framework',
 
     # customary apps
+    'commons',
     'api',
     'rna_seq',
     'sample',

@@ -1,6 +1,6 @@
 import json
 from django.db import models
-from rna_seq.models import User
+from commons.models import User
 
 class SampleManager(models.Manager):
 

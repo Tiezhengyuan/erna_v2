@@ -1,2 +1,3 @@
 from .specie import Specie
-from .genome_dna import GenomeDNA
+from .genome import Genome
+from .annotation import Annotation
