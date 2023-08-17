@@ -2,8 +2,7 @@ from django.db import models
 
 # Create your models here.
 from .project import Project
-from .tool import Tool
-from commons.models.user import User
+from commons.models import CustomUser, Tool
 
 class TaskManager(models.Manager):
     def get_next_task_id(self, project_id):
@@ -23,7 +22,7 @@ class TaskManager(models.Manager):
         '''
         task_id = self.model.objects.get_next_task_id(project_id)
         project = Project.objects.get_project_by_project_id(project_id)
-        user = User.objects.get_user_by_user_name(user_name)
+        user = CustomUser.objects.get_user_by_user_name(user_name)
         tool = Tool.objects.get_last_version(tool_name)
         return self.model.objects.create(task_id=task_id,
             project=project, executor=user, tool=tool)
@@ -63,7 +62,7 @@ class Task(models.Model):
         max_length=10,
         verbose_name="task ID"
     )
-    executor = models.ForeignKey(User,
+    executor = models.ForeignKey(CustomUser,
         on_delete=models.CASCADE
     )
     tool = models.ForeignKey(Tool,

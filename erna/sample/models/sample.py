@@ -1,6 +1,6 @@
 import json
 from django.db import models
-from commons.models import User
+from commons.models import CustomUser
 
 class SampleManager(models.Manager):
 
@@ -28,7 +28,7 @@ class SampleManager(models.Manager):
         given a user, return all batches with sample names created by the user
         '''
         batches = {}
-        user = User.objects.get(user_name=user_name)
+        user = CustomUser.objects.get(user_name=user_name)
         samples = self.model.objects.filter(creator=user)
         for sample in samples:
             batch_name = sample.batch_name
@@ -51,7 +51,7 @@ class SampleManager(models.Manager):
         import samples into database
         '''
         n = 0
-        user = User.objects.get_user_by_user_name(user_name)
+        user = CustomUser.objects.get_user_by_user_name(user_name)
         for sample in samples:
             sample_obj = self.create(batch_name = sample['batch_name'], \
                 sample_name=sample['sample_name'], creator=user)
@@ -101,7 +101,7 @@ class Sample(models.Model):
     batch_name = models.CharField(max_length=50)
     # one sample on one name
     sample_name = models.CharField(max_length=100)
-    creator = models.ForeignKey(User,
+    creator = models.ForeignKey(CustomUser,
         on_delete=models.CASCADE
     )
     # namely phenotype

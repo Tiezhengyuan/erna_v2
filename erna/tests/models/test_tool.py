@@ -1,7 +1,7 @@
 from ddt import ddt, data, unpack
 import json
 from django.test import TestCase, override_settings
-from rna_seq.models import Tool
+from commons.models import Tool
 
 @ddt
 class TestTool(TestCase):

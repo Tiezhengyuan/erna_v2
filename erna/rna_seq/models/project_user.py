@@ -1,14 +1,14 @@
 
 from django.db import models
 from django.conf import settings
-from commons.models.user import User
+from commons.models import CustomUser
 from .project import Project
 
 class ProjectUserManager(models.Manager):
 
     def get_projects_by_user_name(self, user_name)->[Project]:
         projects = []
-        users = User.objects.filter(user_name=user_name)
+        users = CustomUser.objects.filter(user_name=user_name)
         for user in users:
             project_users = self.model.objects.filter(user=user)
             for p in project_users:
@@ -16,7 +16,7 @@ class ProjectUserManager(models.Manager):
                     projects.append(p.project)
         return projects
 
-    def get_users_by_project_id(self, project_id)->[User]:
+    def get_users_by_project_id(self, project_id):
         users = []
         projects = Project.objects.filter(project_id=project_id)
         for project in projects:

@@ -94,7 +94,7 @@ DATABASES = {
 
 
 # customary user models
-AUTH_USER_MODEL = "rna_seq.User"
+AUTH_USER_MODEL = "commons.CustomUser"
 
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators

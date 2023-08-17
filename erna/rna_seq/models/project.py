@@ -1,6 +1,6 @@
 from django.db import models
 from django.conf import settings
-from commons.models.user import User
+from commons.models import CustomUser
 
 class ProjectManager(models.Manager):
 
@@ -31,7 +31,7 @@ class ProjectManager(models.Manager):
         get projects by user name
         '''
         try:
-            owner = User.objects.get(user_name=user_name)
+            owner = CustomUser.objects.get(user_name=user_name)
             projects = self.model.objects.filter(owner=owner, status='A')
             return projects
         except Exception as e:

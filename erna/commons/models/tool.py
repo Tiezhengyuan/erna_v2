@@ -44,8 +44,9 @@ class Tool(models.Model):
     objects = ToolManager()
 
     class Meta:
-        app_label = 'rna_seq'
+        app_label = 'commons'
         ordering = ['tool_name', 'version']
+    
     
     def __str__(self):
         return self.tool_name
