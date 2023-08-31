@@ -1,15 +1,17 @@
 <template>
   <div class="container">
     <RNAseqLeft></RNAseqLeft>
-    <RNAseqContent></RNAseqContent>
-    <RNAseqRight></RNAseqRight>
+    <div class="pipeline-container">
+      <RNAseqContent></RNAseqContent>
+      <RNAseqRight></RNAseqRight>
+    </div>
   </div>
 </template>
 
 <script>
-import RNAseqLeft from "../components/RNAseqLeft";
-import RNAseqContent from "../components/RNAseqContent";
-import RNAseqRight from "../components/RNAseqRight";
+import RNAseqLeft from "./rnaseq/RNAseqLeft";
+import RNAseqContent from "./rnaseq/RNAseqContent";
+import RNAseqRight from "./rnaseq/RNAseqRight";
 
 export default {
   name: "RNAseqPipeline",
@@ -22,7 +24,7 @@ export default {
 </script>
 
 <style scoped>
-.container {
+.pipeline-container {
   display: flex;
   flex-direction: row;
   justify-content: space-around;

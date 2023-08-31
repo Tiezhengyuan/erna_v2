@@ -3,13 +3,12 @@
     <div class="name" v-show="data.label">
       <label>{{ data.label }}</label>
     </div>
-    <select :name="data.name">
+    <select :name="data.name" v-model="selected" @change="add">
       <option
         v-for="(value, i) of data.options"
         :key="i"
-        :selected="selected(value)"
         :value="value"
-        :change="add"
+        :selected="showSelected(value)"
       >
         {{ value }}
       </option>
@@ -21,15 +20,18 @@
 export default {
   name: "inputDropdown",
   props: ["data", "receive"],
+  data() {
+    return {
+      selected: this.data.value,
+    };
+  },
   methods: {
-    selected(value) {
-      return value == this.data.value ? true : false;
+    showSelected(value) {
+      return value == this.selected ? true : false;
     },
-    add(e) {
-      console.log(e.target.value);
-      // this.data.value = e.target.value;
+    add() {
       const obj = {
-        [this.data.name]: this.data,
+        [this.data.name]: this.selected,
       };
       this.receive(obj);
     },

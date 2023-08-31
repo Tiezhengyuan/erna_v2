@@ -1,10 +1,10 @@
 <template>
-  <div>Samples</div>
+  <div class="container"></div>
 </template>
 
 <script>
 export default {
-  name: "SampleManagement",
+  name: "EditProject",
 };
 </script>
 

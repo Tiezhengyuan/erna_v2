@@ -1,11 +1,13 @@
 <template>
-  <div>footer</div>
+  <div></div>
 </template>
 
 <script>
 export default {
-  name: "FooterBar",
-};
+
+}
 </script>
 
-<style></style>
+<style>
+
+</style>

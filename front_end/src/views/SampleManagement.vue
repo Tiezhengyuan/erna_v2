@@ -1,14 +1,19 @@
 <template>
-  <div class="container">
-    <div class="navbar">
+  <div class="container-manage">
+    <div class="manage-navbar">
       <div class="title">
-        <span>Applications</span>
+        <span>Select an item...</span>
       </div>
       <ul class="list">
-        <li><router-link to="/">Home</router-link></li>
-        <li><router-link to="/manage">Management</router-link></li>
-        <li><router-link to="/rnaseq">RNA-Seq</router-link></li>
-        <li><router-link to="/tools">Tools</router-link></li>
+        <li>
+          <router-link to="/manage/new_project">New Project</router-link>
+        </li>
+        <li>
+          <router-link to="/manage/parse_samples">Parse Samples</router-link>
+        </li>
+        <li>
+          <router-link to="/manage/edit_project">Edit Project</router-link>
+        </li>
       </ul>
     </div>
     <router-view class="content"></router-view>
@@ -17,24 +22,26 @@
 
 <script>
 export default {
-  name: "ContentPage",
+  name: "SampleManagement",
 };
 </script>
 
 <style scoped>
-.container {
+.container-manage {
   height: 40px;
   margin-top: 5px;
   box-sizing: border-box;
   background-color: lightgoldenrodyellow;
   border: 1px solid goldenrod;
 }
-.navbar {
+.manage-navbar {
   display: flex;
   justify-content: space-between;
   align-items: center;
   height: 40px;
   line-height: 40px;
+  background-color: lightcyan;
+  margin-bottom: 10px;
 }
 ul {
   list-style-type: none;
@@ -48,10 +55,13 @@ li {
 .list li:last-child {
   border: 0;
 }
-.container .content {
+.container-manager .content {
   height: 800px;
   margin-top: 5px;
   padding: 20px;
   background-color: lightgrey;
+}
+.title span {
+  font-size: 30px;
 }
 </style>

@@ -6,8 +6,8 @@
 </template>
 
 <script>
-import HomeSummary from "../components/HomeSummary";
-import HomeStatus from "../components/HomeStatus";
+import HomeSummary from "./home/HomeSummary";
+import HomeStatus from "./home/HomeStatus";
 
 export default {
   name: "HomePage",

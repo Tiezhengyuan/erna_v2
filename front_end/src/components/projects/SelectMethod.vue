@@ -1,26 +1,41 @@
 <template>
   <div class="container-method">
-    <p>II: Select method</p>
-    <select v-model="selected" @change="getSelected">
+    <div class="container-label">II: Select method</div>
+    <select v-model="selected">
       <option v-for="(value, i) of seq_methods" :key="i">
         {{ value }}
       </option>
     </select>
+    <div>
+      <button @click="addTask">Add task</button>
+    </div>
   </div>
 </template>
 
 <script>
+import { mapState } from "vuex";
+
 export default {
   name: "SelectMethod",
-  props: ["seq_methods", "receive"],
   data() {
     return {
       selected: "",
     };
   },
+  computed: {
+    ...mapState(["current_project", "seq_methods", "new_task_id"]),
+  },
   methods: {
-    getSelected() {
-      this.receive(this.selected);
+    addTask() {
+      this.task = {
+        project: this.current_project,
+        seq_method: this.selected,
+        status: "new",
+        task_id: this.new_task_id,
+      };
+      console.log(this.task);
+      this.$store.commit("addTask", this.task);
+      console.log(this.new_task_id);
     },
   },
 };
@@ -29,10 +44,13 @@ export default {
 <style scoped>
 .container-method {
   height: 100px;
-  background-color: white;
-  border: 1px slid black;
+  width: 250px;
+  margin: 5px;
+  padding: 5px;
+  box-sizing: border-box;
+  background-color: lightblue;
 }
-.container-method p {
-  padding-bottom: 10px;
+.container-label {
+  margin: 10px;
 }
 </style>

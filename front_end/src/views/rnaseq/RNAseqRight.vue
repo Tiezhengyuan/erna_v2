@@ -10,7 +10,7 @@ export default {
 
 <style scoped>
 .container {
-  width: 30%;
+  width: 38%;
   background-color: white;
   border: 1px slid black;
 }
