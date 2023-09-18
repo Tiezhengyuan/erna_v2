@@ -1,13 +1,16 @@
 <template>
   <div class="container">
     <div class="name">
-      <label>{{data.label}}</label>
+      <label>{{ data.label }}</label>
     </div>
     <div class="value">
-      <input type="number" min="0"
+      <input
+        type="number"
+        :min="data.min"
+        :max="data.max"
         :name="data.name"
         :value="data.value"
-        @keyup="add"
+        @change="add"
       />
     </div>
   </div>
@@ -15,33 +18,27 @@
 
 <script>
 export default {
-    name:'inputNumber',
-    props:['data', 'receive'],
-    methods:{
-      add(e){
-        this.data.value = e.target.value
-        const obj = {
-          [this.data.name]: this.data
-        }
-        this.receive(obj);
-      }
-    }
-}
+  name: "inputNumber",
+  props: ["data", "receive"],
+  methods: {
+    add(e) {
+      const obj = [this.data.name, e.target.value];
+      this.receive(obj);
+    },
+  },
+};
 </script>
 
 <style scoped>
-  .container{
-    padding: 5px;
-    box-sizing: border-box;
-    display:flex;
-    flex-direction: row;
-  }
-  .container .name{
-    width: 40%;
-    padding-right: 10px;
-    display:flex;
-    justify-content: right;
-  }
-
-
+.container {
+  padding: 5px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
+}
+.container .name {
+  padding-right: 10px;
+  display: flex;
+  justify-content: right;
+}
 </style>

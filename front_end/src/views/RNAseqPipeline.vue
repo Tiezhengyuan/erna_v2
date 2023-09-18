@@ -1,23 +1,23 @@
 <template>
   <div class="container">
-    <RNAseqLeft></RNAseqLeft>
+    <RNAseqHeader></RNAseqHeader>
     <div class="pipeline-container">
-      <RNAseqContent></RNAseqContent>
+      <RNAseqLeft></RNAseqLeft>
       <RNAseqRight></RNAseqRight>
     </div>
   </div>
 </template>
 
 <script>
+import RNAseqHeader from "./rnaseq/RNAseqHeader";
 import RNAseqLeft from "./rnaseq/RNAseqLeft";
-import RNAseqContent from "./rnaseq/RNAseqContent";
 import RNAseqRight from "./rnaseq/RNAseqRight";
 
 export default {
   name: "RNAseqPipeline",
   components: {
+    RNAseqHeader,
     RNAseqLeft,
-    RNAseqContent,
     RNAseqRight,
   },
 };

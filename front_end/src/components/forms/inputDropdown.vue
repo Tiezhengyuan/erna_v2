@@ -30,9 +30,7 @@ export default {
       return value == this.selected ? true : false;
     },
     add() {
-      const obj = {
-        [this.data.name]: this.selected,
-      };
+      const obj = [this.data.name, this.selected];
       this.receive(obj);
     },
   },
@@ -47,7 +45,7 @@ export default {
   flex-direction: row;
 }
 .container .name {
-  width: 40%;
+  /* width: 40%; */
   padding-right: 10px;
   display: flex;
   justify-content: right;

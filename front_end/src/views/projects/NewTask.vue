@@ -7,20 +7,33 @@
       <button id="task-stop" @click="stopTask">||</button>
       <button id="task-submit" @click="submitTask">></button>
     </div>
+    <TaskRelations :task="task"></TaskRelations>
     <div class="task-method">
-      <button>Begin to set method: {{ task.seq_method }}</button>
+      <button @click="selectTaskMethod">
+        <label>Set method:</label>
+        {{ task.task_method }}
+      </button>
     </div>
   </div>
 </template>
 
 <script>
+import { mapState } from "vuex";
+import TaskRelations from "./TaskRelations";
+
 export default {
   name: "NewTask",
   props: ["task"],
+  components: {
+    TaskRelations,
+  },
   data() {
     return {
       status: this.task.status,
     };
+  },
+  computed: {
+    ...mapState(["task_methods", "tasks"]),
   },
   methods: {
     deleteTask() {
@@ -41,6 +54,9 @@ export default {
         status: this.status,
       };
       this.$store.commit("updateTaskStatus", obj);
+    },
+    selectTaskMethod() {
+      this.$store.commit("selectTask", this.task);
     },
   },
 };

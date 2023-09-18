@@ -75,6 +75,11 @@ class Project(models.Model):
         choices=[('A', 'active'), ('D', 'deleted')],
         default='A',
     )
+    sequencing = models.CharField(
+        max_length=20,
+        choices=[('M', 'mRNA-Seq'), ('MI', 'miRNA-Seq'), ('SC', 'scRNA-Seq'), ('O', 'Other')],
+        default='M',
+    )
 
     objects = ProjectManager()
 

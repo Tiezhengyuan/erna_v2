@@ -10,7 +10,7 @@
         max="1"
         :name="data.name"
         :value="Number(data.value)"
-        @keyup="add"
+        @change="change"
       />
     </div>
   </div>
@@ -21,10 +21,8 @@ export default {
   name: "inputText",
   props: ["data", "receive"],
   methods: {
-    add(e) {
-      const obj = {
-        [this.data.name]: Boolean(e.target.value),
-      };
+    change(e) {
+      const obj = [this.data.name, Boolean(e.target.value)];
       this.receive(obj);
     },
   },
@@ -39,7 +37,6 @@ export default {
   flex-direction: row;
 }
 .container .name {
-  width: 40%;
   padding-right: 10px;
   display: flex;
   justify-content: right;

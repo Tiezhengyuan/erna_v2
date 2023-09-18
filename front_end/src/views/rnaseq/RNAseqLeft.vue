@@ -1,45 +1,52 @@
 <template>
-  <div class="container-left">
-    <SelectProject></SelectProject>
-    <div class="container-arrow">>></div>
-    <SelectMethod></SelectMethod>
-    <div class="container-arrow">>></div>
-    <OperateTasks></OperateTasks>
+  <div class="content-container">
+    <div class="content-title">Project: {{ current_project }}</div>
+    <div class="tasks-container">
+      <NewTask
+        v-for="(task, i) in project_tasks"
+        :key="i"
+        :task="task"
+      ></NewTask>
+    </div>
   </div>
 </template>
 
 <script>
-import SelectProject from "../../components/projects/SelectProject";
-import SelectMethod from "../../components/projects/SelectMethod";
-import OperateTasks from "../../components/projects/OperateTasks";
+import { mapState } from "vuex";
+import NewTask from "../projects/NewTask";
 
 export default {
   name: "RNAseqLeft",
   components: {
-    SelectProject,
-    SelectMethod,
-    OperateTasks,
+    NewTask,
+  },
+  computed: {
+    ...mapState(["current_project", "tasks"]),
+    project_tasks() {
+      return this.tasks.filter((el) => {
+        return el.project == this.current_project ? 1 : 0;
+      });
+    },
   },
 };
 </script>
 
 <style scoped>
-.container-left {
+.content-container {
+  width: 50%;
   background-color: white;
-  margin-bottom: 10px;
-  border: 1px slid black;
-  display: flex;
-}
-div button {
-  margin-top: 20px;
-}
-.container-arrow {
-  height: 100px;
-  width: 30px;
-  margin: 5px;
-  padding: 5px;
-  line-height: 100px;
   box-sizing: border-box;
-  background-color: lightgray;
+  margin-right: 10px;
+  border: 1px slid black;
+}
+.content-title {
+  font-size: 30px;
+  margin: 10px;
+}
+.tasks-container {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  overflow: auto;
 }
 </style>

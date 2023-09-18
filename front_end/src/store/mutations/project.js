@@ -24,9 +24,18 @@ const mutations_project = {
     state.tasks.forEach((el) => {
       if (el.task_id == task_obj.task_id) {
         el.status = task_obj.status;
-        console.log(el.status);
       }
     });
+  },
+  setParentTask(state, task_pair) {
+    state.tasks.forEach((el) => {
+      if (el.task_id == task_pair[0]) {
+        el.parent_task = task_pair[1];
+      }
+    });
+  },
+  selectTask(state, task_obj) {
+    state.current_task = task_obj;
   },
 };
 export default mutations_project;

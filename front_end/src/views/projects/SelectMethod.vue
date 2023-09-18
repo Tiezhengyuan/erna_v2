@@ -2,8 +2,8 @@
   <div class="container-method">
     <div class="container-label">II: Select method</div>
     <select v-model="selected">
-      <option v-for="(value, i) of seq_methods" :key="i">
-        {{ value }}
+      <option v-for="(method, i) of task_methods" :key="i" :value="i">
+        {{ method.task_method }}
       </option>
     </select>
     <div>
@@ -23,19 +23,21 @@ export default {
     };
   },
   computed: {
-    ...mapState(["current_project", "seq_methods", "new_task_id"]),
+    ...mapState(["current_project", "task_methods", "new_task_id"]),
   },
   methods: {
     addTask() {
+      const selected_method = this.task_methods[this.selected];
       this.task = {
+        ...selected_method,
         project: this.current_project,
-        seq_method: this.selected,
         status: "new",
         task_id: this.new_task_id,
+        parent_task: "",
       };
-      console.log(this.task);
+      // console.log(this.task);
       this.$store.commit("addTask", this.task);
-      console.log(this.new_task_id);
+      // console.log(this.new_task_id);
     },
   },
 };
