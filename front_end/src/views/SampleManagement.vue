@@ -6,7 +6,7 @@
       </div>
       <ul class="list">
         <li>
-          <router-link to="/manage/new_project">New Project</router-link>
+          <router-link to="/manage/create_project">Create Project</router-link>
         </li>
         <li>
           <router-link to="/manage/parse_samples">Parse Samples</router-link>
@@ -16,7 +16,9 @@
         </li>
       </ul>
     </div>
-    <router-view class="content"></router-view>
+    <div>
+      <router-view class="content"></router-view>
+    </div>
   </div>
 </template>
 

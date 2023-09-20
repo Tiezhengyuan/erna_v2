@@ -1,41 +1,20 @@
 const mutations_project = {
-  updateProject(state, new_project) {
-    state.new_project = new_project;
-    console.log(Object.values(state.new_project));
+  updateNewProject(state, key_val) {
+    state.new_project[key_val[0]] = key_val[1];
   },
   selectProject(state, new_project) {
     state.current_project = new_project;
   },
-  addTask(state, new_task) {
-    state.new_task_id += 1;
-    state.tasks.push(new_task);
+  addNewProject(state) {
+    state.projects.push(state.new_project);
+    state.new_project = {
+      project_id: "P0006",
+    };
   },
-  deleteTask(state, task) {
-    state.tasks = state.tasks.filter((el) => {
-      return el.task_id == task.task_id ? 0 : 1;
+  deleteProject(state, selected) {
+    state.projects = state.projects.filter((el) => {
+      return el.project_id != selected;
     });
-  },
-  refreshProjectTasks(state) {
-    state.tasks = state.tasks.filter((el) => {
-      return el.project == state.current_project ? 0 : 1;
-    });
-  },
-  updateTaskStatus(state, task_obj) {
-    state.tasks.forEach((el) => {
-      if (el.task_id == task_obj.task_id) {
-        el.status = task_obj.status;
-      }
-    });
-  },
-  setParentTask(state, task_pair) {
-    state.tasks.forEach((el) => {
-      if (el.task_id == task_pair[0]) {
-        el.parent_task = task_pair[1];
-      }
-    });
-  },
-  selectTask(state, task_obj) {
-    state.current_task = task_obj;
   },
 };
 export default mutations_project;

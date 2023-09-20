@@ -1,10 +1,10 @@
 <template>
-  <div class="container">
+  <div class="container paried-label">
     <div class="name">
       <label>{{ data.label }}</label>
     </div>
     <div class="value">
-      <input type="text" :name="data.name" :value="data.value" @keyup="add" />
+      <label>{{ data.value }}</label>
     </div>
   </div>
 </template>
@@ -12,13 +12,7 @@
 <script>
 export default {
   name: "inputText",
-  props: ["data", "receive"],
-  methods: {
-    add(e) {
-      const obj = [this.data.name, e.target.value];
-      this.receive(obj);
-    },
-  },
+  props: ["data"],
 };
 </script>
 
@@ -30,6 +24,7 @@ export default {
   flex-direction: row;
 }
 .container .name {
+  font-weight: bold;
   padding-right: 10px;
   display: flex;
   justify-content: right;

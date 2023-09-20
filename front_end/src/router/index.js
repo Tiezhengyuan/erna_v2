@@ -7,7 +7,7 @@ import SampleManagement from "../views/SampleManagement";
 import RNAseqPipeline from "../views/RNAseqPipeline";
 import AnalyticTools from "../views/AnalyticTools";
 
-import NewProject from "../views/manage/NewProject";
+import CreateProject from "../views/manage/CreateProject";
 import EditProject from "../views/manage/EditProject";
 import ParseSamples from "../views/manage/ParseSamples";
 
@@ -23,9 +23,9 @@ const routes = [
     component: SampleManagement,
     children: [
       {
-        path: "new_project",
-        name: "new_project",
-        component: NewProject,
+        path: "create_project",
+        name: "create_project",
+        component: CreateProject,
       },
       {
         path: "edit_project",

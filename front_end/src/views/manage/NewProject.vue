@@ -1,22 +1,34 @@
 <template>
-  <div class="container">
-    <h2>Create a new project</h2>
-    <label class="title"> Project ID: {{ new_project.project_id }} </label>
+  <div class="container new-project">
+    <h3>Create a new project</h3>
     <div class="container-input">
-      <inputText v-bind:data="project_name" :receive="receive"></inputText>
-      <inputText v-bind:data="description" :receive="receive"></inputText>
-      <inputDropdown v-bind:data="seq" :receive="receive"></inputDropdown>
-      <inputBoolean v-bind:data="status" :receive="receive"></inputBoolean>
+      <PairedLabel :data="new_project_id"></PairedLabel>
+      <inputText
+        :data="default_project.project_name"
+        :receive="receive"
+      ></inputText>
+      <inputText
+        :data="default_project.description"
+        :receive="receive"
+      ></inputText>
+      <inputDropdown
+        :data="default_project.seq"
+        :receive="receive"
+      ></inputDropdown>
+      <inputBoolean
+        :data="default_project.status"
+        :receive="receive"
+      ></inputBoolean>
     </div>
     <div class="submit-project">
       <button @click="create">Create</button>
-      <button @click="reset">Reset</button>
     </div>
   </div>
 </template>
 
 <script>
 import { mapState } from "vuex";
+import PairedLabel from "../../components/showing/PairedLabel";
 import inputText from "../../components/forms/inputText";
 import inputDropdown from "../../components/forms/inputDropdown";
 import inputBoolean from "../../components/forms/inputBoolean";
@@ -24,57 +36,27 @@ import inputBoolean from "../../components/forms/inputBoolean";
 export default {
   name: "NewProject",
   components: {
+    PairedLabel,
     inputText,
     inputDropdown,
     inputBoolean,
   },
-  data() {
-    return {
-      changed: {},
-      original: {
-        sequencing: "mRNA-Seq",
-        status: true,
-      },
-      project_name: {
-        name: "project_name",
-        label: "Project Name",
-        value: "",
-      },
-      description: {
-        name: "description",
-        label: "Project Description",
-        value: "",
-      },
-      seq: {
-        name: "sequencing",
-        label: "Sequencing Technique",
-        value: "mRNA-Seq",
-        options: ["mRNA-Seq", "miRNA-Seq", "scRNA-Seq", "Other"],
-      },
-      status: {
-        name: "status",
-        label: "Project Status",
-        value: true,
-      },
-    };
-  },
   computed: {
-    ...mapState(["new_project"]),
+    ...mapState(["default_project", "new_project"]),
+    new_project_id() {
+      return {
+        label: "Project ID: ",
+        value: this.new_project.project_id,
+      };
+    },
   },
   methods: {
-    receive(val_obj) {
-      this.changed = { ...this.changed, ...val_obj };
-      // console.log(this.changed);
+    receive(key_val) {
+      this.$store.commit("updateNewProject", key_val);
     },
     create() {
-      this.original = { ...this.original, ...this.changed };
-      this.$store.commit("updateProject", this.original);
-    },
-    reset() {
-      this.project_name = { ...this.project_name, value: "" };
-      this.description = { ...this.description, value: "" };
-      this.seq = { ...this.seq, value: "mRNA-Seq" };
-      this.status = { ...this.status, value: true };
+      this.$store.commit("addNewProject");
+      this.$store.dispatch("postNewProject");
     },
   },
 };

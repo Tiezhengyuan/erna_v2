@@ -1,29 +1,49 @@
 const state_project = {
-  new_project: {
-    project_id: "P0001",
-    project_name: "",
+  // default values
+  default_project: {
+    project_name: {
+      name: "project_name",
+      label: "Project Name",
+      value: "",
+    },
+    description: {
+      name: "description",
+      label: "Project Description",
+      value: "",
+    },
+    seq: {
+      name: "seq_tech",
+      label: "Sequencing Technique",
+      value: "mRNA-Seq",
+      options: ["mRNA-Seq", "miRNA-Seq", "scRNA-Seq", "Other"],
+    },
+    status: {
+      name: "status",
+      label: "Project Status",
+      value: true,
+    },
   },
-  new_task_id: 10,
-  projects: ["", "P001", "P002", "P003", "P004"],
-  task_methods: [
-    { task_method: "sequence alignment", component: "AlignerBowtie" },
-    { task_method: "genome alignment", component: "AlignerTophat" },
-    { task_method: "genome assembly", component: "AssemblerCufflinks" },
-    { task_method: "Count reads", component: "CountReads" },
-    { task_method: "trim sequence", component: "TrimSeq" },
-    { task_method: "quality control", component: "" },
-  ],
-  tasks: [
+  // all projects
+  projects: [
     {
-      project: "P001",
-      task_method: "Trim sequence",
-      status: "pending",
-      parent_task: "",
-      task_id: 9,
+      project_id: "P001",
+      project_name: "a",
+      description: "",
+      seq_tech: "mRNA-Seq",
+      status: true,
+    },
+    {
+      project_id: "P002",
+      project_name: "b",
+      description: "abc",
+      seq_tech: "Other",
+      status: false,
     },
   ],
+  new_project: {
+    project_id: "P0005",
+  },
   current_project: "",
-  current_task: {},
 };
 
 export default state_project;
