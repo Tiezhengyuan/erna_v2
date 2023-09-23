@@ -7,8 +7,9 @@
           <th>Project ID</th>
           <th>Project Name</th>
           <th>Project Description</th>
+          <th>Sequencing Technique</th>
           <th>Status</th>
-          <th>Delate</th>
+          <th>Delaee</th>
         </tr>
       </thead>
       <tbody>
@@ -16,9 +17,10 @@
           <td>{{ project.project_id }}</td>
           <td>{{ project.project_name }}</td>
           <td>{{ project.description }}</td>
+          <td>{{ project.sequencing }}</td>
           <td>{{ project.status ? "Active" : "No" }}</td>
           <td>
-            <button @click="deleteProject(project.project_id)">Delete</button>
+            <button @click="deleteProject(project.id)">Delete</button>
           </td>
         </tr>
       </tbody>
@@ -51,7 +53,7 @@ export default {
       }
     },
     applyDeletion() {
-      this.$store.dispatch("postDeleteProjects", this.deleted);
+      this.$store.dispatch("deleteProjects", this.deleted);
       this.deleted = [];
     },
   },

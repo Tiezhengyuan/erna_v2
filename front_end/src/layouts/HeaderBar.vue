@@ -7,19 +7,19 @@
       <h1>eRNA v2</h1>
     </div>
     <div class="login">
-      User Name: <mark>{{ user_name }}</mark> |
+      User Name: <mark>{{ current_user.username }}</mark> |
       <a href="#">logout</a>
     </div>
   </div>
 </template>
 
 <script>
+import { mapState } from "vuex";
+
 export default {
   name: "HeaderBar",
-  data() {
-    return {
-      user_name: "Tiezheng Yuan",
-    };
+  computed: {
+    ...mapState(["current_user"]),
   },
 };
 </script>

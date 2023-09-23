@@ -6,13 +6,13 @@
       </div>
       <ul class="list">
         <li>
-          <router-link to="/manage/create_project">Create Project</router-link>
+          <router-link to="/manage/create_project">Create project</router-link>
         </li>
         <li>
           <router-link to="/manage/parse_samples">Parse Samples</router-link>
         </li>
         <li>
-          <router-link to="/manage/edit_project">Edit Project</router-link>
+          <router-link to="/manage/edit_project">Update projects</router-link>
         </li>
       </ul>
     </div>

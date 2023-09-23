@@ -12,6 +12,10 @@ export default {
   components: {
     MainPage,
   },
+  mounted() {
+    this.$store.dispatch("getProjects");
+    this.$store.dispatch("getCurrentUser");
+  },
 };
 </script>
 

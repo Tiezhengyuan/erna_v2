@@ -14,36 +14,30 @@ const state_project = {
     seq: {
       name: "seq_tech",
       label: "Sequencing Technique",
-      value: "mRNA-Seq",
-      options: ["mRNA-Seq", "miRNA-Seq", "scRNA-Seq", "Other"],
+      value: "M",
+      options: [
+        { value: "M", label: "mRNA-Seq" },
+        { value: "MI", label: "miRNA-Seq" },
+        { value: "SC", label: "scRNA-Seq" },
+        { value: "O", label: "Other" },
+      ],
     },
     status: {
       name: "status",
       label: "Project Status",
-      value: true,
+      value: "A",
+      options: [
+        { value: "A", label: "active" },
+        { value: "I", label: "inactive" },
+      ],
     },
   },
-  // all projects
-  projects: [
-    {
-      project_id: "P001",
-      project_name: "a",
-      description: "",
-      seq_tech: "mRNA-Seq",
-      status: true,
-    },
-    {
-      project_id: "P002",
-      project_name: "b",
-      description: "abc",
-      seq_tech: "Other",
-      status: false,
-    },
-  ],
-  new_project: {
-    project_id: "P0005",
-  },
+  projects: [],
+  next_project_id: "",
+  new_project: {},
   current_project: "",
+  new_answer: {},
+  users: {},
 };
 
 export default state_project;

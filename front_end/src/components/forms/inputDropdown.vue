@@ -5,12 +5,12 @@
     </div>
     <select :name="data.name" v-model="selected" @change="add">
       <option
-        v-for="(value, i) of data.options"
+        v-for="(item, i) of data.options"
         :key="i"
-        :value="value"
-        :selected="showSelected(value)"
+        :value="item.value"
+        :selected="showSelected(item.value)"
       >
-        {{ value }}
+        {{ item.label }}
       </option>
     </select>
   </div>

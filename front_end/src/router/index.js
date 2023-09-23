@@ -8,7 +8,7 @@ import RNAseqPipeline from "../views/RNAseqPipeline";
 import AnalyticTools from "../views/AnalyticTools";
 
 import CreateProject from "../views/manage/CreateProject";
-import EditProject from "../views/manage/EditProject";
+import UpdateProjects from "../views/manage/UpdateProjects";
 import ParseSamples from "../views/manage/ParseSamples";
 
 const routes = [
@@ -28,9 +28,9 @@ const routes = [
         component: CreateProject,
       },
       {
-        path: "edit_project",
-        name: "edit_project",
-        component: EditProject,
+        path: "update_projects",
+        name: "update_projects",
+        component: UpdateProjects,
       },
       {
         path: "parse_samples",
