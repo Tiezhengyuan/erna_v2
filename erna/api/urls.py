@@ -15,6 +15,7 @@ router.register('task_execution', TaskViewSet, basename='task_execution')
 
 # app: commons
 router.register('user', CustomUserViewSet, basename='user')
+# router.register('current_user', CustomUserViewSet.get_object, basename='current_user')
 router.register('tool', ToolViewSet, basename='tool')
 
 # app: sample
@@ -26,6 +27,7 @@ router.register('sample_project', SampleProjectViewSet, basename="sample_project
 router.register('specie', SpecieViewSet, basename='specie')
 router.register('genome', GenomeViewSet, basename='genome')
 router.register('annotation', AnnotationViewSet, basename='annotation')
+router.register('reference', ReferenceViewSet, basename='reference')
 
 
 urlpatterns = [

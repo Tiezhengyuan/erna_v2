@@ -19,15 +19,15 @@
         :data="default_project.status"
         :receive="receive"
       ></inputDropdown>
-    </div>
-    <div class="project_create">
+      <inputDropdown :data="specie" :receive="receive"></inputDropdown>
+      <inputDropdown :data="data_source" :receive="receive"></inputDropdown>
       <button @click="create">Create</button>
     </div>
   </div>
 </template>
 
 <script>
-import { mapState } from "vuex";
+import { mapState, mapGetters } from "vuex";
 import PairedLabel from "../../components/showing/PairedLabel";
 import inputText from "../../components/forms/inputText";
 import inputDropdown from "../../components/forms/inputDropdown";
@@ -39,8 +39,12 @@ export default {
     inputText,
     inputDropdown,
   },
+  mounted() {
+    this.$store.dispatch("getSpecies");
+  },
   computed: {
     ...mapState(["default_project", "next_project_id", "projects"]),
+    ...mapGetters(["data_source", "specie"]),
     default_project_id() {
       return {
         label: "Project ID: ",
@@ -62,15 +66,17 @@ export default {
 </script>
 
 <style scopred>
-.project-input {
-  width: 600px;
-  height: 200px;
-  box-sizing: border-box;
+.new-project .project-input {
+  height: 270px;
   background-color: white;
   margin: 0 auto;
   padding: 20px;
 }
-.title {
+.new-project .title {
   font-size: 30px;
+}
+.new-project .project-input button {
+  font-size: 18px;
+  margin: 10px;
 }
 </style>

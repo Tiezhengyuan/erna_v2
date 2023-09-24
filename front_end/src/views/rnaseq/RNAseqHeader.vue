@@ -1,17 +1,21 @@
 <template>
-  <div class="container-left">
-    <SelectProject></SelectProject>
+  <div class="container rnaseq-left">
+    <SelectProject class="select">
+      <div class="container-label">I. Select Project</div>
+    </SelectProject>
     <div class="container-arrow">>></div>
-    <SelectMethod></SelectMethod>
+    <SelectMethod class="select">
+      <div class="container-label">II: Select method</div>
+    </SelectMethod>
     <div class="container-arrow">>></div>
-    <OperateTasks></OperateTasks>
+    <OperateTasks class="select"></OperateTasks>
   </div>
 </template>
 
 <script>
-import SelectProject from "../projects/SelectProject";
-import SelectMethod from "../projects/SelectMethod";
-import OperateTasks from "../projects/OperateTasks";
+import SelectProject from "../project/SelectProject";
+import SelectMethod from "../task/SelectMethod";
+import OperateTasks from "../task/OperateTasks";
 
 export default {
   name: "RNAseqHeader",
@@ -24,14 +28,11 @@ export default {
 </script>
 
 <style scoped>
-.container-left {
+.container.rnaseq-left {
   background-color: white;
   margin-bottom: 10px;
   border: 1px slid black;
   display: flex;
-}
-div button {
-  margin-top: 20px;
 }
 .container-arrow {
   height: 100px;
@@ -41,5 +42,14 @@ div button {
   line-height: 100px;
   box-sizing: border-box;
   background-color: lightgray;
+}
+.container-label {
+  margin: 10px;
+}
+.container .select {
+  height: 90px;
+  margin: 5px;
+  padding: 5px;
+  background-color: lightblue;
 }
 </style>

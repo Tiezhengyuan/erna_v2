@@ -41,7 +41,7 @@ const actions_project = {
     api
       .post("/project/", context.state.new_project)
       .then((res) => {
-        console.log(res);
+        context.dispatch("postReference", res.data.id);
       })
       .catch((err) => {
         console.log(err);

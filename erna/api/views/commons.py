@@ -13,3 +13,8 @@ class CustomUserViewSet(viewsets.ModelViewSet):
     serializer_class = CustomUserSerializer
     permission_classes = [permissions.IsAuthenticated,]
 
+    def get_object(self):
+        pk = self.kwargs.get('pk')
+        if pk == "current":
+            return self.request.user
+        return super().get_object()

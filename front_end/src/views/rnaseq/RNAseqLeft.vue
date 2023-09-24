@@ -1,6 +1,8 @@
 <template>
   <div class="content-container">
-    <div class="content-title">Project: {{ current_project }}</div>
+    <div class="content-title" v-show="current_project.id">
+      Project: {{ current_project.project_id }}
+    </div>
     <div class="tasks-container">
       <NewTask
         v-for="(task, i) in project_tasks"
@@ -13,7 +15,7 @@
 
 <script>
 import { mapState } from "vuex";
-import NewTask from "../projects/NewTask";
+import NewTask from "../task/NewTask";
 
 export default {
   name: "RNAseqLeft",

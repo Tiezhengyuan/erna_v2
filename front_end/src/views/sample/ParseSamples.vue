@@ -12,7 +12,7 @@
 
     <fieldset>
       <legend>Inject raw data into project</legend>
-      <div class="select-dir">select directries</div>
+      <SelectFile></SelectFile>
       <table border="1">
         <caption>
           Parse Sample Names with Raw Files
@@ -27,6 +27,7 @@
 <script>
 import { mapState } from "vuex";
 import inputDropdown from "../../components/forms/inputDropdown";
+import SelectFile from "../../components/forms/SelectFile";
 import TableTwoEnds from "./TableTwoEnds";
 import TableSingleEnd from "./TableSingleEnd";
 
@@ -34,6 +35,7 @@ export default {
   name: "ParseSamples",
   components: {
     inputDropdown,
+    SelectFile,
     TableTwoEnds,
     TableSingleEnd,
   },

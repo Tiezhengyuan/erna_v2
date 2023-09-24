@@ -7,9 +7,10 @@ import SampleManagement from "../views/SampleManagement";
 import RNAseqPipeline from "../views/RNAseqPipeline";
 import AnalyticTools from "../views/AnalyticTools";
 
-import CreateProject from "../views/manage/CreateProject";
-import UpdateProjects from "../views/manage/UpdateProjects";
-import ParseSamples from "../views/manage/ParseSamples";
+import CreateProject from "../views/project/CreateProject";
+import UpdateProjects from "../views/project/UpdateProjects";
+import ParseSamples from "../views/sample/ParseSamples";
+import BuildReference from "../views/reference/BuildReference";
 
 const routes = [
   {
@@ -36,6 +37,11 @@ const routes = [
         path: "parse_samples",
         name: "parse_samples",
         component: ParseSamples,
+      },
+      {
+        path: "build_reference",
+        name: "build_reference",
+        component: BuildReference,
       },
     ],
   },

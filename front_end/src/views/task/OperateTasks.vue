@@ -1,5 +1,5 @@
 <template>
-  <div class="container-operate">
+  <div class="container operate-tasks">
     <button @click="submitTask">Submitt Tasks</button>
     <button @click="refreshProjectTasks">Refresh Project</button>
   </div>
@@ -21,17 +21,12 @@ export default {
 </script>
 
 <style scoped>
-.container-operate {
-  height: 100px;
-  width: 250px;
-  margin: 5px;
-  padding: 5px;
-  box-sizing: border-box;
-  background-color: lightblue;
+.container.operate-tasks {
+  display: flex;
+  align-items: center;
 }
-.container-operate button {
-  width: 100px;
-  height: 80px;
+.container.operate-tasks button {
+  height: 50px;
   margin: 5px;
   border-radius: 10px;
 }

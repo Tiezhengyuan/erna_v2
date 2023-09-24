@@ -12,7 +12,8 @@ class AnnotationManager(GenomeManager):
 
 class Annotation(Genome):
     label = 'annotations'
-    file_format = models.CharField(max_length=10,
+    file_format = models.CharField(
+        max_length=10,
         choices=[
             ('FQ', 'FASTQ'),
             ('FA', 'FASTA'),
@@ -21,8 +22,10 @@ class Annotation(Genome):
             ('SAM', 'SAM'),
             ('BAM', 'BAM'),
             ('O', 'other'),
-        ])
-    seq_type = models.CharField(max_length=10,
+        ]
+    )
+    seq_type = models.CharField(
+        max_length=10,
         choices=[
             ('R', 'RNA'),
             ('D', 'DNA'),

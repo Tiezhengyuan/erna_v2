@@ -2,18 +2,23 @@
   <div class="container-manage">
     <div class="manage-navbar">
       <div class="title">
-        <span>Select an item...</span>
+        <span>Select...</span>
       </div>
       <ul class="list">
         <li>
-          <router-link to="/manage/create_project">Create project</router-link>
+          <router-link to="/manage/create_project">Create Project</router-link>
         </li>
         <li>
           <router-link to="/manage/parse_samples">Parse Samples</router-link>
         </li>
         <li>
+          <router-link to="/manage/build_reference">
+            Build Reference
+          </router-link>
+        </li>
+        <li>
           <router-link to="/manage/update_projects">
-            Update projects
+            Update Projects
           </router-link>
         </li>
       </ul>

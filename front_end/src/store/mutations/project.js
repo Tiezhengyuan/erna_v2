@@ -25,8 +25,8 @@ const mutations_project = {
   addNewProject(state) {
     state.projects.push(state.new_project);
   },
-  selectProject(state, new_project) {
-    state.current_project = new_project;
+  selectProject(state, selected_project) {
+    state.current_project = selected_project;
   },
 
   // current_project

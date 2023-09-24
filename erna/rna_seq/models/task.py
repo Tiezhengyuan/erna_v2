@@ -54,7 +54,8 @@ class TaskManager(models.Manager):
 
 class Task(models.Model):
     # project_id + task_id = pk
-    project = models.ForeignKey(Project,
+    project = models.ForeignKey(
+        Project,
         on_delete=models.CASCADE
     )
     task_id = models.CharField(
@@ -62,19 +63,35 @@ class Task(models.Model):
         max_length=10,
         verbose_name="task ID"
     )
-    executor = models.ForeignKey(CustomUser,
+    task_name = models.CharField(
+        max_length=100,
+        blank=True,
+        default = "task name",
+        verbose_name="task name"
+    )
+    executor = models.ForeignKey(
+        CustomUser,
         on_delete=models.CASCADE
     )
     tool = models.ForeignKey(Tool,
         blank=True,
         on_delete=models.CASCADE
     )
-    params = models.CharField(max_length=1256, blank=True, 
-        verbose_name="parameters in json string")
-    input = models.CharField(max_length=1256, blank=True,
-        verbose_name="input metadata in json string")
-    output = models.CharField(max_length=1256, blank=True,
-        verbose_name="output metadata in json string")
+    params = models.CharField(
+        max_length=1256,
+        blank=True, 
+        verbose_name="parameters in json string"
+    )
+    input = models.CharField(
+        max_length=1256,
+        blank=True,
+        verbose_name="input metadata in json string"
+    )
+    output = models.CharField(
+        max_length=1256,
+        blank=True,
+        verbose_name="output metadata in json string"
+    )
     is_ready = models.BooleanField(default=False)
     create_time = models.DateTimeField(auto_now_add=True)
     modified_time = models.DateTimeField(auto_now=True)
