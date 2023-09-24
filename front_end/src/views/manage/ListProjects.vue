@@ -1,15 +1,15 @@
 <template>
   <div class="container list-projects">
-    <h3>Projects owned by you</h3>
     <table border="1">
       <thead>
         <tr>
           <th>Project ID</th>
           <th>Project Name</th>
-          <th>Project Description</th>
-          <th>Sequencing Technique</th>
+          <th>Description</th>
+          <th>Sequencing</th>
           <th>Status</th>
-          <th>Delaee</th>
+          <th>Delete</th>
+          <th>Edit</th>
         </tr>
       </thead>
       <tbody>
@@ -18,17 +18,16 @@
           <td>{{ project.project_name }}</td>
           <td>{{ project.description }}</td>
           <td>{{ project.sequencing }}</td>
-          <td>{{ project.status ? "Active" : "No" }}</td>
+          <td>{{ project.status }}</td>
           <td>
-            <button @click="deleteProject(project.id)">Delete</button>
+            <button @click="deleteProject(project)">Delete</button>
+          </td>
+          <td>
+            <button @click="editProject(project)">Edit</button>
           </td>
         </tr>
       </tbody>
     </table>
-    <div class="delete-project">
-      <button @click="applyDeletion">Apply Deletion</button>
-      <label v-if="!!deleted.length">{{ deleted }}</label>
-    </div>
   </div>
 </template>
 
@@ -46,15 +45,15 @@ export default {
     };
   },
   methods: {
-    deleteProject(selected) {
+    deleteProject(project) {
+      const selected = project.id;
       if (this.deleted.indexOf(selected) == -1) {
         this.deleted.push(selected);
-        this.$store.commit("deleteProject", selected);
+        this.$store.commit("updateDeleted", selected);
       }
     },
-    applyDeletion() {
-      this.$store.dispatch("deleteProjects", this.deleted);
-      this.deleted = [];
+    editProject(project) {
+      this.$store.commit("setCurrentProject", project);
     },
   },
 };
@@ -62,8 +61,11 @@ export default {
 
 <style scoped>
 .container.list-projects {
-  border: 1px solid white;
+  border-top: 1px solid white;
   padding: 10px;
+}
+.container.list-projects table {
+  margin: 0 auto;
 }
 .container .delete-project {
   margin: 20px;

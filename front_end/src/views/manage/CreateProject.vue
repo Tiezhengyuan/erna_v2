@@ -12,7 +12,7 @@
         :receive="receive"
       ></inputText>
       <inputDropdown
-        :data="default_project.seq"
+        :data="default_project.sequencing"
         :receive="receive"
       ></inputDropdown>
       <inputDropdown

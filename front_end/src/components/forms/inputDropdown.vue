@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <div class="name" v-show="data.label">
+    <div class="input-name" v-show="data.label">
       <label>{{ data.label }}</label>
     </div>
     <select :name="data.name" v-model="selected" @change="add">
@@ -44,7 +44,7 @@ export default {
   display: flex;
   flex-direction: row;
 }
-.container .name {
+.container .input-name {
   /* width: 40%; */
   padding-right: 10px;
   display: flex;

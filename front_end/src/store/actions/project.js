@@ -9,8 +9,8 @@ const actions_project = {
       context.commit("setNewProject");
     });
   },
-  deleteProjects(context, deleted_ids) {
-    for (let id of deleted_ids) {
+  deleteProjects(context) {
+    for (let id of context.state.deleted_projects) {
       api
         .delete(`/project/${id}/`)
         .then((res) => {
@@ -20,6 +20,21 @@ const actions_project = {
           console.log(err);
         });
     }
+    context.state.deleted_projects = [];
+  },
+  updateProjects(context) {
+    for (let id of Object.keys(context.state.updated_projects)) {
+      const updated = context.state.updated_projects[id];
+      api
+        .put(`/project/${id}/`, updated)
+        .then((res) => {
+          console.log(res);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
+    context.state.updated_projects = {};
   },
   postNewProject(context) {
     // console.log(context.state.new_project);

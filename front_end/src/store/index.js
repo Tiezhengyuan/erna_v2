@@ -9,6 +9,7 @@ import state_samples from "./state/samples";
 import state_bowite from "./state/bowtie";
 import icons from "./state/icons";
 
+// import getters_project from "./getters/project";
 import getters_user from "./getters/user";
 
 import mutations_project from "./mutations/project";
@@ -30,6 +31,7 @@ export default new Vuex.Store({
     ...state_bowite,
   },
   getters: {
+    // ...getters_project,
     ...getters_user,
   },
   mutations: {

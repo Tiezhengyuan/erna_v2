@@ -2,6 +2,8 @@ const mutations_project = {
   setUserProjects(state, projects) {
     state.projects = projects;
   },
+
+  // new_project
   setNewProject(state) {
     // initialize project_id
     if (state.projects.length > 0) {
@@ -14,30 +16,47 @@ const mutations_project = {
     state.new_project.project_id = state.next_project_id;
     // initialize other params
     state.new_project.owner = state.current_user.id;
-    state.new_project.sequencing = state.default_project.seq.value;
+    state.new_project.sequencing = state.default_project.sequencing.value;
     state.new_project.status = state.default_project.status.value;
   },
   updateNewProject(state, key_val) {
     state.new_project[key_val[0]] = key_val[1];
   },
-  selectProject(state, new_project) {
-    state.current_project = new_project;
-  },
   addNewProject(state) {
     state.projects.push(state.new_project);
   },
-  deleteProject(state, selected) {
-    state.projects = state.projects.filter((el) => {
-      return el.project_id != selected;
-    });
+  selectProject(state, new_project) {
+    state.current_project = new_project;
   },
 
-  // others
-  setNewAnswer(state, answer) {
-    state.new_answer = answer;
+  // current_project
+  setCurrentProject(state, project) {
+    state.current_project = project;
+    state.current_updated_project = {
+      owner: project.owner,
+    };
   },
-  setUsers(state, users) {
-    state.users = users;
+  updateCurrentProject(state, key_val) {
+    state.current_project[key_val[0]] = key_val[1];
+    state.current_updated_project[key_val[0]] = key_val[1];
+    console.log(state.current_updated_project);
+  },
+  updateUpdated(state) {
+    const curr_id = state.current_project.id;
+    state.updated_projects[curr_id] = state.current_updated_project;
+    console.log(state.updated_projects);
+    state.current_project = {};
+    state.current_updated_project = {};
+  },
+
+  // deleted
+  updateDeleted(state, selected) {
+    // update state.projects
+    state.projects = state.projects.filter((el) => {
+      return el.id != selected;
+    });
+    // update state.deleted_projects
+    state.deleted_projects.push(selected);
   },
 };
 export default mutations_project;

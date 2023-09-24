@@ -12,7 +12,9 @@
           <router-link to="/manage/parse_samples">Parse Samples</router-link>
         </li>
         <li>
-          <router-link to="/manage/edit_project">Update projects</router-link>
+          <router-link to="/manage/update_projects">
+            Update projects
+          </router-link>
         </li>
       </ul>
     </div>

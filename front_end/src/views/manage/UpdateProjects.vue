@@ -1,28 +1,50 @@
 <template>
-  <div class="container create-project">
-    <ProjectNav></ProjectNav>
-    <NewProject></NewProject>
+  <div class="container update-projects">
+    <div class="apply-changes">
+      <button @click="applyChanges">Apply all changes</button>
+      <!-- {{ deleted_projects }} -->
+      <!-- {{ updated_projects }} -->
+    </div>
+    <EditProject v-if="showUpdate"></EditProject>
     <ListProjects></ListProjects>
   </div>
 </template>
 
 <script>
-import NewProject from "./NewProject";
+import { mapState } from "vuex";
+import EditProject from "./EditProject";
 import ListProjects from "./ListProjects";
-import ProjectNav from "./ProjectNav";
 
 export default {
   name: "UpdateProjects",
   components: {
-    ProjectNav,
-    NewProject,
+    EditProject,
     ListProjects,
+  },
+  computed: {
+    ...mapState(["current_project", "deleted_projects", "updated_projects"]),
+    showUpdate() {
+      return Object.keys(this.current_project).length === 0 ? false : true;
+    },
+  },
+  methods: {
+    applyChanges() {
+      this.$store.dispatch("deleteProjects");
+      this.$store.dispatch("updateProjects");
+    },
   },
 };
 </script>
 
 <style scoped>
-.container.create-project {
+.container.update-projects {
   border: 1px solid white;
+}
+.container.update-projects .apply-changes button {
+  font-size: 24px;
+  margin: 10px;
+  padding: 5px;
+  color: white;
+  background-color: red;
 }
 </style>

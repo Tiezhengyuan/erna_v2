@@ -11,8 +11,8 @@ const state_project = {
       label: "Project Description",
       value: "",
     },
-    seq: {
-      name: "seq_tech",
+    sequencing: {
+      name: "sequencing",
       label: "Sequencing Technique",
       value: "M",
       options: [
@@ -35,9 +35,10 @@ const state_project = {
   projects: [],
   next_project_id: "",
   new_project: {},
-  current_project: "",
-  new_answer: {},
-  users: {},
+  current_project: {},
+  current_updated_project: {},
+  updated_projects: {},
+  deleted_projects: [],
 };
 
 export default state_project;
