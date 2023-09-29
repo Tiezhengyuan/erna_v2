@@ -1,6 +1,11 @@
 from rest_framework import serializers
 from sample.models import *
 
+class RawDataSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = RawData
+        fields = '__all__'
+
 class SampleSerializer(serializers.ModelSerializer):
     class Meta:
         model = Sample

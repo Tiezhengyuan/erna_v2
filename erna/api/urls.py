@@ -22,6 +22,7 @@ router.register('method', MethodViewSet, basename='method')
 # router.register('method_names', MethodNameViewSet, basename='method_names')
 
 # app: sample
+router.register('raw_data', RawDataViewSet, basename='raw_data')
 router.register('sample', SampleViewSet, basename='sample')
 router.register('sample_file', SampleFileViewSet, basename='sample_file')
 router.register('sample_project', SampleProjectViewSet, basename="sample_project")

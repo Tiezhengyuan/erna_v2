@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'rest_framework',
     # celery
     'django_celery_results',
+    'django_celery_beat',
 
     # customary apps
     'commons',
@@ -102,8 +103,16 @@ CELERY_RESULT_BACKEND = 'django-db'
 CELERY_RESULT_EXTENDED = True
 CELERY_ACCEPT_CONTENT = ['json']
 CELERY_TASK_SERIALIZER = 'json'
+CELERY_TIMEZONE = "America/New_York"
+CELERY_ALWAYS_EAGER = True
 
-
+# from celery.schedules import crontab
+# CELERY_BEAT_SCHEDULE = {
+#     "sample_task": {
+#         "task": "core.tasks.sample_task",
+#         "schedule": crontab(minute="*/1"),
+#     },
+# }
 
 # customary user models
 AUTH_USER_MODEL = "commons.CustomUser"

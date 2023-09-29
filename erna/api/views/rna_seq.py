@@ -2,10 +2,8 @@ from django.shortcuts import render
 from rest_framework import viewsets, response, \
     permissions, decorators
 
-from rna_seq.models import Project, ProjectUser, \
-    Task, TaskTree, TaskExecution
-from api.serializers import ProjectSerializer, ProjectUserSerializer, \
-    TaskSerializer, TaskTreeSerializer, TaskExecutionSerializer
+from rna_seq.models import *
+from api.serializers import *
 
 
 

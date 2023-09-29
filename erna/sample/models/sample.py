@@ -101,7 +101,8 @@ class Sample(models.Model):
     batch_name = models.CharField(max_length=50)
     # one sample on one name
     sample_name = models.CharField(max_length=100)
-    creator = models.ForeignKey(CustomUser,
+    creator = models.ForeignKey(
+        CustomUser,
         on_delete=models.CASCADE
     )
     # namely phenotype
