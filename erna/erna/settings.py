@@ -25,11 +25,11 @@ SECRET_KEY = 'django-insecure-cg)5hm5jkgrog$v=6(*gshbiya@zn5)0^i4_kqphd5o(155e($
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
+# Django settings for projects
+
 ALLOWED_HOSTS = ['*']
 
-
 # Application definition
-
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -38,8 +38,10 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
-    # add modules
+    # API
     'rest_framework',
+    # celery
+    'django_celery_results',
 
     # customary apps
     'commons',
@@ -92,6 +94,16 @@ DATABASES = {
     }
 }
 
+#celery settings
+# rabbitmq
+# CELERY_BROKER_URL = "http://localhost:15672"
+CELERY_BROKER_URL="redis://127.0.0.1:6379"
+CELERY_RESULT_BACKEND = 'django-db'
+CELERY_RESULT_EXTENDED = True
+CELERY_ACCEPT_CONTENT = ['json']
+CELERY_TASK_SERIALIZER = 'json'
+
+
 
 # customary user models
 AUTH_USER_MODEL = "commons.CustomUser"
@@ -115,6 +127,7 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 
+
 # Internationalization
 # https://docs.djangoproject.com/en/4.2/topics/i18n/
 
@@ -125,6 +138,14 @@ TIME_ZONE = 'UTC'
 USE_I18N = True
 
 USE_TZ = True
+
+#email
+EMAIL_HOST = 'smtp-mail.outlook.com'
+EMAIL_USE_TLS = True
+EMAIL_PORT = 587
+EMAIL_HOST_USER = "tiezhengyuan@hotmail.com"
+EMAIL_HOST_PASSWORD = "am!ab8"
+# EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 
 
 # Static files (CSS, JavaScript, Images)

@@ -29,6 +29,8 @@ router.register('genome', GenomeViewSet, basename='genome')
 router.register('annotation', AnnotationViewSet, basename='annotation')
 router.register('reference', ReferenceViewSet, basename='reference')
 
+#celery tasks
+router.register('celery_task_result', TaskResultViewSet, basename='celery_task_result')
 
 urlpatterns = [
     path('', include(router.urls)),

@@ -24,6 +24,7 @@ import mutations_reference from "./mutations/reference";
 import actions_project from "./actions/project";
 import actions_user from "./actions/user";
 import actions_reference from "./actions/reference";
+import test from "./actions/test";
 
 export default new Vuex.Store({
   state: {
@@ -52,6 +53,7 @@ export default new Vuex.Store({
     ...actions_project,
     ...actions_user,
     ...actions_reference,
+    ...test,
   },
   modules: {},
 });
