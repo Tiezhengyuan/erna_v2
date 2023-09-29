@@ -17,6 +17,9 @@ router.register('task_execution', TaskViewSet, basename='task_execution')
 router.register('user', CustomUserViewSet, basename='user')
 # router.register('current_user', CustomUserViewSet.get_object, basename='current_user')
 router.register('tool', ToolViewSet, basename='tool')
+router.register('method', MethodViewSet, basename='method')
+# TODO debug in the future
+# router.register('method_names', MethodNameViewSet, basename='method_names')
 
 # app: sample
 router.register('sample', SampleViewSet, basename='sample')

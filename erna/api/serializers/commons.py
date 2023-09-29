@@ -10,3 +10,13 @@ class CustomUserSerializer(serializers.ModelSerializer):
     class Meta:
         model = CustomUser
         fields = '__all__'
+
+class MethodSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Method
+        fields = '__all__'
+
+class MethodNameSerializer(serializers.ListSerializer):
+    class Meta:
+        model = Method
+        fields = ['method_name',]
