@@ -5,7 +5,8 @@ from rest_framework import routers
 
 from api.views import *
 
-router = routers.DefaultRouter()
+router = routers.DefaultRouter(trailing_slash=True)
+
 # app: rna_seq
 router.register('project', ProjectViewSet, basename='project')
 router.register('project_user', ProjectUserViewSet, basename='project_user')
@@ -15,14 +16,13 @@ router.register('task_execution', TaskViewSet, basename='task_execution')
 
 # app: commons
 router.register('user', CustomUserViewSet, basename='user')
-# router.register('current_user', CustomUserViewSet.get_object, basename='current_user')
 router.register('tool', ToolViewSet, basename='tool')
 router.register('method', MethodViewSet, basename='method')
 # TODO debug in the future
 # router.register('method_names', MethodNameViewSet, basename='method_names')
 
 # app: sample
-router.register('raw_data', RawDataViewSet, basename='raw_data')
+router.register(r'raw_data', RawDataViewSet, basename='raw_data')
 router.register('sample', SampleViewSet, basename='sample')
 router.register('sample_file', SampleFileViewSet, basename='sample_file')
 router.register('sample_project', SampleProjectViewSet, basename="sample_project")

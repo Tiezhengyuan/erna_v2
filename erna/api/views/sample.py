@@ -1,17 +1,10 @@
+from rest_framework.decorators import action
+from rest_framework.response import Response
+from django.http import Http404
 from rest_framework import viewsets, response, permissions, decorators
 from sample.models import *
 from api.serializers import *
-
-class RawDataViewSet(viewsets.ModelViewSet):
-    serializer_class = RawDataSerializer
-    permission_classes = [permissions.IsAuthenticated]
-
-    def get_queryset(self):
-        batch_name = self.request.query_params.get('batch_name', None)
-        if batch_name is not None:
-            return RawData.objects.get_batch_files(batch_name)
-        return RawData.objects.all()
-    
+       
 class SampleViewSet(viewsets.ModelViewSet):
     queryset = Sample.objects.all()
     serializer_class = SampleSerializer

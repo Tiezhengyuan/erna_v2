@@ -1,3 +1,6 @@
+'''
+one file one record.
+'''
 from django.db import models
 import os
 
@@ -19,13 +22,13 @@ class RawDataManager(models.Manager):
     return self.filter(batch_name=batch_name)
 
   def detect_file_format(self, file_name:str):
-    split_tup = os.path.splittext(file_name)
-    file_type = split_tup[1].toupper() if len(split_tup) > 1 else None
+    split_tup = os.path.splitext(file_name)
+    file_type = split_tup[1][1:].upper() if len(split_tup) > 1 else ''
     return STANDER_FORMAT.get(file_type, "UN")
 
   def add_data(self, batch_name:str, full_file_path:str):
-    file_path = os.file.dirname(full_file_path)
-    file_name = os.file.basename(full_file_path)
+    file_path = os.path.dirname(full_file_path)
+    file_name = os.path.basename(full_file_path)
     file_type = self.detect_file_format(file_name)
     self.create(batch_name=batch_name, file_path=file_path, \
       file_name=file_name, file_type=file_type)
