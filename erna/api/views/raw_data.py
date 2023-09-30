@@ -71,7 +71,7 @@ class RawDataViewSet(viewsets.ModelViewSet):
         return Response({'message': f"{count} are deleted."})
 
     @action(detail=False, methods=['post'])
-    def batch_add(self, request):
+    def load_batch_data(self, request):
         '''
         add multiple data. for example:
         {

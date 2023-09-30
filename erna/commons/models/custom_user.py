@@ -1,7 +1,7 @@
 from django.contrib.auth.models import AbstractUser, BaseUserManager
 from django.db import models
 
-class UserManager(BaseUserManager):
+class CustomUserManager(BaseUserManager):
     def create_user(self, user_name:str, email:str, password, is_staff=None, is_superuser=None):
         if is_staff is None:
             is_staff = False
@@ -29,11 +29,11 @@ class UserManager(BaseUserManager):
         return self.create_user(user_name, password, True, True)
 
     def get_user_by_user_name(self, user_name):
-        return self.model.objects.get(user_name=user_name)
+        return self.model.objects.get(username=user_name)
 
 class CustomUser(AbstractUser):
-    pass
 
+    objects = CustomUserManager()
 
     class Meta:
         app_label = 'commons'
