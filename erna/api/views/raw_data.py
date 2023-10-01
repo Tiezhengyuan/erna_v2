@@ -6,7 +6,6 @@ from sample.models import RawData
 from api.serializers import RawDataSerializer
 
 class RawDataViewSet(viewsets.ModelViewSet):
-    queryset = RawData.objects.all()
     serializer_class = RawDataSerializer
     permission_classes = [permissions.IsAuthenticated]
 
@@ -17,7 +16,7 @@ class RawDataViewSet(viewsets.ModelViewSet):
         batch_name = self.request.query_params.get('batch_name', None)
         if batch_name is not None:
             return RawData.objects.get_batch_files(batch_name)
-        return self.queryset
+        return RawData.objects.all()
 
     def destroy(self, request):
         '''

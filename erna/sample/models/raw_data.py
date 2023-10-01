@@ -2,6 +2,7 @@
 one file one record.
 '''
 from django.db import models
+from django.conf import settings
 import os
 
 STANDER_FORMAT = {
@@ -48,3 +49,25 @@ class RawData(models.Model):
   class Meta:
     app_label = 'sample'
     ordering = ['batch_name', 'file_path']
+  
+  def to_dict(self):
+    return {
+      'raw_data_id': self.id,
+      'batch_name': self.batch_name,
+      'file_name': self.file_name,
+      'full_path': self.full_file_path,
+    }
+
+  @property
+  def storage_path(self):
+    return settings.DATA_DIR
+
+  @property
+  def full_file_path(self):
+    return os.path.join(self.file_path, self.file_name)
+
+  def file_exists(self) -> bool:
+    full_path = self.full_file_path()
+    if os.path.isfile(full_path):
+      return True
+    return False

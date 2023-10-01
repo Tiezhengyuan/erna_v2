@@ -3,7 +3,6 @@ from rest_framework.response import Response
 from django.http import Http404
 from rest_framework import viewsets, permissions
 from sample.models import Sample
-from commons.models import CustomUser
 from api.serializers import SampleSerializer
        
 class SampleViewSet(viewsets.ModelViewSet):
@@ -68,7 +67,7 @@ class SampleViewSet(viewsets.ModelViewSet):
         ]
         '''
         res = Sample.objects.load_samples(request.user, request.data)
-        return Response({'study_names': f'{res} are inserted.'})
+        return Response({'samples': res})
 
     @action(detail=False, methods=['delete'])
     def delete_study_samples(self, request):

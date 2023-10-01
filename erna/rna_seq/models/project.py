@@ -1,3 +1,5 @@
+import json
+from django.core.serializers import serialize
 from django.db import models
 from django.conf import settings
 from commons.models import CustomUser
@@ -26,21 +28,22 @@ class ProjectManager(models.Manager):
         '''
         return self.model.objects.filter(project_name=project_name, status='A')
 
-    def get_project_by_owner_name(self, user_name:str):
+    def get_projects_by_owner(self, user):
         '''
-        get projects by user name
+        get projects by user
         '''
         try:
-            owner = CustomUser.objects.get(user_name=user_name)
-            projects = self.model.objects.filter(owner=owner, status='A')
-            return projects
+            obj = self.model.objects.filter(owner=user)
+            serialized_data = json.loads(serialize('json', obj))
+            return serialized_data
         except Exception as e:
             print(e)
-        return None
+        return []
         
     def insert(self, data:dict):
         '''
         insert a new project
+        project_id and owner is automatically generated
         '''
         data['project_id'] = self.model.objects.get_next_project_id()
         Project.objects.create(**data)

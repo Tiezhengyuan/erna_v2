@@ -62,15 +62,15 @@ class SampleManager(models.Manager):
         '''
         import samples into database
         '''
-        n = 0
+        ids = []
         for sample in samples:
             sample_obj = self.create(study_name = sample['study_name'], \
                 sample_name=sample['sample_name'], creator=user)
             if 'metadata' in sample:
                 sample_obj.metadata = json.dumps(sample['metadata'])
             sample_obj.save()
-            n += 1
-        return n
+            ids.append(sample_obj.id)
+        return ids
     
 
     def update_sample_name(self, study_name:str, old_name:str, new_name:str):
@@ -95,12 +95,12 @@ class SampleManager(models.Manager):
     def delete_study_samples(self, study_name:str):
         return self.model.objects.filter(study_name=study_name).delete()
 
-    def export_study(self, user, study_name:str)->dict:
+    def export_study(self, study_name:str)->dict:
         '''
         export table to nested dict
         '''
         study = {}
-        samples = self.filter(creator=user, study_name=study_name)
+        samples = self.filter(study_name=study_name)
         for sample in samples:
             study[sample.sample_name]=vars(sample)
         return study
@@ -130,5 +130,12 @@ class Sample(models.Model):
     def __str__(self):
         return f"{self.study_name}_{self.sample_name}"
 
+    def to_dict(self):
+        return {
+            'study_name': self.study_name,
+            'sample_name': self.sample_name,
+            'creator': self.creator,
+            'metadata': json.loads(self.metadata),
+        }
 
 

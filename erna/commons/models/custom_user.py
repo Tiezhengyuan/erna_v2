@@ -13,7 +13,7 @@ class CustomUserManager(BaseUserManager):
         if not password:
             raise ValueError('wrong password')
         user_obj = self.model(
-            user_name = user_name,
+            username = user_name,
             email=self.normalize_email(email),
             is_staff = is_staff,
             is_superuser=is_superuser
@@ -32,8 +32,8 @@ class CustomUserManager(BaseUserManager):
         return self.model.objects.get(username=user_name)
 
 class CustomUser(AbstractUser):
-
-    objects = CustomUserManager()
+    # TODO update customUser Manager
+    # objects = CustomUserManager()
 
     class Meta:
         app_label = 'commons'

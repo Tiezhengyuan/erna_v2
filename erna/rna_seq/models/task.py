@@ -1,4 +1,6 @@
+import json
 from django.db import models
+from django.core.serializers import serialize
 
 # Create your models here.
 from .project import Project
@@ -16,36 +18,40 @@ class TaskManager(models.Manager):
             return f"T{next_id.zfill(2)}"
         return 'T01'
     
-    def add_task(self, project_id, user_name, tool_name):
+    def add_new_task(self, data):
         '''
         task_id could be generated automatically
         '''
-        task_id = self.model.objects.get_next_task_id(project_id)
-        project = Project.objects.get_project_by_project_id(project_id)
-        user = CustomUser.objects.get_user_by_user_name(user_name)
-        tool = Tool.objects.get_last_version(tool_name)
-        return self.model.objects.create(task_id=task_id,
-            project=project, executor=user, tool=tool)
+        try:
+            data['task_id'] = self.model.objects.get_next_task_id(data['project_id'])
+            data['project_id'] = Project.objects.get(project_id=data['project_id']).id
+            data['params'] = json.dumps(data.get('params', {}))
+            task = self.model.objects.create(**data)
+            task.save()
+            return {'task_id': task.task_id}
+        except Exception as e:
+            print(e)
+        return {}
 
-    def get_task(self, project_id, task_id):
-        '''
-        given a project_id , task_id is unique
-        '''
-        project = Project.objects.get_project_by_project_id(project_id)
-        return self.model.objects.get(project=project, task_id=task_id)
+    # def get_task(self, project_id, task_id):
+    #     '''
+    #     given a project_id , task_id is unique
+    #     '''
+    #     project = Project.objects.get_project_by_project_id(project_id)
+    #     return self.model.objects.get(project=project, task_id=task_id)
     
-    def get_project_tasks(self, project_id):
-        '''
-        one project may include multiple tasks
-        '''
-        project = Project.objects.get_project_by_project_id(project_id)
-        tasks = self.model.objects.filter(project=project)
-        return tasks
+    # def get_project_tasks(self, project_id):
+    #     '''
+    #     one project may include multiple tasks
+    #     '''
+    #     project = Project.objects.get_project_by_project_id(project_id)
+    #     tasks = self.model.objects.filter(project=project)
+    #     return tasks
     
-    def add_config(self, task_id, params, input, output):
-        return self.model.objects.filter(task_id=task_id)\
-            .update(params=params, input=input, \
-                    output=output, is_ready=True)
+    # def add_config(self, task_id, params, input, output:
+    #     return self.model.objects.filter(task_id=task_id)\
+    #         .update(params=params, input=input, \
+    #                 output=output, is_ready=True)
     
     def delete_task(self, project_id, task_id):
         project = Project.objects.get_project_by_project_id(project_id)
@@ -69,28 +75,10 @@ class Task(models.Model):
         default = "task name",
         verbose_name="task name"
     )
-    executor = models.ForeignKey(
-        CustomUser,
-        on_delete=models.CASCADE
-    )
-    tool = models.ForeignKey(Tool,
-        blank=True,
-        on_delete=models.CASCADE
-    )
     params = models.CharField(
         max_length=1256,
         blank=True, 
         verbose_name="parameters in json string"
-    )
-    input = models.CharField(
-        max_length=1256,
-        blank=True,
-        verbose_name="input metadata in json string"
-    )
-    output = models.CharField(
-        max_length=1256,
-        blank=True,
-        verbose_name="output metadata in json string"
     )
     is_ready = models.BooleanField(default=False)
     create_time = models.DateTimeField(auto_now_add=True)

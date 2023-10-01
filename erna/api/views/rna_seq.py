@@ -1,27 +1,14 @@
 from django.shortcuts import render
-from rest_framework import viewsets, response, \
-    permissions, decorators
+from rest_framework import viewsets, permissions
 
 from rna_seq.models import *
 from api.serializers import *
 
 
-
-class ProjectViewSet(viewsets.ModelViewSet):
-    queryset = Project.objects.all()
-    serializer_class = ProjectSerializer
-    permission_classes = [permissions.IsAuthenticated,]
-
 class ProjectUserViewSet(viewsets.ModelViewSet):
     queryset = ProjectUser.objects.all()
     serializer_class = ProjectUserSerializer
     permission_classes = [permissions.IsAuthenticated,]
-
-
-class TaskViewSet(viewsets.ModelViewSet):
-    queryset = Task.objects.all()
-    serializer_class = TaskSerializer
-    permission_classes = [permissions.IsAuthenticated]
 
 class TaskTreeViewSet(viewsets.ModelViewSet):
     queryset = TaskTree.objects.all()
