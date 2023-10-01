@@ -55,9 +55,8 @@ class ProjectManager(models.Manager):
 
 class Project(models.Model):
     project_id = models.CharField(
+        primary_key= True,
         max_length= 10,
-        default = 'P00001',
-        unique=True,
         verbose_name="project ID"
     )
     project_name = models.CharField(
@@ -80,7 +79,12 @@ class Project(models.Model):
     )
     sequencing = models.CharField(
         max_length=20,
-        choices=[('M', 'mRNA-Seq'), ('MI', 'miRNA-Seq'), ('SC', 'scRNA-Seq'), ('O', 'Other')],
+        choices=[
+            ('M', 'mRNA-Seq'),
+            ('MI', 'miRNA-Seq'),
+            ('SC', 'scRNA-Seq'),
+            ('O', 'Other')
+        ],
         default='M',
     )
 
@@ -88,7 +92,7 @@ class Project(models.Model):
 
     class Meta:
         app_label = 'rna_seq'
-        ordering = ['project_id',]
+        ordering = ['project_id', 'owner']
 
     def __str__(self):
         return self.project_id

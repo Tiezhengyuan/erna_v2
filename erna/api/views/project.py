@@ -53,3 +53,10 @@ class ProjectViewSet(viewsets.ModelViewSet):
   def owner_projects(self, request):
     res = Project.objects.get_projects_by_owner(request.user)
     return Response(res)
+  
+  @action(detail=False, methods=['delete'])
+  def delete_all(self, request):
+    res = Project.objects.all()
+    count = res.count()
+    res.delete()
+    return Response({'message': f"{count} are deleted."})
