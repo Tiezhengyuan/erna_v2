@@ -1,6 +1,6 @@
 import { api } from "./api";
 
-const actions_reference = {
+export default {
   getSpecies(context) {
     api
       .get("./specie/")
@@ -11,12 +11,17 @@ const actions_reference = {
         console.log(err);
       });
   },
-  postReference(context, id) {
-    const data = {
-      project: id,
-      specie: context.state.new_project.specie,
-      data_source: context.state.new_project.data_source,
-    };
+  getGenomes(context) {
+    api
+      .get("./genome/")
+      .then((res) => {
+        context.commit("setGenomes", res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  },
+  postReference(context, data) {
     api
       .post("/reference/", data)
       .then((res) => {
@@ -27,5 +32,3 @@ const actions_reference = {
       });
   },
 };
-
-export default actions_reference;

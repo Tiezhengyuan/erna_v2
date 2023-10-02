@@ -1,9 +1,8 @@
-const mutations_project = {
+export default {
+  // sry
   setUserProjects(state, projects) {
     state.projects = projects;
   },
-
-  // new_project
   setNewProject(state) {
     // initialize project_id
     if (state.projects.length > 0) {
@@ -16,8 +15,21 @@ const mutations_project = {
     state.new_project.project_id = state.next_project_id;
     // initialize other params
     state.new_project.owner = state.current_user.id;
-    state.new_project.sequencing = state.default_project.sequencing.value;
-    state.new_project.status = state.default_project.status.value;
+    // state.new_project.sequencing = state.default_project.sequencing.value;
+    // state.new_project.status = state.default_project.status.value;
+  },
+  setCurrentProject(state, project) {
+    state.current_project = project;
+    state.current_updated_project = {
+      owner: project.owner,
+    };
+  },
+  setNextProjectID(state, data) {
+    state.next_project_id = data.project_id;
+  },
+  // update
+  updateUpdatedProject(state, key_val) {
+    state.updated_project[key_val[0]] = key_val[1];
   },
   updateNewProject(state, key_val) {
     state.new_project[key_val[0]] = key_val[1];
@@ -27,14 +39,6 @@ const mutations_project = {
   },
   selectProject(state, selected_project) {
     state.current_project = selected_project;
-  },
-
-  // current_project
-  setCurrentProject(state, project) {
-    state.current_project = project;
-    state.current_updated_project = {
-      owner: project.owner,
-    };
   },
   updateCurrentProject(state, key_val) {
     state.current_project[key_val[0]] = key_val[1];
@@ -59,4 +63,3 @@ const mutations_project = {
     state.deleted_projects.push(selected);
   },
 };
-export default mutations_project;

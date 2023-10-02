@@ -1,8 +1,10 @@
 from django.db import models
 
-
 class Specie(models.Model):
-    specie_name = models.CharField(max_length=256, unique=True)
+    specie_name = models.CharField(
+        primary_key=True,
+        max_length=256
+    )
     abbreviation = models.CharField(
         max_length=10,
         blank=True,

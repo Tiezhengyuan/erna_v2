@@ -1,4 +1,4 @@
-const mutations_samples = {
+export default {
   deleteSample(state, sample) {
     state.samples = state.samples.filter((el) => {
       const is_sample =
@@ -7,5 +7,3 @@ const mutations_samples = {
     });
   },
 };
-
-export default mutations_samples;

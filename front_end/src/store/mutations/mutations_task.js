@@ -1,4 +1,4 @@
-const mutations_task = {
+export default {
   addTask(state, new_task) {
     state.new_task_id += 1;
     state.tasks.push(new_task);
@@ -31,5 +31,3 @@ const mutations_task = {
     state.current_task = task_obj;
   },
 };
-
-export default mutations_task;

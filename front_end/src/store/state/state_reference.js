@@ -1,9 +1,8 @@
-const state_reference = {
+export default {
+  genomes: [],
   species: [],
   current_ref: {
     data_source: "",
     specie: "",
   },
 };
-
-export default state_reference;

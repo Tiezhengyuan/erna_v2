@@ -1,6 +1,6 @@
 import { api } from "./api";
 
-const actions_user = {
+export default {
   getCurrentUser(context) {
     api
       .get("/user/current/")
@@ -12,5 +12,3 @@ const actions_user = {
       });
   },
 };
-
-export default actions_user;

@@ -1,4 +1,4 @@
-const state_samples = {
+export default {
   project_id: "P0001",
   seq_ends: "two_ends",
   samples: [
@@ -24,5 +24,3 @@ const state_samples = {
     },
   ],
 };
-
-export default state_samples;

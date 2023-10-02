@@ -28,15 +28,27 @@ class Genome(models.Model):
     '''
     Genome DNA, one chromosome one fasta file
     '''
-    label = 'genome_dna'
     specie = models.ForeignKey(
         Specie,
         on_delete=models.CASCADE
     )
     version = models.CharField(max_length=56)
-    file_name = models.CharField(max_length=128)
+    data_path = models.CharField(max_length=512)
+    data_source = models.CharField(
+        max_length=10,
+        default = "NCBI",
+        choices=[
+            ('NCBI', 'NCBI'),
+            ('ENSEMbL', 'ENSEMbL'),
+            ('other', 'other'),
+        ] 
+    )
     # str type from json format
-    metadata = models.CharField(max_length=1256)
+    metadata = models.CharField(
+        max_length=1256,
+        blank=True,
+        null=True
+    )
 
     objects = GenomeManager()
 

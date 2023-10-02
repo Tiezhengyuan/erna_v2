@@ -1,23 +1,17 @@
 import axios from "axios";
-axios.defaults.xsrfHeaderName = "X-CSRFTOKEN";
-axios.defaults.xsrfCookieName = "csrftoken";
-axios.defaults.withCredentials = true;
-axios.defaults.headers.common["Access-Control-Allow-Origin"] = "*";
 
-axios.interceptors.response.use((res) => {
-  res.headers["Access-Control-Allow-Origin"] = "*";
-  res.headers["Access-Control-Allow-Credentials"] = "true";
-  res.headers["Access-Control-Request-Method"] = "POST";
-  return res;
-});
+const mode = "DEV";
+const server = {
+  DEV: {
+    baseURL: "http://localhost:8000/api/",
+  },
+  PROD: {
+    baseURL: "http://localhost:4800/api/",
+  },
+};
 
 export const api = axios.create({
-  baseURL: "/api/",
-  // withCredentials: false,
-  headers: {
-    ContentType: "application/json",
-    Accept: "application/json",
-  },
+  baseURL: server[mode].baseURL,
   auth: {
     username: "admin",
     password: "admin",

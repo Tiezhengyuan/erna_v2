@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div class="container input-dropdown">
     <div class="input-name" v-show="data.label">
       <label>{{ data.label }}</label>
     </div>
@@ -13,6 +13,7 @@
         {{ item.label }}
       </option>
     </select>
+    <label class="required" v-show="data.required">*</label>
   </div>
 </template>
 
@@ -38,16 +39,20 @@ export default {
 </script>
 
 <style scoped>
-.container {
+.container.input-dropdown {
   padding: 5px;
   box-sizing: border-box;
   display: flex;
   flex-direction: row;
 }
-.container .input-name {
+.container.input-dropdown .input-name {
   /* width: 40%; */
   padding-right: 10px;
   display: flex;
   justify-content: right;
+}
+.container.input-dropdown .required {
+  padding-left: 10px;
+  font-weight: bold;
 }
 </style>

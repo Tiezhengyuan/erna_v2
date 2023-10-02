@@ -40,6 +40,8 @@ INSTALLED_APPS = [
 
     # API
     'rest_framework',
+    # CORS
+    'corsheaders',
     # celery
     'django_celery_results',
     'django_celery_beat',
@@ -53,6 +55,11 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
+    # CORS
+    'corsheaders.middleware.CorsMiddleware',
+    'django.middleware.common.CommonMiddleware',    
+
+    # django
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -61,6 +68,11 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
+
+CORS_ORIGIN_ALLOW_ALL = False
+CORS_ORIGIN_WHITELIST = (
+    'http://localhost:8080',
+)
 
 ROOT_URLCONF = 'erna.urls'
 

@@ -1,4 +1,10 @@
-const getters_reference = {
+export default {
+  new_project_id(state) {
+    return {
+      label: "Project ID: ",
+      value: state.next_project_id,
+    };
+  },
   data_source() {
     return {
       name: "data_source",
@@ -24,6 +30,18 @@ const getters_reference = {
       options: options,
     };
   },
+  genome(state) {
+    const options = state.genomes.map((el) => {
+      return {
+        value: el.id,
+        label: `${el.specie}_${el.data_source}_${el.version}`,
+      };
+    });
+    return {
+      name: "genome",
+      label: "Genome",
+      required: true,
+      options: options,
+    };
+  },
 };
-
-export default getters_reference;

@@ -1,4 +1,4 @@
-const mutations_user = {
+export default {
   setCurrentUser(state, user) {
     state.current_user = {
       username: user.username,
@@ -8,5 +8,3 @@ const mutations_user = {
     };
   },
 };
-
-export default mutations_user;

@@ -1,27 +1,18 @@
 <template>
   <div class="container new-project">
     <h3>Create a new project</h3>
-    <div class="project-input">
-      <PairedLabel :data="default_project_id"></PairedLabel>
-      <inputText
-        :data="default_project.project_name"
-        :receive="receive"
-      ></inputText>
-      <inputText
-        :data="default_project.description"
-        :receive="receive"
-      ></inputText>
-      <inputDropdown
-        :data="default_project.sequencing"
-        :receive="receive"
-      ></inputDropdown>
-      <inputDropdown
-        :data="default_project.status"
-        :receive="receive"
-      ></inputDropdown>
-      <inputDropdown :data="specie" :receive="receive"></inputDropdown>
-      <inputDropdown :data="data_source" :receive="receive"></inputDropdown>
+    <div class="project-input" v-if="showInput">
+      <PairedLabel :data="new_project_id"></PairedLabel>
+      <inputText :data="project_name" :receive="receive"></inputText>
+      <inputText :data="description" :receive="receive"></inputText>
+      <inputDropdown :data="sequencing" :receive="receive"></inputDropdown>
+      <inputDropdown :data="status" :receive="receive"></inputDropdown>
+      <inputDropdown :data="genome" :receive="receive"></inputDropdown>
       <button @click="create">Create</button>
+      <button @click="reset">Reset</button>
+    </div>
+    <div class="warning" v-show="showWarning">
+      Either Sequencing or genome should be selected.
     </div>
   </div>
 </template>
@@ -40,36 +31,54 @@ export default {
     inputDropdown,
   },
   mounted() {
-    this.$store.dispatch("getSpecies");
+    this.$store.dispatch("getGenomes");
+    this.$store.dispatch("getNextProjectID");
+  },
+  data() {
+    return {
+      showInput: true,
+      showWarning: false,
+    };
   },
   computed: {
-    ...mapState(["default_project", "next_project_id", "projects"]),
-    ...mapGetters(["data_source", "specie"]),
-    default_project_id() {
-      return {
-        label: "Project ID: ",
-        value: this.next_project_id,
-      };
-    },
+    ...mapState(["updated_project"]),
+    ...mapGetters([
+      "new_project_id",
+      "project_name",
+      "description",
+      "sequencing",
+      "status",
+      "genome",
+    ]),
   },
   methods: {
     receive(key_val) {
-      this.$store.commit("updateNewProject", key_val);
+      this.$store.commit("updateUpdatedProject", key_val);
     },
     create() {
-      this.$store.commit("addNewProject");
-      this.$store.dispatch("postNewProject");
-      this.$store.commit("setNewProject");
+      if (this.updated_project.sequencing && this.updated_project.genome) {
+        this.$store.dispatch("postNewProject");
+        window.location.reload();
+      } else {
+        this.showWarning = true;
+      }
+    },
+    reset() {
+      window.location.reload();
     },
   },
 };
 </script>
 
 <style scopred>
-.new-project .project-input {
-  height: 270px;
-  background-color: white;
+/* .container.new-project {
   margin: 0 auto;
+} */
+.new-project .project-input {
+  width: 500px;
+  height: 300px;
+  margin: 0 auto;
+  background-color: white;
   padding: 20px;
 }
 .new-project .title {
@@ -78,5 +87,11 @@ export default {
 .new-project .project-input button {
   font-size: 18px;
   margin: 10px;
+}
+.new-project .warning {
+  width: 500px;
+  margin-top: 10px;
+  color: white;
+  background-color: red;
 }
 </style>

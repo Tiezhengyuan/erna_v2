@@ -1,4 +1,4 @@
-const actions_task = {
+export default {
   getProjectTasks(context, project_id) {
     api.get("/task/", ).then((res) => {
       console.log(res);
@@ -8,5 +8,3 @@ const actions_task = {
   },
 
 };
-
-export default actions_task;

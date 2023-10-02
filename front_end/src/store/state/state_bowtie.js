@@ -1,4 +1,4 @@
-const state_bowtie = {
+export default {
   bowtie_params: {
     specie: {
       name: "specie",
@@ -55,4 +55,3 @@ const state_bowtie = {
     },
   },
 };
-export default state_bowtie;

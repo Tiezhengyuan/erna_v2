@@ -1,4 +1,4 @@
-const state_task = {
+export default {
   new_task_id: 10,
   task_methods: [
     { task_method: "sequence alignment", component: "AlignerBowtie" },
@@ -19,5 +19,3 @@ const state_task = {
   ],
   current_task: {},
 };
-
-export default state_task;
