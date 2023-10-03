@@ -34,6 +34,8 @@ export default {
         console.log(err);
       });
   },
+
+  // asynchronization
   requestNewGenome(context) {
     const config = {
       params: {

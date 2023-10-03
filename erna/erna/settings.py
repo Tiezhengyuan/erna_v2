@@ -187,24 +187,29 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 PIPELINES_DIR = os.environ['PIPELINES_DIR'] if os.environ.get('PIPELINES_DIR') \
     else os.path.join(PROJECT_DIR, 'pipelines')
 
+# main entrance for launch bioinformatics pipeline
 PIPELINE_ERNA = os.path.join(PIPELINES_DIR, 'erna.py')
 
 # depreciated in the future 
 TOOLS_DIR = os.environ['TOOLS_DIR'] if os.environ.get('TOOLS_DIR') \
     else os.path.join(PIPELINES_DIR, 'externals')
 
+# third-party bioinformatics tools
 EXTERNALS_DIR = os.environ['EXTERNALS_DIR'] if os.environ.get('EXTERNALS_DIR') \
     else os.path.join(PIPELINES_DIR, 'externals')
 
-# depreciated in the future
+# store data uploaded by user
 DATA_DIR = os.environ['DATA_DIR'] if os.environ.get('DATA_DIR') \
     else os.path.join(PIPELINES_DIR, 'data')
 
+# raw data namely fastq
 RAW_DATA_DIR = os.environ['RAW_DATA_DIR'] if os.environ.get('RAW_DATA_DIR') \
     else os.path.join(PIPELINES_DIR, 'raw_data')
 
+# analytic results
 RESULTS_DIR = os.environ['RESULTS_DIR'] if os.environ.get('RESULTS_DIR') \
     else os.path.join(PIPELINES_DIR, 'results')
 
+# reference namely genome DNA in fa format
 REFERENCES_DIR = os.environ['REFERENCES_DIR'] if os.environ.get('REFERENCES_DIR') \
     else os.path.join(PIPELINES_DIR, 'references')
