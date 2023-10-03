@@ -3,23 +3,17 @@
     <h3>Download genome references</h3>
     <label>Note: genome DNA and transcripts</label>
     <div>
-      <inputDropdown
-        :data="default_ref.data_source"
-        :receive="getDataSource"
-      ></inputDropdown>
-      <inputDropdown
-        :data="default_ref.specie"
-        :receive="getSpecie"
-      ></inputDropdown>
+      <inputDropdown :data="data_source" :receive="receive"></inputDropdown>
+      <inputDropdown :data="new_specie" :receive="receive"></inputDropdown>
     </div>
     <div>
-      <button>submit download request</button>
+      <button @click="submit">submit download request</button>
     </div>
   </div>
 </template>
 
 <script>
-import { mapState } from "vuex";
+import { mapGetters } from "vuex";
 import inputDropdown from "../../components/forms/inputDropdown";
 
 export default {
@@ -28,14 +22,15 @@ export default {
     inputDropdown,
   },
   computed: {
-    ...mapState(["default_ref"]),
+    ...mapGetters(["data_source", "new_specie"]),
   },
   methods: {
-    getDataSource(key_val) {
-      console.log(key_val);
+    receive(key_val) {
+      this.$store.commit("updateNewGenome", key_val);
     },
-    getSpecie(key_val) {
-      console.log(key_val);
+    submit() {
+      this.$store.dispatch("requestNewGenome");
+      window.location.reload();
     },
   },
 };

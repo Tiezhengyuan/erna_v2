@@ -8,7 +8,7 @@ export default {
   data_source() {
     return {
       name: "data_source",
-      label: "Source of reference sequences",
+      label: "Source of genome sequences",
       value: "NCBI",
       options: [
         { value: "NCBI", label: "NCBI" },
@@ -41,6 +41,19 @@ export default {
       name: "genome",
       label: "Genome",
       required: true,
+      options: options,
+    };
+  },
+  new_specie(state) {
+    const options = state.new_species.map((el) => {
+      return {
+        value: el,
+        label: el,
+      };
+    });
+    return {
+      name: "specie",
+      label: "Specie",
       options: options,
     };
   },

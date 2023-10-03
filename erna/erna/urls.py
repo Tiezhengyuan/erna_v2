@@ -22,4 +22,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/', include('api.urls')),
     path('rna_seq/', include('rna_seq.urls')),
+    path('celery_tasks/', include('celery_tasks.urls')),
 ]

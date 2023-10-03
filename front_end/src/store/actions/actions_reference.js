@@ -1,6 +1,7 @@
 import { api } from "./api";
 
 export default {
+  // get
   getSpecies(context) {
     api
       .get("./specie/")
@@ -21,6 +22,8 @@ export default {
         console.log(err);
       });
   },
+
+  // post
   postReference(context, data) {
     api
       .post("/reference/", data)
@@ -30,5 +33,8 @@ export default {
       .catch((err) => {
         console.log(err);
       });
+  },
+  requestNewGenome(context) {
+    console.log(context.state.new_genome);
   },
 };
