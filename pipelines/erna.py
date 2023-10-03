@@ -5,7 +5,7 @@ import os
 import sys
 
 
-def main():
+def main(args):
   print(args)
 
 

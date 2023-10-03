@@ -1,4 +1,4 @@
-import { api } from "./api";
+import { api, endpoint } from "./api";
 
 export default {
   // get
@@ -35,6 +35,19 @@ export default {
       });
   },
   requestNewGenome(context) {
-    console.log(context.state.new_genome);
+    const config = {
+      params: {
+        data_source: context.state.new_genome.data_source,
+        specie: context.state.new_genome.specie,
+      },
+    };
+    endpoint
+      .get("/celery_tasks/download_genome/", config)
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   },
 };

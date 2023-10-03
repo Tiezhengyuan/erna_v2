@@ -30,7 +30,7 @@ export default {
     },
     submit() {
       this.$store.dispatch("requestNewGenome");
-      window.location.reload();
+      // window.location.reload();s
     },
   },
 };

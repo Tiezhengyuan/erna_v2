@@ -184,8 +184,27 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
 # other related path
-TOOLS_DIR = os.environ['TOOLS_DIR'] if os.environ.get('TOOLS_DIR') \
-    else os.path.join(PROJECT_DIR, 'externals')
+PIPELINES_DIR = os.environ['PIPELINES_DIR'] if os.environ.get('PIPELINES_DIR') \
+    else os.path.join(PROJECT_DIR, 'pipelines')
 
+PIPELINE_ERNA = os.path.join(PIPELINES_DIR, 'erna.py')
+
+# depreciated in the future 
+TOOLS_DIR = os.environ['TOOLS_DIR'] if os.environ.get('TOOLS_DIR') \
+    else os.path.join(PIPELINES_DIR, 'externals')
+
+EXTERNALS_DIR = os.environ['EXTERNALS_DIR'] if os.environ.get('EXTERNALS_DIR') \
+    else os.path.join(PIPELINES_DIR, 'externals')
+
+# depreciated in the future
 DATA_DIR = os.environ['DATA_DIR'] if os.environ.get('DATA_DIR') \
-    else os.path.join(PROJECT_DIR, 'data')
+    else os.path.join(PIPELINES_DIR, 'data')
+
+RAW_DATA_DIR = os.environ['RAW_DATA_DIR'] if os.environ.get('RAW_DATA_DIR') \
+    else os.path.join(PIPELINES_DIR, 'raw_data')
+
+RESULTS_DIR = os.environ['RESULTS_DIR'] if os.environ.get('RESULTS_DIR') \
+    else os.path.join(PIPELINES_DIR, 'results')
+
+REFERENCES_DIR = os.environ['REFERENCES_DIR'] if os.environ.get('REFERENCES_DIR') \
+    else os.path.join(PIPELINES_DIR, 'references')
