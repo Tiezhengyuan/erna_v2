@@ -1,8 +1,9 @@
 from django.urls import path
-from . import views
+from .views import *
 
 urlpatterns = [
-  path('test/', views.async_test, name='test'),
-  path('download_genome/', views.download_genome, name='download_genome'),
-  path('scan_raw_data/', views.scan_raw_data, name='scan_raw_data'),
+  path('test/', async_test, name='test'),
+  path('download_genome/', DownloadGenomeView, name='download_genome'),
+  path('scan_raw_data/', ScanRawDataView, name='scan_raw_data'),
+  path('refresh_raw_data/', RefreshRawDataView, name='refresh_raw_data'),
 ]

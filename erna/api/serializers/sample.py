@@ -1,5 +1,8 @@
 from rest_framework import serializers
-from sample.models import *
+from sample.models.raw_data import RawData
+from sample.models.sample import Sample
+from sample.models.sample_file import SampleFile
+from sample.models.sample_project import SampleProject
 
 class RawDataSerializer(serializers.ModelSerializer):
     class Meta:

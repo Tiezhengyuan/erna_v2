@@ -1,8 +1,9 @@
+import os
 from rest_framework.decorators import action
 from rest_framework.response import Response
 from django.http import Http404
 from rest_framework import viewsets, permissions
-from sample.models import RawData
+from sample.models.raw_data import RawData
 from api.serializers import RawDataSerializer
 
 class RawDataViewSet(viewsets.ModelViewSet):
@@ -76,16 +77,18 @@ class RawDataViewSet(viewsets.ModelViewSet):
         {
           "batch_name": "A3",
           "full_path_list": [
-            "/abc/a.fa",
-            "/abc/b.fa"
+            "/raw_data/A3/a.fa",
+            "/raw_data/A3/b.fa"
           ]
         }
         '''
         batch_name = request.data.get('batch_name')
         full_path_list = request.data.get('full_path_list')
         count = len(full_path_list) if full_path_list else 0
-        for full_path in full_path_list:
-            RawData.objects.add_data(batch_name, full_path)
+        for full_file_path in full_path_list:
+            file_path = os.path.dirname(full_file_path)
+            file_name = os.path.basename(full_file_path)
+            RawData.objects.add_data(batch_name, file_path, file_name)
         return Response({'message': f"{count} are added. batch_name={batch_name}"})
         
    

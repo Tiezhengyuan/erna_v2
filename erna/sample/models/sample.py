@@ -1,6 +1,5 @@
 import json
 from django.db import models
-from commons.models import CustomUser
 
 class SampleManager(models.Manager):
 
@@ -112,7 +111,7 @@ class Sample(models.Model):
     # one sample on one name
     sample_name = models.CharField(max_length=100)
     creator = models.ForeignKey(
-        CustomUser,
+        'commons.CustomUser',
         on_delete=models.CASCADE
     )
     # namely phenotype

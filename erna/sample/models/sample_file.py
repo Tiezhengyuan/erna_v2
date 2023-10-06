@@ -67,7 +67,7 @@ class SampleFileManager(models.Manager):
 class SampleFile(models.Model):
     # one sample may include multiple files
     sample = models.ForeignKey(
-        Sample,
+        'sample.Sample',
         on_delete = models.CASCADE
     )
     # path of raw data

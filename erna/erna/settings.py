@@ -52,6 +52,7 @@ INSTALLED_APPS = [
     'rna_seq',
     'sample',
     'annot',
+    'help',
 ]
 
 MIDDLEWARE = [
@@ -173,9 +174,11 @@ EMAIL_HOST_PASSWORD = "am!ab8"
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
 STATIC_URL = 'static/'
-STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'static')
-]
+# STATICFILES_DIRS = [
+#     os.path.join(BASE_DIR, 'static'),
+# ]
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
@@ -188,7 +191,7 @@ PIPELINES_DIR = os.environ['PIPELINES_DIR'] if os.environ.get('PIPELINES_DIR') \
     else os.path.join(PROJECT_DIR, 'pipelines')
 
 # main entrance for launch bioinformatics pipeline
-PIPELINE_ERNA = os.path.join(PIPELINES_DIR, 'erna.py')
+PIPELINE_ERNA = os.path.join(BASE_DIR, 'erna_app.py')
 
 # depreciated in the future 
 TOOLS_DIR = os.environ['TOOLS_DIR'] if os.environ.get('TOOLS_DIR') \

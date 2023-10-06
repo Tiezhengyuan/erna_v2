@@ -8,6 +8,7 @@ pipelines/raw_data/
 pipelines/data/
 pipelines/results/
 pipelines/references/
+erna/staticfiles/
 
 # Distribution / packaging
 .Python

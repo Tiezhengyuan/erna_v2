@@ -1,4 +1,6 @@
 import os
+import sys
+# import celery
 from celery import Celery
 
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'erna.settings')
