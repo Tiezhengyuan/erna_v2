@@ -36,6 +36,16 @@ class SampleFileViewSet(viewsets.ModelViewSet):
         res = SampleFile.objects.get_study_files(study_name)
         return Response(res)
 
+    @action(detail=False, methods=['get'])
+    def unparsed_data(self, request):
+        '''
+        parse samples with unparsed raw data
+        '''
+        study_name = self.request.query_params.get('study_name', '')
+        reg = self.request.query_params.get('reg', '<S>')
+        res = SampleFile.objects.detect_unparsed(study_name, reg)
+        return Response(res)
+    
     @action(detail=False, methods=['post'])
     def parse_sample_files(self, request):
         '''
@@ -45,9 +55,16 @@ class SampleFileViewSet(viewsets.ModelViewSet):
             {"sample": 1, "raw_data": 4}
         ]
         '''
-        res = []
+        res = {
+            'created': [],
+            'failed': [],
+            'skipped': [],
+        }
         sample_files = request.data
         for sample_file in sample_files:
             obj = SampleFile.objects.add_sample_file(sample_file)
-            res.append(obj.id)
-        return Response({'ids': res})
+            if obj:
+                res['created'].append(obj.id)
+            else:
+                res['skipped'].append(sample_file)
+        return Response(res)

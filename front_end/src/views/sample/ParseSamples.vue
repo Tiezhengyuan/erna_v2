@@ -1,63 +1,60 @@
 <template>
   <div class="container parse-samples">
-    <fieldset>
-      <legend>Select a project</legend>
-      <div class="select-project">
-        <inputDropdown
-          :data="project_names"
-          :receive="getProject"
-        ></inputDropdown>
-      </div>
-    </fieldset>
+    <div class="select">
+      <inputDropdown :data="study_names" :receive="receive"></inputDropdown>
+      <inputText :data="sample_name_reg" :receive="receive"></inputText>
+      <button @click="parseSampleFiles">Submit</button>
+    </div>
 
-    <fieldset>
-      <legend>Inject raw data into project</legend>
-      <SelectFile></SelectFile>
-      <table border="1">
-        <caption>
-          Parse Sample Names with Raw Files
-        </caption>
-        <TableTwoEnds v-if="seq_ends == 'two_ends'"></TableTwoEnds>
-        <TableSingleEnd v-else></TableSingleEnd>
-      </table>
-    </fieldset>
+    <table border="1" v-show="unparsed_data.length">
+      <thead>
+        <tr>
+          <th>Delete</th>
+          <th>Sample name</th>
+          <th>Batch of raw data</th>
+          <th>File path of raw data</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr v-for="(item, i) in unparsed_data" :key="i">
+          <th>
+            <button @click="removeFile(i)">delete</button>
+          </th>
+          <th>{{ item.sample_name }}</th>
+          <th>{{ item.batch_name }}</th>
+          <th>{{ item.full_path }}</th>
+        </tr>
+      </tbody>
+    </table>
   </div>
 </template>
 
 <script>
-import { mapState } from "vuex";
+import { mapState, mapGetters } from "vuex";
 import inputDropdown from "../../components/forms/inputDropdown";
-import SelectFile from "../../components/forms/SelectFile";
-import TableTwoEnds from "./TableTwoEnds";
-import TableSingleEnd from "./TableSingleEnd";
+import inputText from "../../components/forms/inputText";
 
 export default {
   name: "ParseSamples",
   components: {
     inputDropdown,
-    SelectFile,
-    TableTwoEnds,
-    TableSingleEnd,
+    inputText,
   },
   computed: {
-    ...mapState(["projects", "seq_ends"]),
-    project_names() {
-      return {
-        name: "id",
-        label: "Project ID",
-        value: "",
-        options: this.projects.map((el) => {
-          return {
-            value: el.id,
-            label: el.project_id,
-          };
-        }),
-      };
-    },
+    ...mapState(["unparsed_data"]),
+    ...mapGetters(["study_names", "sample_name_reg"]),
   },
   methods: {
-    getProject(key_val) {
-      console.log(key_val);
+    receive(key_val) {
+      this.$store.commit("updateParseSamples", key_val);
+      this.$store.dispatch("detectUnparsedData");
+    },
+    removeFile(i) {
+      // i is index of unparsed_data
+      this.$store.commit("removeUnparsedData", i);
+    },
+    parseSampleFiles() {
+      this.$store.dispatch("parseSampleFiles");
     },
   },
 };
@@ -71,5 +68,10 @@ export default {
   border-color: lightblue;
   border-radius: 5px;
   background-color: white;
+}
+.container.parse-samples .select {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 </style>

@@ -30,6 +30,23 @@ def RefreshRawDataView(request):
   }
   return JsonResponse(res, safe=False)
 
+def ParseSampleDataView(request):
+  study_name = request.GET.get('study_name', '')
+  prefix = request.GET.get('prefix')
+  postfix = request.GET.get('postfix')
+  task_id = parse_sample_data.delay(study_name, prefix, postfix)
+  res = {
+    'task_id': [str(task_id),],
+  }
+  return JsonResponse(res, safe=False)
+
+def ResetSampleView(request):
+  task_id = reset_sample.delay()
+  res = {
+    'task_id': [str(task_id),],
+  }
+  return JsonResponse(res, safe=False)
+
 
 def async_test(request):
   task_id = minus.delay(2, 3)

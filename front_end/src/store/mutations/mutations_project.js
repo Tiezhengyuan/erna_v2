@@ -18,15 +18,21 @@ export default {
     // state.new_project.sequencing = state.default_project.sequencing.value;
     // state.new_project.status = state.default_project.status.value;
   },
-  setCurrentProject(state, project) {
-    state.current_project = project;
-    state.current_updated_project = {
-      owner: project.owner,
+  setCurrentProject(state, key_val) {
+    state.current_project = {
+      project_id: key_val[1],
     };
   },
+  // setCurrentProject(state, project) {
+  //   state.current_project = project;
+  //   state.current_updated_project = {
+  //     owner: project.owner,
+  //   };
+  // },
   setNextProjectID(state, data) {
     state.next_project_id = data.project_id;
   },
+
   // update
   updateUpdatedProject(state, key_val) {
     state.updated_project[key_val[0]] = key_val[1];
@@ -42,8 +48,7 @@ export default {
   },
   updateCurrentProject(state, key_val) {
     state.current_project[key_val[0]] = key_val[1];
-    state.current_updated_project[key_val[0]] = key_val[1];
-    console.log(state.current_updated_project);
+    // state.current_updated_project[key_val[0]] = key_val[1];
   },
   updateUpdated(state) {
     const curr_id = state.current_project.id;

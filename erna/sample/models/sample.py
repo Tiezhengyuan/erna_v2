@@ -60,16 +60,28 @@ class SampleManager(models.Manager):
     def load_samples(self, user:str, samples:list):
         '''
         import samples into database
+        study_name + sample_name should be unique
         '''
-        ids = []
+        res = {
+            'created': [],
+            'updated': [],
+        }
         for sample in samples:
-            sample_obj = self.create(study_name = sample['study_name'], \
-                sample_name=sample['sample_name'], creator=user)
-            if 'metadata' in sample:
-                sample_obj.metadata = json.dumps(sample['metadata'])
-            sample_obj.save()
-            ids.append(sample_obj.id)
-        return ids
+            existing_sample = self.filter(study_name = sample['study_name'], \
+                sample_name=sample['sample_name'])
+            print(existing_sample)
+            if not existing_sample:
+                new_sample = self.create(study_name = sample['study_name'], \
+                    sample_name=sample['sample_name'], creator=user)
+                if 'metadata' in sample:
+                    new_sample.metadata = json.dumps(sample['metadata'])
+                new_sample.save()
+                res['created'].append(new_sample.id)
+            else:
+                if 'metadata' in sample:
+                    existing_sample.update(metadata=json.dumps(sample['metadata']))
+                    res['updated'] += [s.id for s in existing_sample]
+        return res
     
 
     def update_sample_name(self, study_name:str, old_name:str, new_name:str):

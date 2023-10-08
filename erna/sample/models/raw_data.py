@@ -59,6 +59,7 @@ class RawData(models.Model):
     blank=True, null=True)
   batch_name = models.CharField(max_length=20,
     blank=True, null=True)
+  parsed = models.BooleanField(default=False)
 
   objects = RawDataManager()
 

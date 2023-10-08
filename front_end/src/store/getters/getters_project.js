@@ -1,4 +1,18 @@
 export default {
+  projects_list(state) {
+    const options = state.projects.map((el) => {
+      return {
+        value: el.project_id,
+        label: el.project_id,
+      };
+    });
+    return {
+      name: "project_id",
+      label: "Project ID",
+      value: "",
+      options: options,
+    };
+  },
   project_name(state) {
     const val = state.new_project.project_name;
     return {

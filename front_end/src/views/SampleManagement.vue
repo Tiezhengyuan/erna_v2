@@ -9,7 +9,10 @@
           <router-link to="/manage/create_project">Create Project</router-link>
         </li>
         <li>
-          <router-link to="/manage/parse_samples">Parse Samples</router-link>
+          <router-link to="/manage/load_samples">Load Samples</router-link>
+        </li>
+        <li>
+          <router-link to="/manage/parse_raw_data">Parse Raw Data</router-link>
         </li>
         <li>
           <router-link to="/manage/build_reference">
@@ -54,11 +57,13 @@ export default {
 }
 ul {
   list-style-type: none;
+  font-size: 16px;
+  font-weight: bold;
 }
 li {
   display: inline;
-  padding-left: 10px;
-  padding-right: 10px;
+  padding-left: 5px;
+  padding-right: 5px;
   border-right: 1px solid black;
 }
 .list li:last-child {

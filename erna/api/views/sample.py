@@ -55,7 +55,7 @@ class SampleViewSet(viewsets.ModelViewSet):
         study names
         '''
         res = Sample.objects.values_list('study_name', flat=True).distinct()
-        return Response({'study_names': res})
+        return Response({'study_names': list(set(res)) })
     
     @action(detail=False, methods=['post'])
     def load_samples(self, request):
@@ -67,7 +67,7 @@ class SampleViewSet(viewsets.ModelViewSet):
         ]
         '''
         res = Sample.objects.load_samples(request.user, request.data)
-        return Response({'samples': res})
+        return Response(res)
 
     @action(detail=False, methods=['delete'])
     def delete_study_samples(self, request):

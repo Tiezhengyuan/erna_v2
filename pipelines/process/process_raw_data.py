@@ -3,7 +3,7 @@ process raw data namely fastq
 '''
 import os
 from typing import Iterable
-from sample.models import RawData
+from sample.models import RawData, Sample, SampleFile, SampleProject
 from django.core import serializers
 DEFAULT_RAW_DATA_DIR = os.path.join(
   os.path.dirname(os.path.dirname(__file__)), 'raw_data')
@@ -34,3 +34,51 @@ class ProcessRawData:
     raw_data = self.scan_raw_data()
     data = RawData.objects.load_data(raw_data)
     return serializers.serialize('json', data)
+
+  def parse_sample_data(self, study_name, prefix=None, postfix=None):
+    '''
+    one raw data match one sample
+    one sample may match to 1-many raw data
+    '''
+    study_samples = Sample.objects.filter(study_name=study_name)
+    unparsed_data = RawData.objects.filter(parsed=False)
+    sample_data = []
+    for raw_data in unparsed_data:
+      file_name = raw_data.file_name
+      for sample in study_samples:
+        target = sample.sample_name
+        if prefix:
+          target = prefix + target
+        if postfix:
+          target += postfix
+        if target in file_name:
+          pair = {
+            'sample_id': sample.id,
+            'sample_name': sample.sample_name,
+            'raw_data_id': raw_data.id,
+            'file_name': raw_data.file_name,
+            'batch_name': raw_data.batch_name,
+          }
+          sample_data.append(pair)
+          break
+    return sample_data
+
+  def reset_sample(self):
+    '''
+    Reset all tables defined in the app sample
+    1. Delete all data in RawData, Sample, SampleFile, SampleProject
+    2. RawData: refresh raw data
+    '''
+    res = {
+      'deleted': {},
+      'created': {},
+    }
+    for db in (RawData, Sample, SampleFile, SampleProject):
+      queryset = db.objects.all()
+      res['deleted'][db.__name__] = queryset.count()
+      queryset.delete()
+    # create
+    raw_data = self.scan_raw_data()
+    data = RawData.objects.load_data(raw_data)
+    res['created'][RawData.__name__] = len(data)
+    return res
