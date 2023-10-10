@@ -22,6 +22,8 @@ export default {
     state.current_project = {
       project_id: key_val[1],
     };
+    state.current_study_name = "";
+    state.unassigned_sample_files = [];
   },
   // setCurrentProject(state, project) {
   //   state.current_project = project;
@@ -32,7 +34,6 @@ export default {
   setNextProjectID(state, data) {
     state.next_project_id = data.project_id;
   },
-
   // update
   updateUpdatedProject(state, key_val) {
     state.updated_project[key_val[0]] = key_val[1];
@@ -48,7 +49,6 @@ export default {
   },
   updateCurrentProject(state, key_val) {
     state.current_project[key_val[0]] = key_val[1];
-    // state.current_updated_project[key_val[0]] = key_val[1];
   },
   updateUpdated(state) {
     const curr_id = state.current_project.id;

@@ -9,7 +9,7 @@ import AnalyticTools from "../views/AnalyticTools";
 
 import CreateProject from "../views/project/CreateProject";
 import UpdateProjects from "../views/project/UpdateProjects";
-import ParseRawData from "../views/sample/ParseRawData";
+import ImportRawData from "../views/sample/ImportRawData";
 import LoadSamples from "../views/sample/LoadSamples";
 import BuildReference from "../views/reference/BuildReference";
 
@@ -40,9 +40,9 @@ const routes = [
         component: LoadSamples,
       },
       {
-        path: "parse_raw_data",
-        name: "parse_raw_data",
-        component: ParseRawData,
+        path: "import_raw_data",
+        name: "import_raw_data",
+        component: ImportRawData,
       },
       {
         path: "build_reference",

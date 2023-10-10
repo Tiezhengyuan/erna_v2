@@ -62,4 +62,19 @@ export default {
         console.log(err);
       });
   },
+  getCurrentProjectFiles(context) {
+    const config = {
+      params: {
+        project_id: context.state.current_project.project_id,
+      },
+    };
+    api
+      .get("/sample_project/project_sample_files", config)
+      .then((res) => {
+        context.state.current_project_files = res.data;
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  },
 };

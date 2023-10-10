@@ -22,6 +22,36 @@ export default {
         console.log(err);
       });
   },
+  getStudyFiles(context, study_name) {
+    const config = {
+      params: {study_name: study_name},
+    };
+    api
+      .get("/sample_file/study_files/", config)
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  },
+  getUnassignedSampleFiles(context, study_name) {
+    const config = {
+      params: {
+        project_id: context.state.current_project.project_id,
+        study_name: study_name
+      },
+    };
+    api
+      .get("/sample_project/unassigned_sample_files/", config)
+      .then((res) => {
+        context.state.current_study_name = study_name;
+        context.state.unassigned_sample_files = res.data;
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  },
   postLoadedSamples(context) {
     const data = context.state.loaded_samples.map((el) => {
       let meta = Object.assign({}, el);

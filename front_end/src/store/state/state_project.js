@@ -9,6 +9,7 @@ export default {
     sequencing: null,
     status: "A",
     genome: null,
+    study_name: "",
   },
   //store updated before submit
   updated_project: {},
@@ -17,4 +18,5 @@ export default {
   current_project: {},
   current_updated_project: {},
   deleted_projects: [],
+  current_project_files: [],
 };

@@ -14,6 +14,7 @@ export default {
   },
   mounted() {
     this.$store.dispatch("getProjects");
+    this.$store.dispatch("getStudyNames");
     this.$store.dispatch("getCurrentUser");
   },
 };

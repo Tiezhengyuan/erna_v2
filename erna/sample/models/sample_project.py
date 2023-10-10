@@ -1,3 +1,4 @@
+import os
 from django.db import models
 from typing import Iterable
 from rna_seq.models import Project
@@ -50,6 +51,29 @@ class SampleProjectManager(models.Manager):
             res[batch_name] = [s.sample_name for s in samples]
         return res
 
+    def get_project_sample_files(self, project_id):
+        project_files = SampleProject.objects.filter(project_id=project_id)
+        res = []
+        for pf in project_files:
+            study_name = pf.sample_file.sample.study_name
+            sample_name = pf.sample_file.sample.sample_name
+            full_path = os.path.join(pf.sample_file.raw_data.file_path,
+                pf.sample_file.raw_data.file_name)
+            tag = 0
+            for el in res:
+                if study_name == el['study_name'] and sample_name == el['sample_name']:
+                    el['raw_data'].append(full_path)
+                    tag = 1
+                    break
+            if tag == 0:
+                item = {
+                    'study_name': study_name,
+                    'sample_name': sample_name,
+                    'raw_data': [full_path,],
+                }
+                res.append(item)
+        return res
+
     def load_project_sample_file(self, data_iters:list):
         '''
         args: data_iters[{},{}]
@@ -66,6 +90,14 @@ class SampleProjectManager(models.Manager):
                         res.append(sp_obj)
         return res
 
+    def add_sample_file(self, project_sample):
+        existing = self.filter(**project_sample)
+        print(existing[0].project, existing[0].sample_file)
+        if not existing:
+            obj = self.create(**project_sample)
+            obj.save()
+            return obj
+        return None
 
 
 class SampleProject(models.Model):
@@ -73,10 +105,16 @@ class SampleProject(models.Model):
     one project may include many samples
     Samples may come from same or different batch
     '''
-    project = models.ForeignKey(Project,
-        on_delete=models.CASCADE)
-    sample_file = models.ForeignKey(SampleFile,
-        on_delete=models.CASCADE)
+    project = models.ForeignKey(
+        Project,
+        # related_name='project_projects',
+        on_delete=models.CASCADE
+    )
+    sample_file = models.ForeignKey(
+        SampleFile,
+        # related_name='file_projects',
+        on_delete=models.CASCADE
+    )
     
     objects = SampleProjectManager()
 

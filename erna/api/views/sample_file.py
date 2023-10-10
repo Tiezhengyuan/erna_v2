@@ -34,7 +34,7 @@ class SampleFileViewSet(viewsets.ModelViewSet):
         '''
         study_name = self.request.query_params.get('study_name')
         res = SampleFile.objects.get_study_files(study_name)
-        return Response(res)
+        return Response(res.values())
 
     @action(detail=False, methods=['get'])
     def unparsed_data(self, request):

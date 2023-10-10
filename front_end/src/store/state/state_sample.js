@@ -3,9 +3,11 @@ export default {
   seq_ends: "two_ends",
   loaded_samples: [],
   new_study_name: "",
+  current_study_name: "",
   study_names: [],
   project_samples: [],
   unparsed_data: [],
+  unassigned_sample_files: [],
   parse_samples: {
     study_name: "",
     reg: "<S>",

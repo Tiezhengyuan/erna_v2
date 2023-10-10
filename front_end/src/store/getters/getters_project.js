@@ -56,4 +56,7 @@ export default {
       ],
     };
   },
+  project_files(state) {
+    return [...state.current_project_files, ...state.unassigned_sample_files];
+  },
 };

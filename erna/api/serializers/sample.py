@@ -1,8 +1,6 @@
 from rest_framework import serializers
-from sample.models.raw_data import RawData
-from sample.models.sample import Sample
-from sample.models.sample_file import SampleFile
-from sample.models.sample_project import SampleProject
+from sample.models import RawData, Sample, SampleFile, SampleProject
+
 
 class RawDataSerializer(serializers.ModelSerializer):
     class Meta:
@@ -14,12 +12,15 @@ class SampleSerializer(serializers.ModelSerializer):
         model = Sample
         fields = '__all__'
 
+class SampleProjectSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = SampleProject
+        fields = '__all__'
+
+
 class SampleFileSerializer(serializers.ModelSerializer):
     class Meta:
         model = SampleFile
         fields = '__all__'
 
-class SampleProjectSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = SampleProject
-        fields = '__all__'
+
