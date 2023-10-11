@@ -1,9 +1,6 @@
 <template>
   <div class="container">
     <table border="1">
-      <caption>
-        Summary of data analysis
-      </caption>
       <thead>
         <tr>
           <th>Item</th>
@@ -11,9 +8,17 @@
         </tr>
       </thead>
       <tbody>
-        <tr v-for="(name, i) of Object.keys(summary)" :key="i">
-          <td>{{ name }}</td>
-          <td>{{ summary[name] }}</td>
+        <tr>
+          <td>Projects</td>
+          <td>{{ projects.length }}</td>
+        </tr>
+        <tr>
+          <td>Study</td>
+          <td>{{ study_names.length }}</td>
+        </tr>
+        <tr>
+          <td>Raw data</td>
+          <td>{{ raw_data_count }}</td>
         </tr>
       </tbody>
     </table>
@@ -21,15 +26,14 @@
 </template>
 
 <script>
+import { mapState } from "vuex";
 export default {
   name: "HomeSummary",
-  data() {
-    return {
-      summary: {
-        projects: 4,
-        raw_data: 120,
-      },
-    };
+  mounted() {
+    this.$store.dispatch("getRawDataCount");
+  },
+  computed: {
+    ...mapState(["projects", "study_names", "raw_data_count"]),
   },
 };
 </script>

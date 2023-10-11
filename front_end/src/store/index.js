@@ -25,6 +25,7 @@ import mutations_reference from "./mutations/mutations_reference";
 import actions_project from "./actions/actions_project";
 import actions_sample from "./actions/actions_sample";
 import actions_user from "./actions/actions_user";
+import actions_task from "./actions/actions_task";
 import actions_reference from "./actions/actions_reference";
 import test from "./actions/test";
 
@@ -57,6 +58,7 @@ export default new Vuex.Store({
     ...actions_user,
     ...actions_reference,
     ...actions_sample,
+    ...actions_task,
     ...test,
   },
   modules: {},

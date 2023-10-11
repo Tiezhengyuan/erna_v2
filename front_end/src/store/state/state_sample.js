@@ -1,5 +1,6 @@
 export default {
-  project_id: "P0001",
+  raw_data_count: 0,
+  // project_id: "P0001",
   seq_ends: "two_ends",
   loaded_samples: [],
   new_study_name: "",

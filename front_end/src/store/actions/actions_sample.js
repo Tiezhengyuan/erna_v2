@@ -52,6 +52,31 @@ export default {
         console.log(err);
       });
   },
+  detectUnparsedData(context) {
+    const config = {
+      params: context.state.parse_samples,
+    };
+    console.log(config.params);
+    api
+      .get("/sample_file/unparsed_data/", config)
+      .then((res) => {
+        context.commit("setUnparsedData", res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  },
+  getRawDataCount(context) {
+    api
+      .get("/raw_data/count/")
+      .then((res) => {
+        context.state.raw_data_count = res.data.count;
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  },
+  // post
   postLoadedSamples(context) {
     const data = context.state.loaded_samples.map((el) => {
       let meta = Object.assign({}, el);
@@ -68,20 +93,6 @@ export default {
         context.dispatch("getStudyNames");
         context.state.loaded_samples = [];
         context.state.new_study_name = "";
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  },
-  detectUnparsedData(context) {
-    const config = {
-      params: context.state.parse_samples,
-    };
-    console.log(config.params);
-    api
-      .get("/sample_file/unparsed_data/", config)
-      .then((res) => {
-        context.commit("setUnparsedData", res.data);
       })
       .catch((err) => {
         console.log(err);

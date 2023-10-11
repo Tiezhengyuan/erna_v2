@@ -18,4 +18,7 @@ export default {
     },
   ],
   current_task: {},
+
+  // celery
+  celery_tasks: [],
 };

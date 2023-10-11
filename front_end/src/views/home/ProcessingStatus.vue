@@ -1,9 +1,6 @@
 <template>
   <div class="container">
     <table border="1">
-      <caption>
-        Monitor Processing Status
-      </caption>
       <thead>
         <tr>
           <th>Project</th>
@@ -30,7 +27,7 @@
 
 <script>
 export default {
-  name: "HomeStatus",
+  name: "ProcessingStatus",
   data() {
     return {
       status: [

@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div class="container input-checkbox">
     <div class="name">
       <label>{{data.label}}</label>
     </div>
@@ -10,52 +10,44 @@
           :value="p.value"
           :checked="p.checked"
           @change="add"
-        />{{p.label}}
-      </li>
+        />{{p.label}}</li>
     </ul>
   </div>
 </template>
 
 <script>
 export default {
-    name:'inputCheckbox',
-    props:['data', 'receive'],
-    methods:{
-      add(e){
-        for(let p of this.data.options){
-            if (p.value==e.target.value){
-              p.checked = e.target.checked
-              break
+    name: 'inputCheckbox',
+    props: ['data', 'receive'],
+    methods: {
+      add(e) {
+        for (let p of this.data.options) {
+            if (p.value==e.target.value) {
+              p.checked = e.target.checked;
+              break;
             }
         }
-        const obj = {
-          [this.data.name]: this.data
-        }
-        this.receive(obj);
-      }
-    }
-}
+        this.receive(this.data);
+      },
+    },
+};
 </script>
 
 <style scoped>
-  .container{
+  .container.input-checkbox {
     padding: 5px;
-    box-sizing: border-box;
-    display:flex;
-    flex-direction: row;
+    display: flex;
   }
-  .container .name{
-    width: 40%;
+  .container.input-checkbox .name {
     padding-right: 10px;
-    display:flex;
-    justify-content: right;
+    font-weight: bold;
   }
-  .container .value{
+  .container.input-checkbox .value {
     margin: 0;
     padding: 0;
   }
-  .container .value li{
-    list-style-type: none;
+  .container.input-checkbox li {
+    display: inline;
   }
 
 </style>

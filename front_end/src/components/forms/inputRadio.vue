@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div class="container input-radio">
     <div class="name">
       <label>{{ data.label }}</label>
     </div>
@@ -23,15 +23,15 @@ export default {
 </script>
 
 <style scoped>
-.container {
+.container.input-radio {
   padding: 5px;
-  box-sizing: border-box;
   display: flex;
   flex-direction: row;
 }
-.container .name {
+.container.input-radio .name {
   padding-right: 10px;
   display: flex;
   justify-content: right;
+  font-weight: bold;
 }
 </style>

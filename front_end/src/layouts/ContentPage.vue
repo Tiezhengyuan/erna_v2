@@ -49,7 +49,7 @@ li {
   border: 0;
 }
 .container .content {
-  height: 800px;
+  height: 1200px;
   margin-top: 5px;
   padding: 20px;
   background-color: lightgrey;
