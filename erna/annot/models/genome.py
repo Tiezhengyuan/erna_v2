@@ -7,19 +7,19 @@ import os
 from .specie import Specie
 
 class GenomeManager(models.Manager):
-    def get_genome(self, specie_name:str, version:str=None):
-        specie = Specie.objects.get(specie_name=specie_name)
+    def get_genome(self, organism_name:str, version:str=None):
+        specie = Specie.objects.get(organism_name=organism_name)
         if version is None:
             return self.filter(specie=specie).last()
         return self.get(specie=specie, version=version)
     
-    def get_versions(self, specie_name:str):
-            specie = Specie.objects.get(specie_name=specie_name)
+    def get_versions(self, organism_name:str):
+            specie = Specie.objects.get(organism_name=organism_name)
             query = self.filter(specie=specie)
             return [i.version for i in query]
 
-    def get_files_path(self, specie_name:str, version:str=None):
-        last = self.get_genome(specie_name, version)
+    def get_files_path(self, organism_name:str, version:str=None):
+        last = self.get_genome(organism_name, version)
         files = self.filter(specie=last.specie)
         return [f.full_path for f in files]
 
@@ -39,7 +39,7 @@ class Genome(models.Model):
         default = "NCBI",
         choices=[
             ('NCBI', 'NCBI'),
-            ('ENSEMbL', 'ENSEMbL'),
+            ('ENSEMBL', 'ENSEMBL'),
             ('other', 'other'),
         ] 
     )
@@ -63,11 +63,11 @@ class Genome(models.Model):
 
     @property
     def sub_dir(self):
-        return os.path.join(self.specie.specie_name, self.version, self.file_name)
+        return os.path.join(self.specie.organism_name, self.version, self.file_name)
 
     @property
     def full_path(self):
         return os.path.join(self.local_dir, self.sub_dir)
 
     def __str__(self):
-         return self.specie.specie_name
+         return self.specie.organism_name

@@ -20,6 +20,11 @@ def main(args):
     case 'refresh_raw_data':
       from pipelines.process import ProcessRawData
       return ProcessRawData().refresh_raw_data()
+    case 'genome_assembly_summary':
+      if len(args) >= 2:
+        from pipelines.process import Genome
+        return Genome(args[1]).retrieve_assembly_summary()
+    
     
     case 'genome_download_dna':
       if len(args)>=3:
@@ -27,17 +32,20 @@ def main(args):
         data_source, specie = args[1], args[2]
         p = Genome(data_source, specie)
         return p.download_dna()
+      
     case 'genome_download_annot':
       if len(args)>=3:
         from pipelines.process import Genome
         data_source, specie = args[1], args[2]
         p = Genome(data_source, specie)
         return p.download_annot()
+    
     case 'genome_alignment':
       if len(args)>=2:
         from pipelines.process import Alignment
         p = Alignment(args[1])
         return p.genome_alignment()
+    
     case 'genome_assembly':
       if len(args)>=2:
         from pipelines.process import Assembly

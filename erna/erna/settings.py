@@ -203,16 +203,16 @@ EXTERNALS_DIR = os.environ['EXTERNALS_DIR'] if os.environ.get('EXTERNALS_DIR') \
 
 # store data uploaded by user
 DATA_DIR = os.environ['DATA_DIR'] if os.environ.get('DATA_DIR') \
-    else os.path.join(PIPELINES_DIR, 'data')
+    else os.path.join(PROJECT_DIR, 'data')
 
 # raw data namely fastq
 RAW_DATA_DIR = os.environ['RAW_DATA_DIR'] if os.environ.get('RAW_DATA_DIR') \
-    else os.path.join(PIPELINES_DIR, 'raw_data')
+    else os.path.join(PROJECT_DIR, 'raw_data')
 
 # analytic results
 RESULTS_DIR = os.environ['RESULTS_DIR'] if os.environ.get('RESULTS_DIR') \
-    else os.path.join(PIPELINES_DIR, 'results')
+    else os.path.join(PROJECT_DIR, 'results')
 
 # reference namely genome DNA in fa format
 REFERENCES_DIR = os.environ['REFERENCES_DIR'] if os.environ.get('REFERENCES_DIR') \
-    else os.path.join(PIPELINES_DIR, 'references')
+    else os.path.join(PROJECT_DIR, 'references')

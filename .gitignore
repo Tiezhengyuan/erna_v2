@@ -4,10 +4,10 @@ __pycache__/
 *$py.class
 
 # erna
-pipelines/raw_data/
-pipelines/data/
-pipelines/results/
-pipelines/references/
+raw_data/
+data/
+results/
+references/
 erna/staticfiles/
 
 # Distribution / packaging
