@@ -4,7 +4,7 @@ download data from NCIB FTP
 import os
 from ftplib import FTP
 from django.conf import settings
-from annot.models import Specie
+from annot.models import Specie, Genome
 
 from process.utils import Dir, HandleJson
 from .connect_ftp import ConnectFTP
@@ -61,11 +61,41 @@ class ConnectNCBI(ConnectFTP):
             res[antonomy] = local_file
         return res
 
+    def load_genomes(self):
+        '''
+        work on model Genome
+        1. delete all
+        2. load genome from assembly_summary
+        '''
+        # truncate all data
+        Genome.objects.all().delete()
+
+        # retrieve data from json
+        n = {}
+        names = ['assembly_accession', 'ftp_path']
+        meta_names = ['genome_size', 'genome_size_ungapped', 'gc_percent',\
+            'total_gene_count', 'protein_coding_gene_count', 'non_coding_gene_count']
+        for antonomy in ANATOMY_GROUPS:
+            n[antonomy] = []
+            json_file = os.path.join(self.dir_local, 'assembly_summary',\
+                antonomy, 'assembly_summary.json')
+            obj = HandleJson(json_file).read_json()
+            for _, summary in obj:
+                data = dict([(n, summary[n]) for n in names])
+                data['specie'] = summary['organism_name']
+                data['data_source'] = 'NCBI'
+                data['metadata'] = dict([(n, summary[n]) for n in meta_names])
+                res = Genome.objects.load_genome(data)
+                if res:
+                    n[antonomy].append(data['specie'])
+            n[antonomy] = len(n[antonomy])
+        return n
+    
     def load_species(self):
         '''
         work on model Specie
         1. delete all
-        2. load species from assembly_summary
+        2. load anatomy from assembly_summary
         '''
         # truncate all data
         Specie.objects.all().delete()

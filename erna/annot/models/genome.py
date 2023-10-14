@@ -1,8 +1,9 @@
+import os
+import json
 from django.db import models
 from django.conf import settings
 from django.core.files import File
 from pathlib import Path
-import os
 
 from .specie import Specie
 
@@ -11,17 +12,34 @@ class GenomeManager(models.Manager):
         specie = Specie.objects.get(organism_name=organism_name)
         if version is None:
             return self.filter(specie=specie).last()
-        return self.get(specie=specie, version=version)
+        return self.get(specie=specie, assembly_accession=version)
     
     def get_versions(self, organism_name:str):
             specie = Specie.objects.get(organism_name=organism_name)
             query = self.filter(specie=specie)
-            return [i.version for i in query]
+            return [i.assembly_accession for i in query]
 
     def get_files_path(self, organism_name:str, version:str=None):
         last = self.get_genome(organism_name, version)
         files = self.filter(specie=last.specie)
         return [f.full_path for f in files]
+
+    def load_genome(self, data:dict):
+        '''
+        post new genome or update metadata of the genome
+        '''
+        if 'specie' in data and 'assembly_accession' in data:
+            if 'metadata' in data:
+                data['metadata'] = json.dumps(data['metadata'])
+            existing = Genome.objects.filter(specie=data['specie'],\
+                assembly_accession=data['assembly_accession'])
+            if not existing:
+                data['specie'] = Specie.objects.get(organism_name=data['specie'])
+                return Genome.objects.create(**data)
+            else:
+                if 'metadata' in data:
+                    return existing.update(metadata=data['metadata'])
+        return None
 
          
 class Genome(models.Model):
@@ -32,8 +50,6 @@ class Genome(models.Model):
         Specie,
         on_delete=models.CASCADE
     )
-    version = models.CharField(max_length=56)
-    data_path = models.CharField(max_length=512)
     data_source = models.CharField(
         max_length=10,
         default = "NCBI",
@@ -42,6 +58,12 @@ class Genome(models.Model):
             ('ENSEMBL', 'ENSEMBL'),
             ('other', 'other'),
         ] 
+    )
+    assembly_accession = models.CharField(max_length=56)
+    ftp_path = models.CharField(
+        max_length=512,
+        blank=True,
+        null=True
     )
     # str type from json format
     metadata = models.CharField(
@@ -54,8 +76,8 @@ class Genome(models.Model):
 
     class Meta:
         app_label = 'annot'
-        unique_together = ('specie', 'version')
-        ordering = ['specie', 'version']
+        unique_together = ('specie', 'assembly_accession')
+        ordering = ['specie', 'assembly_accession']
 
     @property
     def local_dir(self):
@@ -63,7 +85,7 @@ class Genome(models.Model):
 
     @property
     def sub_dir(self):
-        return os.path.join(self.specie.organism_name, self.version, self.file_name)
+        return os.path.join(self.specie.organism_name, self.assembly_accession, self.file_name)
 
     @property
     def full_path(self):

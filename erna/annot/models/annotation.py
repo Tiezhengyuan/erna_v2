@@ -8,7 +8,7 @@ class AnnotationManager(GenomeManager):
         specie = Specie.objects.get(specie_name=specie_name)
         if version is None:
             return self.filter(specie=specie, seq_type=seq_type).last()
-        return self.get(specie=specie, version=version, seq_type=seq_type)
+        return self.get(specie=specie, assembly_accession=version, seq_type=seq_type)
 
 class Annotation(Genome):
     label = 'annotations'
@@ -36,5 +36,5 @@ class Annotation(Genome):
     objects = AnnotationManager()
 
     class Meta:
-        # unique_together = ('specie', 'version', 'seq_type')
-        ordering = ['specie', 'version', 'seq_type']
+        # unique_together = ('specie', 'assembly_accession', 'seq_type')
+        ordering = ['specie', 'assembly_accession', 'seq_type']

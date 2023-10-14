@@ -23,6 +23,7 @@ class Genome:
     pass
 
   def retrieve_assembly_summary(self):
+    res = {}
     if self.data_source == "NCBI":
       # download assembly_summary.txt
       client = ConnectNCBI()
@@ -30,7 +31,10 @@ class Genome:
       for text_file in text_files.values():
         HandleJson(text_file).from_text()
       #load samples into db.Specie
-      return client.load_species()
+      res['specie'] = client.load_species()
+      #load samples into db.Genome
+      res['genome'] = client.load_genomes()
+    return res
 
   
 
