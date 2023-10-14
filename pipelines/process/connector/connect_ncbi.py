@@ -10,8 +10,10 @@ from process.utils import Dir, HandleJson
 from .connect_ftp import ConnectFTP
 from .connect_ftp2 import ConnectFTP2
 
-ANATOMY_GROUPS = ['archaea', 'bacteria', 'fungi', 'invertebrate', 'plant',
-    'protozoa', 'vertebrate_mammalian', 'vertebrate_other', 'viral', ]
+# lock the scope of groups in local version
+# ANATOMY_GROUPS = ['archaea', 'bacteria', 'fungi', 'invertebrate', 'plant',
+#     'protozoa', 'vertebrate_mammalian', 'vertebrate_other', 'viral', ]
+ANATOMY_GROUPS = ['vertebrate_mammalian',]
 
 class ConnectNCBI(ConnectFTP):
     endpoint = 'ftp.ncbi.nlm.nih.gov'

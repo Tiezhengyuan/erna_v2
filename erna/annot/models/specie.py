@@ -25,4 +25,4 @@ class Specie(models.Model):
         ordering = ['group', 'organism_name',]
 
     def __str__(self):
-         return self.specie_name
+         return self.organism_name
