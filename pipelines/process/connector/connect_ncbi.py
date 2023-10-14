@@ -16,10 +16,10 @@ from .connect_ftp2 import ConnectFTP2
 ANATOMY_GROUPS = ['vertebrate_mammalian',]
 
 class ConnectNCBI(ConnectFTP):
-    endpoint = 'ftp.ncbi.nlm.nih.gov'
+    url = 'ftp.ncbi.nlm.nih.gov'
 
     def __init__(self):
-        super(ConnectNCBI, self).__init__(self.endpoint)
+        super(ConnectNCBI, self).__init__(self.url)
         ref_dir = getattr(settings, 'REFERENCES_DIR')
         self.dir_local = os.path.join(ref_dir, "NCBI")
     
@@ -28,9 +28,9 @@ class ConnectNCBI(ConnectFTP):
         download /gene/DATA including subdirectories and files
         '''
         local_files = self.download_tree(
-            local_name = os.path.join('NCBI', 'gene', 'DATA'),
-            ftp_path = 'gene/DATA',
-            file_pattern = '.gz'
+            local_name = os.path.join(self.dir_local, 'gene', 'DATA'),
+            endpoint = 'gene/DATA',
+            match = '.gz$'
         )
         return local_files
 
@@ -39,11 +39,27 @@ class ConnectNCBI(ConnectFTP):
         download /PubMed including subdirectories and files
         '''
         ConnectFTP2.download_tree(
-            ftp_endpoint = self.endpoint,
-            ftp_path = '/pubmed',
-            pattern = '.gz',
+            ftp_url = self.url,
+            endpoint = '/pubmed',
+            match = '.gz',
             local_path = self.dir_local
         )
+
+    def download_genome(self, specie:str, version:str):
+        '''
+        download genome including subdirectories and files
+        '''
+        ftp_path = Genome.objects.get_ftp_path(specie, version)
+        print(ftp_path)
+
+        # download annotations
+        local_files = self.download_files(
+            endpoint = ftp_path.replace('https://ftp.ncbi.nlm.nih.gov/', ''),
+            match= '.gz',
+            local_path = os.path.join(self.dir_local, 'genome', specie),
+        )
+        # download index for alignment
+        return local_files
 
     def download_assembly_summary(self):
         '''
@@ -52,9 +68,8 @@ class ConnectNCBI(ConnectFTP):
         res = {}
         for antonomy in ANATOMY_GROUPS:
             outdir = os.path.join(self.dir_local, 'assembly_summary', antonomy)
-            Dir(outdir).init_dir()
             local_file = self.download_file(
-                ftp_path = f'genomes/refseq/{antonomy}/',
+                endpoint = f'genomes/refseq/{antonomy}/',
                 file_name = 'assembly_summary.txt',
                 local_path = outdir
             )
@@ -72,7 +87,7 @@ class ConnectNCBI(ConnectFTP):
 
         # retrieve data from json
         n = {}
-        names = ['assembly_accession', 'ftp_path']
+        names = ['assembly_accession', 'endpoint']
         meta_names = ['genome_size', 'genome_size_ungapped', 'gc_percent',\
             'total_gene_count', 'protein_coding_gene_count', 'non_coding_gene_count']
         for antonomy in ANATOMY_GROUPS:

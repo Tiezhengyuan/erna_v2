@@ -20,19 +20,19 @@ def main(args):
     case 'refresh_raw_data':
       from pipelines.process import ProcessRawData
       return ProcessRawData().refresh_raw_data()
-    case 'genome_assembly_summary':
+    case 'assembly_summary':
       if len(args) >= 2:
         from pipelines.process import Genome
         return Genome(args[1]).retrieve_assembly_summary()
-    
-    
-    case 'genome_download_dna':
-      if len(args)>=3:
+    case 'download_genome':
+      if len(args)>=4:
         from pipelines.process import Genome
-        data_source, specie = args[1], args[2]
-        p = Genome(data_source, specie)
-        return p.download_dna()
-      
+        data_source, specie, version = args[1:]
+        p = Genome(data_source, specie, version)
+        return p.download_genome()
+
+
+
     case 'genome_download_annot':
       if len(args)>=3:
         from pipelines.process import Genome
@@ -56,6 +56,7 @@ def main(args):
         from pipelines.process import Collect
         p = Collect(args[1])
         return p.count_reads()
+  print('wrong arguments')
 
 if __name__ == '__main__':
   args = sys.argv[1:]

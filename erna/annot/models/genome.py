@@ -19,10 +19,10 @@ class GenomeManager(models.Manager):
             query = self.filter(specie=specie)
             return [i.assembly_accession for i in query]
 
-    def get_files_path(self, organism_name:str, version:str=None):
-        last = self.get_genome(organism_name, version)
-        files = self.filter(specie=last.specie)
-        return [f.full_path for f in files]
+    def get_ftp_path(self, specie:str, version:str=None):
+        obj = self.get(specie=specie, assembly_accession=version)
+        return obj.ftp_path
+
 
     def load_genome(self, data:dict):
         '''

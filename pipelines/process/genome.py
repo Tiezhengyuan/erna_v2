@@ -6,21 +6,10 @@ from process.utils.handle_json import HandleJson
 
 class Genome:
 
-  def __init__(self, data_source=None, specie=None):
+  def __init__(self, data_source=None, specie=None, version=None):
     self.data_source = data_source
     self.specie = specie
-  
-  def download_dna(self):
-    '''
-    genome DNA sequences in fa
-    '''
-    pass
-
-  def download_annot(self):
-    '''
-    genome annotations
-    '''
-    pass
+    self.version = version
 
   def retrieve_assembly_summary(self):
     res = {}
@@ -36,7 +25,24 @@ class Genome:
       res['genome'] = client.load_genomes()
     return res
 
-  
+  def download_genome(self):
+    '''
+    genome DNA sequences
+    '''
+    res = {}
+    if self.data_source == "NCBI":
+      ConnectNCBI().download_genome(self.specie, self.version)
+    return res
+
+
+  def download_annot(self):
+    '''
+    genome annotations
+    '''
+    pass
+
+
+
 
 
 
