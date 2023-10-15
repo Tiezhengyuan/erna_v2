@@ -1,8 +1,5 @@
 export default {
   // set
-  setSpecies(state, data) {
-    state.species = data;
-  },
   setGenomes(state, data) {
     state.genomes = data;
   },

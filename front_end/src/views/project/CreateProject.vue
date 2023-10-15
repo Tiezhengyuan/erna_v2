@@ -7,7 +7,7 @@
       <inputText :data="description" :receive="receive"></inputText>
       <inputDropdown :data="sequencing" :receive="receive"></inputDropdown>
       <inputDropdown :data="status" :receive="receive"></inputDropdown>
-      <inputDropdown :data="genome" :receive="receive"></inputDropdown>
+      <inputDropdown :data="ready_genome" :receive="receive"></inputDropdown>
       <button @click="create">Create</button>
       <button @click="reset">Reset</button>
     </div>
@@ -48,7 +48,7 @@ export default {
       "description",
       "sequencing",
       "status",
-      "genome",
+      "ready_genome",
     ]),
   },
   methods: {
@@ -58,7 +58,6 @@ export default {
     create() {
       if (this.updated_project.sequencing && this.updated_project.genome) {
         this.$store.dispatch("postNewProject");
-        window.location.reload();
       } else {
         this.showWarning = true;
       }

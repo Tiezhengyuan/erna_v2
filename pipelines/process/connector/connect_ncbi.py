@@ -56,9 +56,10 @@ class ConnectNCBI(ConnectFTP):
         local_files = self.download_files(
             endpoint = ftp_path.replace('https://ftp.ncbi.nlm.nih.gov/', ''),
             match= '.gz',
-            local_path = os.path.join(self.dir_local, 'genome', specie),
+            local_path = os.path.join(self.dir_local, 'genome', specie, version),
         )
         # download index for alignment
+
         return local_files
 
     def download_assembly_summary(self):
@@ -87,7 +88,6 @@ class ConnectNCBI(ConnectFTP):
 
         # retrieve data from json
         n = {}
-        names = ['assembly_accession', 'endpoint']
         meta_names = ['genome_size', 'genome_size_ungapped', 'gc_percent',\
             'total_gene_count', 'protein_coding_gene_count', 'non_coding_gene_count']
         for antonomy in ANATOMY_GROUPS:
@@ -96,10 +96,13 @@ class ConnectNCBI(ConnectFTP):
                 antonomy, 'assembly_summary.json')
             obj = HandleJson(json_file).read_json()
             for _, summary in obj:
-                data = dict([(n, summary[n]) for n in names])
-                data['specie'] = summary['organism_name']
-                data['data_source'] = 'NCBI'
-                data['metadata'] = dict([(n, summary[n]) for n in meta_names])
+                data = {
+                    'version': summary['assembly_accession'],
+                    'ftp_path': summary['ftp_path'],
+                    'specie': summary['organism_name'],
+                    'data_source': 'NCBI',
+                    'metadata': dict([(n, summary[n]) for n in meta_names]),
+                }
                 res = Genome.objects.load_genome(data)
                 if res:
                     n[antonomy].append(data['specie'])

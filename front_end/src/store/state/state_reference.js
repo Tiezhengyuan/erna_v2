@@ -1,10 +1,13 @@
 export default {
-  genomes: [],
-  new_genome: {
-    data_source: "NCBI",
-  },
+  // build new reference
+  data_sources: [],
+  specie_groups: [],
   species: [],
-  new_species: ["human", "mouse", "rat"],
+  genomes: [],
+  versions: [],
+  new_genome: {},
+
+  ready_genomes: [],
   current_ref: {
     data_source: "",
     specie: "",

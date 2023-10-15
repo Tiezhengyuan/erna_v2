@@ -12,13 +12,19 @@ class GenomeViewSet(viewsets.ModelViewSet):
     permission_classes = [permissions.IsAuthenticated]
 
     def get_queryset(self):
-        names = ['specie', 'data_source', 'assembly_version']
+        names = ['specie', 'data_source', 'version', 'is_ready']
         params = dict([(k, self.request.query_params.get(k)) \
             for k in names if self.request.query_params.get(k)])
         if params:
             return Genome.objects.filter(**params)
         return Genome.objects.all()
 
+
+    @action(detail=False, methods=['get'])
+    def data_sources(self, request):
+        res = Genome.objects.values_list('data_source', flat=True)
+        return Response({'names': list(set(res))})
+    
     @action(detail=False, methods=['post', 'update'])
     def load_genomes(self, request):
         res = {'created': 0, 'skipped': 0}

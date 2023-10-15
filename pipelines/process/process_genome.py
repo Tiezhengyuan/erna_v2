@@ -4,7 +4,9 @@ process genome annotations before analysis
 from .connector.connect_ncbi import ConnectNCBI
 from process.utils.handle_json import HandleJson
 
-class Genome:
+from annot.models import Specie, Genome
+
+class ProcessGenome:
 
   def __init__(self, data_source=None, specie=None, version=None):
     self.data_source = data_source
@@ -31,7 +33,16 @@ class Genome:
     '''
     res = {}
     if self.data_source == "NCBI":
-      ConnectNCBI().download_genome(self.specie, self.version)
+      # download data
+      client = ConnectNCBI()
+      files = client.download_genome(self.specie, self.version)
+      
+      # update db.Genome
+      if files:
+        res['local_files'] = files
+        Genome.objects.filter(specie=self.specie, \
+          version=self.version)\
+          .update(is_ready=True)
     return res
 
 

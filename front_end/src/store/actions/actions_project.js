@@ -55,7 +55,6 @@ export default {
           project: res.data.project_id,
           genome: u.genome ? u.genome : n.genome,
         };
-        console.log(reference);
         context.dispatch("postReference", reference);
       })
       .catch((err) => {

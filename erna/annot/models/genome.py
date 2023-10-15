@@ -12,15 +12,15 @@ class GenomeManager(models.Manager):
         specie = Specie.objects.get(organism_name=organism_name)
         if version is None:
             return self.filter(specie=specie).last()
-        return self.get(specie=specie, assembly_accession=version)
+        return self.get(specie=specie, version=version)
     
     def get_versions(self, organism_name:str):
             specie = Specie.objects.get(organism_name=organism_name)
             query = self.filter(specie=specie)
-            return [i.assembly_accession for i in query]
+            return [i.version for i in query]
 
     def get_ftp_path(self, specie:str, version:str=None):
-        obj = self.get(specie=specie, assembly_accession=version)
+        obj = self.get(specie=specie, version=version)
         return obj.ftp_path
 
 
@@ -28,11 +28,11 @@ class GenomeManager(models.Manager):
         '''
         post new genome or update metadata of the genome
         '''
-        if 'specie' in data and 'assembly_accession' in data:
+        if 'specie' in data and 'version' in data:
             if 'metadata' in data:
                 data['metadata'] = json.dumps(data['metadata'])
             existing = Genome.objects.filter(specie=data['specie'],\
-                assembly_accession=data['assembly_accession'])
+                version=data['version'])
             if not existing:
                 data['specie'] = Specie.objects.get(organism_name=data['specie'])
                 return Genome.objects.create(**data)
@@ -59,7 +59,7 @@ class Genome(models.Model):
             ('other', 'other'),
         ] 
     )
-    assembly_accession = models.CharField(max_length=56)
+    version = models.CharField(max_length=56)
     ftp_path = models.CharField(
         max_length=512,
         blank=True,
@@ -71,13 +71,14 @@ class Genome(models.Model):
         blank=True,
         null=True
     )
+    is_ready = models.BooleanField(default=False)
 
     objects = GenomeManager()
 
     class Meta:
         app_label = 'annot'
-        unique_together = ('specie', 'assembly_accession')
-        ordering = ['specie', 'assembly_accession']
+        unique_together = ('specie', 'version')
+        ordering = ['specie', 'version']
 
     @property
     def local_dir(self):
@@ -85,7 +86,7 @@ class Genome(models.Model):
 
     @property
     def sub_dir(self):
-        return os.path.join(self.specie.organism_name, self.assembly_accession, self.file_name)
+        return os.path.join(self.specie.organism_name, self.version, self.file_name)
 
     @property
     def full_path(self):

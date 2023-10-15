@@ -1,28 +1,34 @@
 export default {
+  // download new genome
   new_project_id(state) {
     return {
       label: "Project ID: ",
       value: state.next_project_id,
     };
   },
-  data_source() {
+  data_source(state) {
     return {
       name: "data_source",
-      label: "Source of genome sequences",
-      value: "NCBI",
-      options: [
-        { value: "NCBI", label: "NCBI" },
-        { value: "ENSEMBL", label: "ENSEMBL" },
-        { value: "other", label: "other" },
-      ],
+      label: "Data source of genome",
+      value: "",
+      options: state.data_sources.map((el) => {
+        return { value: el, label: el, };
+      }),
+    };
+  },
+  specie_group(state) {
+    return {
+      name: "group",
+      label: "Group of organism",
+      value: "",
+      options: state.specie_groups.map((el) => {
+        return { value: el, label: el, };
+      }),
     };
   },
   specie(state) {
     const options = state.species.map((el) => {
-      return {
-        value: el.id,
-        label: el.specie_name,
-      };
+      return { value: el, label: el, };
     });
     return {
       name: "specie",
@@ -30,8 +36,20 @@ export default {
       options: options,
     };
   },
-  genome(state) {
-    const options = state.genomes.map((el) => {
+  version(state) {
+    const options = state.versions.map((el) => {
+      return { value: el, label: el, };
+    });
+    return {
+      name: "version",
+      label: "Genome version",
+      options: options,
+    };
+  },
+
+  // create new project
+  ready_genome(state) {
+    const options = state.ready_genomes.map((el) => {
       return {
         value: el.id,
         label: `${el.specie}_${el.data_source}_${el.version}`,
@@ -44,6 +62,7 @@ export default {
       options: options,
     };
   },
+
   new_specie(state) {
     const options = state.new_species.map((el) => {
       return {
@@ -57,4 +76,6 @@ export default {
       options: options,
     };
   },
+
+
 };

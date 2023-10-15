@@ -22,13 +22,13 @@ def main(args):
       return ProcessRawData().refresh_raw_data()
     case 'assembly_summary':
       if len(args) >= 2:
-        from pipelines.process import Genome
-        return Genome(args[1]).retrieve_assembly_summary()
+        from pipelines.process import ProcessGenome
+        return ProcessGenome(args[1]).retrieve_assembly_summary()
     case 'download_genome':
       if len(args)>=4:
-        from pipelines.process import Genome
+        from pipelines.process import ProcessGenome
         data_source, specie, version = args[1:]
-        p = Genome(data_source, specie, version)
+        p = ProcessGenome(data_source, specie, version)
         return p.download_genome()
 
 

@@ -5,14 +5,10 @@ from .tasks import *
 def DownloadGenomeView(request):
   data_source = request.GET.get('data_source', '')
   specie = request.GET.get('specie')
-  dna_task_id = download_genome_dna.delay(
-    data_source, specie
-  )
-  annot_task_id = download_genome_annot.delay(
-    data_source, specie
-  )
+  version = request.GET.get('version')
+  task_id = download_genome.delay(data_source, specie, version)
   res = {
-    'task_id': [str(dna_task_id), str(annot_task_id)],
+    'task_id': [str(task_id),],
   }
   return JsonResponse(res, safe=False)
 
