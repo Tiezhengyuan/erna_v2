@@ -46,7 +46,7 @@ export default {
   },
   methods: {
     deleteProject(project) {
-      const selected = project.id;
+      const selected = project.project_id;
       if (this.deleted.indexOf(selected) == -1) {
         this.deleted.push(selected);
         this.$store.commit("updateDeleted", selected);

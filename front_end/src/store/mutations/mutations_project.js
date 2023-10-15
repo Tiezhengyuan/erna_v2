@@ -62,7 +62,7 @@ export default {
   updateDeleted(state, selected) {
     // update state.projects
     state.projects = state.projects.filter((el) => {
-      return el.id != selected;
+      return el.project_id != selected;
     });
     // update state.deleted_projects
     state.deleted_projects.push(selected);

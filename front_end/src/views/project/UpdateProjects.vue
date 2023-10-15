@@ -29,8 +29,12 @@ export default {
   },
   methods: {
     applyChanges() {
-      this.$store.dispatch("deleteProjects");
-      this.$store.dispatch("updateProjects");
+      if (this.deleted_projects) {
+        this.$store.dispatch("deleteProjects");
+      }
+      if (this.updated_projects) {
+        this.$store.dispatch("updateProjects");
+      }
     },
   },
 };
