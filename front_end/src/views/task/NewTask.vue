@@ -64,7 +64,7 @@ export default {
 
 <style scoped>
 .task-container {
-  height: 150px;
+  height: 200px;
   width: 250px;
   border-radius: 10px;
   box-sizing: border-box;
