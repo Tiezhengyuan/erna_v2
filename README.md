@@ -9,15 +9,26 @@ eRNA_v2 is a web applicaton for mRNA-seq data analysis. The app aims at fullfill
 - Network connection. The app can be accessed by team members at Group/Division/Department level.
 - Inegrate genome annotations into bioinformatic pipelines.
 
-Design and programming of eRNA_v2.
-- Front end is Vue-JavaScript.
-- Back end is Django-Python.
+Design and programming of eRNA_v2. 
+- Front end is Vue2-JavaScript.
+- Back end is Django4-Python3.
 - Database is Sqlite/MySQL.
-- Bioinformatics pipelins are Python tools.
+- Bioinformatics pipelins are Python3 tools.
 
 # Development
 
-## Run eRNA_v2 locally
+## Run local version of eRNA_v2.
+The local version doesn't provide user authentication. And the default databse is sqllite3 rather than MySQL. The app may not be remotely accessed.
+
+### run back end (Django) locally
+
+```
+cd erna
+source venv/bin/activate
+pip install -r requiements.txt
+python manage.py runserver
+```
+Once Django server is runned. RestFull APIs are available at http://localhost:8000/api/
 
 ### run front end (Vue JS) locally
 
@@ -25,15 +36,11 @@ Design and programming of eRNA_v2.
 cd front_end
 yarn serve
 ```
+Access user interface at browser, namely Chrome, at http://localhost:8080/
 
-### run front end (Django) locally
-
-```
-cd erna
-python manage.py runserver
-```
 
 ### run bioinformatics pipelines saparately
+All bioinformatics data analysis is taken as asynchronous tasks. A bioinformatics pipeline or even a single step can be executed separately at server.
 
 ```
 cd erna
@@ -47,5 +54,9 @@ for example test file is tests/test_project.py
  python3 manage.py test tests -k test_project -v 2
 ```
 
+
+# Deployment
+
+The app is developed in Linux. Front-end, back-end and data processing are decoupled. It is ok to deploy the three components into different VM depending on the scale of data analysis and complexity of user group.
 
 # References
