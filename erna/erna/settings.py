@@ -199,7 +199,7 @@ TOOLS_DIR = os.environ['TOOLS_DIR'] if os.environ.get('TOOLS_DIR') \
 
 # third-party bioinformatics tools
 EXTERNALS_DIR = os.environ['EXTERNALS_DIR'] if os.environ.get('EXTERNALS_DIR') \
-    else os.path.join(PIPELINES_DIR, 'externals')
+    else os.path.join(PIPELINES_DIR, 'externals', 'bin')
 
 # store data uploaded by user
 DATA_DIR = os.environ['DATA_DIR'] if os.environ.get('DATA_DIR') \

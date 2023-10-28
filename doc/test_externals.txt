@@ -1,0 +1,132 @@
+
+
+
+HISAT2 
+
+http://daehwankimlab.github.io/hisat2/main/
+
+unzip hisat2-2.2.1-source.zip
+cd hisat2-2.2.1
+make
+ln -s /home/yuan/bio/erna_v2/externals/hisat2/2.2.1/hisat2 ./bin/hisat2
+hisat2 --version
+ln -s /home/yuan/bio/erna_v2/externals/hisat2/2.2.1/hisat2-build ./bin/hisat2-build
+hisat2-build --version
+ln -s /home/yuan/bio/erna_v2/externals/hisat2/2.2.1/hisat2-inspect ./bin/hisat2-inspect
+hisat2-inspect --version
+
+
+./hisat2 -x example/index/22_20-21M_snp -c ATTT
+
+./hisat2 -x example/index/22_20-21M_snp -f example/reads/reads_1.fa -S example/reads.sam
+
+
+python3 hisat2-build example/reference/22_20-21M.fa ./example/22_20-21M
+
+
+samtools
+
+download from https://sourceforge.net/projects/samtools/
+
+tar -xvjf samtools-1.18.tar.bz2
+cd samtools-1.18
+make
+make test
+ln -s /home/yuan/bio/erna_v2/externals/samtools/1.18/samtools ./bin/samtools
+samtools --version
+
+convert sam to bam
+./samtools view -b examples/toy.sam > examples/toy.bam
+
+convert bam to sam
+./samtools view -h -o examples/toy2.sam examples/toy.bam
+
+sort bam
+./samtools sort -o examples/toy.bam.sorted examples/toy.bam
+
+convert bam to fasta
+./samtools fasta examples/toy.bam > examples/toy_output.fasta
+
+convert bam to fastq
+./samtools fastq examples/toy.bam > examples/toy_output.fastq
+
+
+bowtie2
+https://bowtie-bio.sourceforge.net/bowtie2/index.shtml
+
+unzip bowtie2-2.5.2-source.zip
+cd bowtie2-2.5.2
+make
+make test
+ln -s /home/yuan/bio/erna_v2/externals/bowtie/2.5.2/bowtie2  /home/yuan/bio/erna_v2/externals/bin/bowtie2
+bowtie2 --version
+ln -s /home/yuan/bio/erna_v2/externals/bowtie/2.5.2/bowtie2-build  /home/yuan/bio/erna_v2/externals/bin/bowtie2-build
+bowtie2-build --version
+ln -s /home/yuan/bio/erna_v2/externals/bowtie/2.5.2/bowtie2-inspect  /home/yuan/bio/erna_v2/externals/bin/bowtie2-inspect
+bowtie2-inspect --version
+
+bowtie2-build bowtie/2.5.2/example/reference/lambda_virus.fa output/lambda_virus
+
+bowtie2 -x output/lambda_virus -c ATTGATT
+
+bowtie2 -x output/lambda_virus -1 bowtie/2.5.2/example/reads/reads_1.fq \
+    -2 bowtie/2.5.2/example/reads/reads_2.fq -S output/reads_paired.sam
+
+bowtie2 -x output/lambda_virus -q bowtie/2.5.2/example/reads/reads_1.fq -S output/reads_single.sam
+
+
+minimap2
+long-read genome mapping
+
+ln -s /home/yuan/bio/erna_v2/externals/minimap2/2.26/minimap2  /home/yuan/bio/erna_v2/externals/bin/minimap2
+minimap2 --version
+
+#align
+minimap2 minimap2/2.26/example/ref.fa minimap2/2.26/example/reads_1.fa > output/reads_1.paf
+
+#align
+minimap2 minimap2/2.26/example/ref.fa minimap2/2.26/example/reads_1.fa > output/reads_align.sam
+
+#index
+minimap2 -d minimap2/2.26/example/ref.mmi minimap2/2.26/example/ref.fa
+
+minimap2 minimap2/2.26/example/ref.mmi minimap2/2.26/example/reads_1.fa > output/reads_align.sam
+
+
+FASTQC
+JAVA app
+https://www.bioinformatics.babraham.ac.uk/projects/fastqc/
+
+
+unzip fastqc_v0.12.1.zip
+cd FastQC
+ln -s /home/yuan/bio/erna_v2/externals/fastqc/0.12.1/fastqc  /home/yuan/bio/erna_v2/externals/bin/fastqc
+fastqc --version
+
+#
+fastqc fastqc/example/reads_1.fq --outdir=output/
+
+
+tophat
+only for python2.7
+http://ccb.jhu.edu/software/tophat/index.shtml
+
+sudo ln -s /usr/bin/python2 /usr/bin/python
+tar -xvpf tophat-2.1.1.tar.gz
+cd tophat-2.1.1
+
+ln -s /home/yuan/bio/erna_v2/externals/tophat/2.1.1/tophat2  /home/yuan/bio/erna_v2/externals/bin/tophat
+tophat --version
+
+
+
+
+
+
+????star
+aligner: https://github.com/alexdobin/STAR
+
+wget https://github.com/alexdobin/STAR/archive/2.7.11a.tar.gz
+tar -xzf 2.7.11a.tar.gz
+cd STAR-2.7.11a
+

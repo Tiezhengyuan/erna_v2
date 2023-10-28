@@ -8,3 +8,4 @@ sqlalchemy
 django-cors-headers
 pandas
 numpy
+biopython==1.81
