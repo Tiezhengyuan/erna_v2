@@ -43,6 +43,21 @@ def ResetSampleView(request):
   }
   return JsonResponse(res, safe=False)
 
+def TrimAdapterView(request):
+  params = {
+    'adapter': request.GET.get('adapter'),
+    'min_match': request.GET.get('min_match'),
+    'max_err': request.GET.get('max_err'),
+    'input': request.GET.get('input'),
+    'output': request.GET.get('output'),
+  }
+  task_id = trim_adapter.delay(params)
+  res = {
+    'task_id': [str(task_id),],
+  }
+  return JsonResponse(res, safe=False)
+
+
 
 def async_test(request):
   task_id = minus.delay(2, 3)

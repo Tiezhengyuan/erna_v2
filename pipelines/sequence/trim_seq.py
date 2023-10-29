@@ -2,8 +2,8 @@
 trim adapter, index, or polyA
 '''
 from .sequence import Sequence
-from pipelines.match.shift import Shift
-from pipelines.match.distance import Distance
+from match.shift import Shift
+from match.distance import Distance
 
 class TrimSeq:
     def __init__(
@@ -15,10 +15,9 @@ class TrimSeq:
     ):
         self.adapter = adapter
         self.max_len = len(self.adapter)
-        self.min_match = 12 if min_match is None else min_match
+        self.min_match = 12 if min_match is None else int(min_match)
         self.trim_end = trim_end if trim_end is not None else '3end'
-        self.max_err = max_err if (max_err is not None and \
-            max_err < 3) else 0
+        self.max_err = 0 if max_err is None else int(max_err)
         #
         seed_adapter = self.adapter[-self.min_match] if self.trim_end \
             == '5end' else self.adapter[0:self.min_match]

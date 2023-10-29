@@ -4,7 +4,7 @@ download data from NCIB FTP
 import os
 from ftplib import FTP
 from django.conf import settings
-from erna.annot.models import Specie, Genome
+from annot.models import Specie, Genome
 
 from process.utils import Dir, HandleJson
 from .connect_ftp import ConnectFTP

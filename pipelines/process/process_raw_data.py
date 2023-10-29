@@ -3,10 +3,11 @@ process raw data namely fastq
 '''
 import os
 from typing import Iterable
+
 from sample.models import RawData, Sample, SampleFile, SampleProject
 from django.core import serializers
-DEFAULT_RAW_DATA_DIR = os.path.join(
-  os.path.dirname(os.path.dirname(__file__)), 'raw_data')
+DEFAULT_RAW_DATA_DIR = os.path.join(os.path.dirname(\
+  os.path.dirname(__file__)), 'raw_data')
 
 class ProcessRawData:
   def __init__(self):

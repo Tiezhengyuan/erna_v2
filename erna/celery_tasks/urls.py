@@ -8,4 +8,5 @@ urlpatterns = [
   path('refresh_raw_data/', RefreshRawDataView, name='refresh_raw_data'),
   path('parse_sample_data/', ParseSampleDataView, name='parse_sample_data'),
   path('reset_sample/', ResetSampleView, name='reset_sample'),
+  path('trim_adapter', TrimAdapterView, name='trim_adapter'),
 ]

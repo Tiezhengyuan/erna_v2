@@ -46,6 +46,14 @@ def reset_sample():
   return res
 
 @shared_task
+def trim_adapter(params):
+  from process.trim_adapter import TrimAdapter
+  res = TrimAdapter(params)()
+  return res
+
+
+
+@shared_task
 def minus(x,y):
   print(x,y)
   return x*y

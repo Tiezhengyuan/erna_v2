@@ -3,10 +3,13 @@ entrance into pipelines
 '''
 import os
 import sys
+DIR_PROJECT = os.path.dirname(os.path.dirname(__file__))
+sys.path.append(DIR_PROJECT)
 
 import django
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'erna.settings')
 django.setup()
+
 
 def main(args):
   if len(args) < 1:
@@ -25,11 +28,27 @@ def main(args):
         from pipelines.process import ProcessGenome
         return ProcessGenome(args[1]).retrieve_assembly_summary()
     case 'download_genome':
+      '''
+      example:
+
+      '''
       if len(args)>=4:
         from pipelines.process import ProcessGenome
         data_source, specie, version = args[1:]
         p = ProcessGenome(data_source, specie, version)
         return p.download_genome()
+    case 'trim_adapter':
+      '''
+      example: 
+        python3 erna_app.py trim_adapter ATGGCG \
+          /home/yuan/bio/erna_v2/pipelines/tests/data/reads_1.fq \
+          /home/yuan/bio/erna_v2/pipelines/tests/temp/reads_1_trimmed.fq
+      '''
+      if len(args) >=4:
+        from pipelines.process.trim_adapter import TrimAdapter
+        params =  dict([(k,v) for k, v in zip(['adapter', 'input',\
+          'output',], args[1:])])
+        return TrimAdapter(params)()
 
 
 
