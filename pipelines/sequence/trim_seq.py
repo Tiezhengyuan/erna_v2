@@ -20,8 +20,8 @@ class TrimSeq:
         self.max_err = max_err if (max_err is not None and \
             max_err < 3) else 0
         #
-        seed_adapter = self.adapter[-self.min_match] if self.trim_end == '5end' \
-            else self.adapter[0:self.min_match]
+        seed_adapter = self.adapter[-self.min_match] if self.trim_end \
+            == '5end' else self.adapter[0:self.min_match]
         self.seed_pattern = Shift(seed_adapter)
         self.distance = Distance(self.adapter)
 
