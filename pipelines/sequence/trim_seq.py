@@ -25,15 +25,15 @@ class TrimSeq:
         self.seed_pattern = Shift(seed_adapter)
         self.distance = Distance(self.adapter)
 
-    def trim_3end(self, read_seq:str):
+    def trim_3end(self, read_seq:str)->tuple:
         match = self.seed_pattern.shift_and(read_seq, True)
         if match:
             pos = match[0]
             read_3end = read_seq[pos:pos+self.max_len]
             dist_score = self.distance.match_5end(read_3end)
             if dist_score >= len(read_3end) - self.max_err:
-                return read_seq[0:pos]
-        return read_seq
+                return read_seq[0:pos], pos
+        return read_seq, -1
         
     
 

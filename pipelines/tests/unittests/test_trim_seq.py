@@ -19,6 +19,6 @@ class TestTrimSeq(TestCase):
   @unpack
   def test_trim_3end(self, read, adapter, min_match, max_err, expect):
     t = TrimSeq(adapter, min_match, None, max_err)
-    res = t.trim_3end(read)
+    res, pos = t.trim_3end(read)
     assert res == expect
     

@@ -10,6 +10,7 @@ data/
 results/
 references/
 erna/staticfiles/
+pipelines/test/temp
 
 # Distribution / packaging
 .Python
