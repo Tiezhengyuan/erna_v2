@@ -6,15 +6,15 @@ from typing import Iterable
 
 from sample.models import RawData, Sample, SampleFile, SampleProject
 from django.core import serializers
-DEFAULT_RAW_DATA_DIR = os.path.join(os.path.dirname(\
-  os.path.dirname(__file__)), 'raw_data')
 
 class ProcessRawData:
   def __init__(self):
-    self.dir_raw_data = os.environ.get(\
-      'RAW_DATA_DIR', DEFAULT_RAW_DATA_DIR)
+    self.dir_raw_data = os.environ.get('RAW_DATA_DIR')
 
   def scan_raw_data(self):
+    '''
+    batch_name ~ (path, filename)
+    '''
     raw_data = {'UN': []}
     for batch in os.listdir(self.dir_raw_data):
       path = os.path.join(self.dir_raw_data, batch)
@@ -25,6 +25,8 @@ class ProcessRawData:
             raw_data[batch].append((root, file))
       else:
         raw_data['UN'].append((self.dir_raw_data, batch))
+    # for k, v in raw_data.items():
+    #   print(f"{k}:\t{v}\n\n")
     return raw_data
   
   def refresh_raw_data(self):

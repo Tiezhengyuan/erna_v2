@@ -22,45 +22,6 @@ class ConnectNCBI(ConnectFTP):
         super(ConnectNCBI, self).__init__(self.url)
         ref_dir = getattr(settings, 'REFERENCES_DIR')
         self.dir_local = os.path.join(ref_dir, "NCBI")
-    
-    def download_gene_data(self):
-        '''
-        download /gene/DATA including subdirectories and files
-        '''
-        local_files = self.download_tree(
-            local_name = os.path.join(self.dir_local, 'gene', 'DATA'),
-            endpoint = 'gene/DATA',
-            match = '.gz$'
-        )
-        return local_files
-
-    def download_pubmed(self):
-        '''
-        download /PubMed including subdirectories and files
-        '''
-        ConnectFTP2.download_tree(
-            ftp_url = self.url,
-            endpoint = '/pubmed',
-            match = '.gz',
-            local_path = self.dir_local
-        )
-
-    def download_genome(self, specie:str, version:str):
-        '''
-        download genome including subdirectories and files
-        '''
-        ftp_path = Genome.objects.get_ftp_path(specie, version)
-        print(ftp_path)
-
-        # download annotations
-        local_files = self.download_files(
-            endpoint = ftp_path.replace('https://ftp.ncbi.nlm.nih.gov/', ''),
-            match= '.gz',
-            local_path = os.path.join(self.dir_local, 'genome', specie, version),
-        )
-        # download index for alignment
-
-        return local_files
 
     def download_assembly_summary(self):
         '''
@@ -76,6 +37,24 @@ class ConnectNCBI(ConnectFTP):
             )
             res[antonomy] = local_file
         return res
+
+    def download_genome(self, specie:str, version:str):
+        '''
+        download genome including subdirectories and files
+        '''
+        ftp_path = Genome.objects.get_ftp_path(specie, version)
+        print(ftp_path)
+
+        # download annotations
+        local_path = os.path.join(self.dir_local, 'genome', specie, version)
+        local_files = self.download_files(
+            endpoint = ftp_path.replace('https://ftp.ncbi.nlm.nih.gov/', ''),
+            match = '.gz',
+            local_path = local_path
+        )
+        # download index for alignment
+        return local_path, local_files
+
 
     def load_genomes(self):
         '''
@@ -134,5 +113,25 @@ class ConnectNCBI(ConnectFTP):
                     n[antonomy].append(data['organism_name'])
             n[antonomy] = len(n[antonomy])
         return n
+    
+    def download_gene_data(self):
+        '''
+        download /gene/DATA including subdirectories and files
+        '''
+        local_files = self.download_tree(
+            local_name = os.path.join(self.dir_local, 'gene', 'DATA'),
+            endpoint = 'gene/DATA',
+            match = '.gz$'
+        )
+        return local_files
 
-
+    def download_pubmed(self):
+        '''
+        download /PubMed including subdirectories and files
+        '''
+        ConnectFTP2.download_tree(
+            ftp_url = self.url,
+            endpoint = '/pubmed',
+            match = '.gz',
+            local_path = self.dir_local
+        )

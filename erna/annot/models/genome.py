@@ -65,6 +65,11 @@ class Genome(models.Model):
         blank=True,
         null=True
     )
+    local_path = models.CharField(
+        max_length=1028,
+        blank=True,
+        null=True
+    )
     # str type from json format
     metadata = models.CharField(
         max_length=1256,

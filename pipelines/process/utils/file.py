@@ -93,8 +93,7 @@ class File:
                     outdict[items[0]]=items[1]
         return outdict
 
-
-    
+  
     def read_dump_file(self):
         '''
         *.dmp is exported from Oracle database
@@ -103,3 +102,9 @@ class File:
             for line in f:
                 items = re.split(r'\t*\|\t*', line.rstrip())
                 yield items
+
+    def unzip_gz(self):
+        '''
+        unzip .gz file using gunzip in linux
+        '''
+        pass

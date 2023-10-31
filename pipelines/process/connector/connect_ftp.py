@@ -3,6 +3,7 @@ connect FTP
 """
 import os
 import re
+from sh import gunzip
 from ftplib import FTP
 from process.utils import Dir
 
@@ -39,11 +40,18 @@ class ConnectFTP:
                     ftp_files.append((endpoint, file_name))
         return ftp_files
 
-    def download_file(self, endpoint:str, file_name:str, local_path:str):
+    def download_file(
+            self,
+            endpoint:str,
+            file_name:str,
+            local_path:str,
+            run_gunzip:bool=None
+        ):
         '''
         download one file from FTP
         one download one connection avoiding timeout
         '''
+        if run_gunzip is None: run_gunzip = True
         Dir(local_path).init_dir()
         local_file = os.path.join(local_path, file_name)
         # connect FTP
@@ -54,17 +62,28 @@ class ConnectFTP:
 
         # download
         try:
+            ftp_file = f"{self.url}/{endpoint}/{file_name}"
             with open(local_file, 'wb') as f:
                 ftp.retrbinary(f"RETR {file_name}", f.write)
-                # print(f"Download data from {ftp.pwd()} into {local_file}.")
+                print(f"Download {ftp_file}")
+            # unzip .gz file
+            if run_gunzip and local_file.endswith('gz'):
+                unzip_file = local_file.replace('.gz', '')
+                print(f"decompress {local_file} to {unzip_file}")
+                gunzip(local_file)
+                return unzip_file
             return local_file
         except Exception as e:
-            # print('Failure: download data from FTP', e)
+            print('Failure: download data from FTP, error=', e)
             os.remove(local_file)
         return None
     
-    def download_files(self, endpoint:str=None, \
-            match:str=None, local_path:str=None):
+    def download_files(
+            self,
+            endpoint:str=None,
+            match:str=None,
+            local_path:str=None
+        ):
         '''
         download files from FTP path
         That isnot recursive
@@ -77,7 +96,7 @@ class ConnectFTP:
         for current_endpoint, file_name in ftp_files:
             local_file = self.download_file(current_endpoint, \
                 file_name, local_path)
-            if local_file:
+            if local_file and local_file not in local_files:
                 local_files.append(local_file)
         return local_files
 

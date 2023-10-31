@@ -60,5 +60,8 @@ def TrimAdapterView(request):
 
 
 def async_test(request):
+  '''
+  for debugging
+  '''
   task_id = minus.delay(2, 3)
   return HttpResponse(task_id)

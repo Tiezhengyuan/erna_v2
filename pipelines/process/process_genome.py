@@ -35,22 +35,16 @@ class ProcessGenome:
     if self.data_source == "NCBI":
       # download data
       client = ConnectNCBI()
-      files = client.download_genome(self.specie, self.version)
+      local_path, local_files = client.download_genome(self.specie, self.version)
       
       # update db.Genome
-      if files:
-        res['local_files'] = files
-        Genome.objects.filter(specie=self.specie, \
-          version=self.version)\
-          .update(is_ready=True)
+      if local_files:
+        res['local_files'] = local_files
+        Genome.objects\
+        .filter(specie=self.specie, version=self.version)\
+        .update(is_ready=True, local_path=local_path)
     return res
 
-
-  def download_annot(self):
-    '''
-    genome annotations
-    '''
-    pass
 
 
 
