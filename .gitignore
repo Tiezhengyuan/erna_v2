@@ -12,6 +12,10 @@ references/
 erna/staticfiles/
 pipelines/test/temp
 
+# migrations
+annot/migrations/
+
+
 # Distribution / packaging
 .Python
 build/

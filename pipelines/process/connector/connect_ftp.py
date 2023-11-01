@@ -70,7 +70,7 @@ class ConnectFTP:
             if run_gunzip and local_file.endswith('gz'):
                 unzip_file = local_file.replace('.gz', '')
                 print(f"decompress {local_file} to {unzip_file}")
-                gunzip(local_file)
+                gunzip(local_file, '-f')
                 return unzip_file
             return local_file
         except Exception as e:

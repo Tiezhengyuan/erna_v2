@@ -59,4 +59,4 @@ class ProjectViewSet(viewsets.ModelViewSet):
     res = Project.objects.all()
     count = res.count()
     res.delete()
-    return Response({'message': f"{count} are deleted."})
+    return Response({'deleted': count})

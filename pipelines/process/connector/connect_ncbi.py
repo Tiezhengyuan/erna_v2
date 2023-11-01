@@ -43,7 +43,6 @@ class ConnectNCBI(ConnectFTP):
         download genome including subdirectories and files
         '''
         ftp_path = Genome.objects.get_ftp_path(specie, version)
-        print(ftp_path)
 
         # download annotations
         local_path = os.path.join(self.dir_local, 'genome', specie, version)

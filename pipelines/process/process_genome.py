@@ -4,7 +4,7 @@ process genome annotations before analysis
 from .connector.connect_ncbi import ConnectNCBI
 from process.utils.handle_json import HandleJson
 
-from annot.models import Specie, Genome
+from annot.models import Specie, Genome, Annotation
 
 class ProcessGenome:
 
@@ -37,12 +37,16 @@ class ProcessGenome:
       client = ConnectNCBI()
       local_path, local_files = client.download_genome(self.specie, self.version)
       
-      # update db.Genome
+      # update database
+      # local_files = ['abc',]
+      # local_path = "/home/yuan/bio/erna_v2/references/NCBI/genome/Homo sapiens/GCF_000001405.40"
       if local_files:
         res['local_files'] = local_files
-        Genome.objects\
-        .filter(specie=self.specie, version=self.version)\
-        .update(is_ready=True, local_path=local_path)
+        # update db.Genome 
+        obj = Genome.objects.filter(specie=self.specie, version=self.version)
+        obj.update(is_ready=True, local_path=local_path)
+        # update db.Annotation
+        Annotation.objects.load_annotations(obj[0], local_files)
     return res
 
 
