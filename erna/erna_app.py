@@ -64,12 +64,18 @@ def main(args):
       example: 
       python3 erna_app.py build_index NCBI "Homo sapiens" GCF_000001405.40 bowtie2
       '''
-      if len(args)>=3:
+      if len(args)>=5:
         from pipelines.process.align import Align
         data_source, specie, version, aligner = args[1:]
-        p = Align()
-        p.collect_annot(data_source, specie, version)
-        return p.build_index(aligner)
+        p = Align(aligner)
+        return p.build_index(data_source, specie, version)
+
+    case 'genome_alignment':
+      if len(args)>=5:
+        from pipelines.process.align import Align
+        data_source, specie, version, aligner = args[1:]
+        p = Align(data_source, specie, version, aligner)
+        return p.build_index()
 
     case 'trim_adapter':
       '''
@@ -90,11 +96,6 @@ def main(args):
 
 
 
-    case 'genome_alignment':
-      if len(args)>=2:
-        from pipelines.process import Alignment
-        p = Alignment(args[1])
-        return p.genome_alignment()
     
     case 'genome_assembly':
       if len(args)>=2:

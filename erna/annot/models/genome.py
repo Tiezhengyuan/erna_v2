@@ -85,17 +85,5 @@ class Genome(models.Model):
         unique_together = ('specie', 'version')
         ordering = ['specie', 'version']
 
-    @property
-    def local_dir(self):
-        return os.path.join(settings.DATA_DIR, self.label)
-
-    @property
-    def sub_dir(self):
-        return os.path.join(self.specie.organism_name, self.version, self.file_name)
-
-    @property
-    def full_path(self):
-        return os.path.join(self.local_dir, self.sub_dir)
-
     def __str__(self):
-         return self.specie.organism_name
+        return self.specie.organism_name

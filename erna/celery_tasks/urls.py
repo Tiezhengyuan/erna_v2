@@ -9,4 +9,5 @@ urlpatterns = [
   path('parse_sample_data/', ParseSampleDataView, name='parse_sample_data'),
   path('reset_sample/', ResetSampleView, name='reset_sample'),
   path('trim_adapter', TrimAdapterView, name='trim_adapter'),
+  path('build_index', BuildIndexView, name='build_index'),
 ]

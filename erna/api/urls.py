@@ -11,8 +11,8 @@ router = routers.DefaultRouter(trailing_slash=True)
 router.register('project', ProjectViewSet, basename='project')
 router.register('project_user', ProjectUserViewSet, basename='project_user')
 router.register('task', TaskViewSet, basename='task')
-router.register('task_tree', TaskViewSet, basename='task_tree')
-router.register('task_execution', TaskViewSet, basename='task_execution')
+router.register('task_tree', TaskTreeViewSet, basename='task_tree')
+router.register('task_execution', TaskExecutionViewSet, basename='task_execution')
 
 # app: commons
 router.register('user', CustomUserViewSet, basename='user')

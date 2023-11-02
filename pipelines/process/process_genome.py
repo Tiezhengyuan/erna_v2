@@ -38,8 +38,6 @@ class ProcessGenome:
       local_path, local_files = client.download_genome(self.specie, self.version)
       
       # update database
-      # local_files = ['abc',]
-      # local_path = "/home/yuan/bio/erna_v2/references/NCBI/genome/Homo sapiens/GCF_000001405.40"
       if local_files:
         res['local_files'] = local_files
         # update db.Genome 

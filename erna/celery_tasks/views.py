@@ -57,6 +57,18 @@ def TrimAdapterView(request):
   }
   return JsonResponse(res, safe=False)
 
+def BuildIndexView(request):
+  params = {
+    'data_source': request.GET.get('data_source'),
+    'specie': request.GET.get('specie'),
+    'version': request.GET.get('version'),
+    'aligner': request.GET.get('aligner'),
+  }
+  task_id = build_index.delay(**params)
+  res = {
+    'task_id': [str(task_id),],
+  }
+  return JsonResponse(res, safe=False)
 
 
 def async_test(request):

@@ -8,9 +8,11 @@ from .reference import *
 from .commons import *
 
 # app: rna_seq
-from .rna_seq import *
+from .project_user import *
 from .project import *
 from .task import *
+from .task_execution import *
+from .task_tree import *
 
 # app: sample
 from .sample import *

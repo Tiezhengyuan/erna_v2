@@ -57,20 +57,25 @@ class TaskExecution(models.Model):
     one task may be executed 0-many times.
     only store lastest execution given a task
     '''
-    task = models.ForeignKey(Task,
+    task = models.ForeignKey(
+        Task,
+        related_name = 'task_executions',
         on_delete=models.CASCADE
     )
     status = models.CharField(
-        default = 'R',
+        max_length=10,
+        default = 'suspend',
         choices=[
-            ('R', 'ready'), # command with parameters is added
-            ('S', 'suspend'), #started, and ready for execution
-            ('E', 'running'),
-            ('D', 'finished'),
-            ('P', 'paused'), #pause during running
-            ('F', 'failed'),
+            #newly added, parameters is added
+            ('suspend', 'suspend'), 
+            # relying tasks are finished. being ready for run
+            ('ready', 'ready'),
+            #pause this task if task is not launched.
+            ('pause', 'pause'), 
+            ('run', 'run'),
+            ('finish', 'finish'),
+            ('fail', 'fail'),
         ],
-        max_length=10
     )
     # string type converted from json format
     command = models.CharField(

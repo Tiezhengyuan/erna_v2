@@ -7,13 +7,20 @@ class AnnotationSerializer(serializers.ModelSerializer):
         model = Annotation
         fields = '__all__'
 
+class ReferenceSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Reference
+        fields = '__all__'
+
 class GenomeSerializer(serializers.ModelSerializer):
     annots = AnnotationSerializer(many=True)
+    references = ReferenceSerializer(many=True)
 
     class Meta:
         model = Genome
-        fields = ('specie', 'data_source', 'version', 'ftp_path', \
-            'local_path', 'metadata', 'is_ready', 'annots')
+        fields = ('data_source', 'version', 'specie', 'is_ready', \
+            'local_path', 'metadata', 'ftp_path', \
+            'annots', 'references')
 
 
 class SpecieSerializer(serializers.ModelSerializer):
@@ -21,7 +28,3 @@ class SpecieSerializer(serializers.ModelSerializer):
         model = Specie
         fields = '__all__'
 
-class ReferenceSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Reference
-        fields = '__all__'

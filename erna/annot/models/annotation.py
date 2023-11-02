@@ -27,14 +27,17 @@ class AnnotationManager(models.Manager):
         return res
 
     def annot_type(self, file_path:str):
-        if file_path.endswith('fna'):
-            return 'DNA'
-        if file_path.endswith('gtf') or file_path.endswith('gff'):
-            return 'transcript'
+        '''
+        orders of if-statements do matter
+        '''
         if 'rna' in file_path:
             return 'RNA'
         if 'cds' in file_path:
             return 'CDS'
+        if file_path.endswith('fna'):
+            return 'DNA'
+        if file_path.endswith('gtf') or file_path.endswith('gff'):
+            return 'transcript'
         return 'other'
 
 class Annotation(models.Model):

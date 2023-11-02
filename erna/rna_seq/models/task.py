@@ -84,9 +84,7 @@ class Task(models.Model):
     class Meta:
         app_label = 'rna_seq'
         ordering = ('project', 'task_id',)
-        unique_together = [
-            ('project', 'task_id'),
-        ]
+        unique_together = ('project', 'task_id')
 
     def __str__(self):
         return self.task_id
