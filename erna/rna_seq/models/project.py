@@ -63,7 +63,8 @@ class Project(models.Model):
         max_length=50,
         blank=True
     )
-    owner = models.ForeignKey(settings.AUTH_USER_MODEL,
+    owner = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
         on_delete=models.CASCADE,
         verbose_name="owner identified by user_id"
     )
@@ -74,18 +75,18 @@ class Project(models.Model):
     )
     status = models.CharField(
         max_length=1,
-        choices=[('A', 'active'), ('D', 'deleted')],
         default='A',
+        choices=[('A', 'active'), ('D', 'deleted')],
     )
     sequencing = models.CharField(
-        max_length=20,
+        max_length=10,
+        default='M',
         choices=[
             ('M', 'mRNA-Seq'),
             ('MI', 'miRNA-Seq'),
             ('SC', 'scRNA-Seq'),
             ('O', 'Other')
         ],
-        default='M',
     )
 
     objects = ProjectManager()

@@ -58,6 +58,7 @@ class Task(models.Model):
     # project_id + task_id = pk
     project = models.ForeignKey(
         Project,
+        related_name = 'tasks',
         on_delete=models.CASCADE
     )
     task_id = models.CharField(

@@ -107,12 +107,12 @@ class SampleProject(models.Model):
     '''
     project = models.ForeignKey(
         Project,
-        # related_name='project_projects',
+        related_name='sample_projects',
         on_delete=models.CASCADE
     )
     sample_file = models.ForeignKey(
         SampleFile,
-        # related_name='file_projects',
+        related_name='sample_files',
         on_delete=models.CASCADE
     )
     

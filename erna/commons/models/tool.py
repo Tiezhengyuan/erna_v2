@@ -1,64 +1,62 @@
+'''
+store external tools
+'''
+import os
+import sys
 from django.db import models
 from django.conf import settings
-import os
+from pipelines.process.utils.dir import Dir
+
 
 class ToolManager(models.Manager):
-    def tools_list(self):
-        tools = {}
-        for tool_obj in self.model.objects.all():
-            name = tool_obj.tool_name
-            version = tool_obj.version
-            if name in tools:
-                tools[name].append(version)
-            else:
-                tools[name] = [version,]
-        return tools
-    
+    def refresh(self):
+        '''
+        refresh table Tool
+        '''
+        # delete all data
+        self.all().delete()
+        # add tools
+        res = []
+        externals_dir = settings.EXTERNALS_DIR
+        for exe_path in Dir(externals_dir).recrusive_files():
+            tool_path = os.readlink(exe_path)
+            tool_name = os.path.basename(tool_path)
+            version = os.path.basename(os.path.dirname(tool_path))
+            tool = self.update_or_create(
+                tool_name=tool_name,
+                version=version,
+                defaults= {'tool_path':tool_path, 'exe_path':exe_path}
+            )
+            res.append(tool)
+        return res
+
     def get_last_version(self, tool_name):
         return  self.model.objects.filter(tool_name=tool_name).last()
 
-    def get_tool(self, tool_name, version):
-        try:
-            tool_obj = self.model.objects.get(
-                tool_name=tool_name, version=version)
-            return tool_obj
-        except Exception as e:
-            pass
-        return None
-
-
 class Tool(models.Model):
     # required
-    tool_name = models.CharField(max_length=100)
-    version = models.CharField(max_length=20)
+    tool_name = models.CharField(max_length=32)
+    version = models.CharField(max_length=32)
     tool_path = models.CharField(max_length=256)
+    exe_path = models.CharField(max_length=256)
     # optional
     default_parameters = models.CharField(
-        max_length=1000,
+        max_length=1028,
         blank=True,
+        null=True,
         verbose_name='default parameters of the tool'
     )
-    create_time = models.DateTimeField(auto_now_add=True)
-    download_url = models.CharField(max_length=1256, blank=True)
 
     objects = ToolManager()
 
     class Meta:
         app_label = 'commons'
+        unique_together = ['tool_name', 'version']
         ordering = ['tool_name', 'version']
-    
     
     def __str__(self):
         return self.tool_name
     
-    @property
-    def working_dir(self):
-        return getattr(settings, 'TOOLS_DIR', None)
-
-    @property
-    def full_tool_path(self):
-        return os.path.join(self.working_dir, self.tool_path)
-
     def add_tool(self, tool_info:dict):
         '''
         new tool would be added

@@ -2,7 +2,8 @@
 """Django's command-line utility for administrative tasks."""
 import os
 import sys
-
+ernav2_dir = os.path.dirname(os.path.dirname(__file__))
+sys.path.append(ernav2_dir)
 
 def main():
     """Run administrative tasks."""
