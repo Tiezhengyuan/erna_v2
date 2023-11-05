@@ -4,7 +4,8 @@ from django.core.serializers import serialize
 
 # Create your models here.
 from .project import Project
-from commons.models import CustomUser, Tool
+from .tool import Tool
+from commons.models import CustomUser
 
 class TaskManager(models.Manager):
 

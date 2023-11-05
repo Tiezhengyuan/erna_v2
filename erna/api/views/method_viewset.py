@@ -2,7 +2,7 @@ from rest_framework import viewsets, permissions
 from rest_framework.response import Response
 from rest_framework.decorators import action
 
-from commons.models import Method
+from rna_seq.models import Method
 from api.serializers import MethodSerializer
 
 class MethodViewSet(viewsets.ModelViewSet):

@@ -34,5 +34,5 @@ class MethodRelation(models.Model):
   objects = MethodRelationManager()
 
   class Meta:
-    app_label = 'commons'
+    app_label = 'rna_seq'
     ordering = ['method', 'child']

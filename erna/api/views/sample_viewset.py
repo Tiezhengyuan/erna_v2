@@ -2,7 +2,7 @@ from rest_framework.decorators import action
 from rest_framework.response import Response
 from django.http import Http404
 from rest_framework import viewsets, permissions
-from sample.models.sample import Sample
+from rna_seq.models import Sample
 from api.serializers import SampleSerializer
        
 class SampleViewSet(viewsets.ModelViewSet):

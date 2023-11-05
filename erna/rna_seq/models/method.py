@@ -33,5 +33,5 @@ class Method(models.Model):
   objects = MethodManager()
 
   class Meta:
-    app_label = 'commons'
+    app_label = 'rna_seq'
     ordering = ['method_name',]

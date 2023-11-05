@@ -50,7 +50,7 @@ class Tool(models.Model):
     objects = ToolManager()
 
     class Meta:
-        app_label = 'commons'
+        app_label = 'rna_seq'
         unique_together = ['tool_name', 'version']
         ordering = ['tool_name', 'version']
     

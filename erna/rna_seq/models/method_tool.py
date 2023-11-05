@@ -34,6 +34,6 @@ class MethodTool(models.Model):
   objects = MethodToolManager()
 
   class Meta:
-    app_label = 'commons'
+    app_label = 'rna_seq'
     unique_together = ['method', 'tool']
     ordering = ['method', 'tool']

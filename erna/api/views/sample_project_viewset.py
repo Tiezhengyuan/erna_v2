@@ -3,7 +3,7 @@ from rest_framework.response import Response
 from rest_framework.renderers import JSONRenderer
 from django.http import Http404, JsonResponse
 from rest_framework import viewsets, permissions
-from sample.models import SampleProject, SampleFile
+from rna_seq.models import SampleProject, SampleFile
 from api.serializers import SampleProjectSerializer
        
 class SampleProjectViewSet(viewsets.ModelViewSet):

@@ -53,7 +53,6 @@ INSTALLED_APPS = [
     'commons',
     'api',
     'rna_seq',
-    'sample',
     'annot',
     'help',
 ]

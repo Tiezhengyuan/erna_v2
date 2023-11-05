@@ -3,7 +3,7 @@ from rest_framework.decorators import action
 from rest_framework.response import Response
 from django.http import Http404
 from rest_framework import viewsets, permissions
-from sample.models.raw_data import RawData
+from rna_seq.models import RawData
 from api.serializers import RawDataSerializer
 
 class RawDataViewSet(viewsets.ModelViewSet):

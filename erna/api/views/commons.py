@@ -1,6 +1,6 @@
 from rest_framework import viewsets, response, permissions, decorators
 
-from commons.models import CustomUser, Tool, Method
+from commons.models import CustomUser
 from api.serializers import *
 
 class CustomUserViewSet(viewsets.ModelViewSet):
@@ -15,7 +15,7 @@ class CustomUserViewSet(viewsets.ModelViewSet):
         return super().get_object()
 
 # todo debugging in the future
-class MethodNameViewSet(viewsets.ModelViewSet):
-    queryset = Method.objects.values_list('method_name', flat=True).distinct()
-    serializer_class = MethodNameSerializer
-    permission_classes = [permissions.IsAuthenticated]
+# class MethodNameViewSet(viewsets.ModelViewSet):
+#     queryset = Method.objects.values_list('method_name', flat=True).distinct()
+#     serializer_class = MethodNameSerializer
+#     permission_classes = [permissions.IsAuthenticated]

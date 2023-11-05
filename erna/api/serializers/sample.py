@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from sample.models import RawData, Sample, SampleFile, SampleProject
+from rna_seq.models import RawData, Sample, SampleFile, SampleProject
 
 
 class RawDataSerializer(serializers.ModelSerializer):
