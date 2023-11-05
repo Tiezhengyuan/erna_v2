@@ -18,6 +18,8 @@ router.register('task_execution', TaskExecutionViewSet, basename='task_execution
 router.register('user', CustomUserViewSet, basename='user')
 router.register('tool', ToolViewSet, basename='tool')
 router.register('method', MethodViewSet, basename='method')
+router.register('method_tool', MethodToolViewSet, basename='method_tool')
+router.register('method_relation', MethodRelationViewSet, basename='method_relation')
 # TODO debug in the future
 # router.register('method_names', MethodNameViewSet, basename='method_names')
 

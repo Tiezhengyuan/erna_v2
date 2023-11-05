@@ -119,8 +119,17 @@ ln -s /home/yuan/bio/erna_v2/externals/tophat/2.1.1/tophat2  /home/yuan/bio/erna
 tophat --version
 
 
+#stringtie
+https://ccb.jhu.edu/software/stringtie/
 
+    git clone https://github.com/gpertea/stringtie
+     cd stringtie
+     make relea
 
+bash run_tests.sh
+./stringtie --version
+
+ln -s /home/yuan/bio/erna_v2/externals/stringtie/2.2.2/stringtie  /home/yuan/bio/erna_v2/externals/bin/stringtie
 
 
 ????star

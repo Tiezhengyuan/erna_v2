@@ -2,20 +2,20 @@ from rest_framework import viewsets, permissions
 from rest_framework.response import Response
 from rest_framework.decorators import action
 
-from commons.models import Method
-from api.serializers import MethodSerializer
+from commons.models import MethodRelation
+from api.serializers import MethodRelationSerializer
 
-class MethodViewSet(viewsets.ModelViewSet):
-    serializer_class = MethodSerializer
+class MethodRelationViewSet(viewsets.ModelViewSet):
+    serializer_class = MethodRelationSerializer
     permission_classes = [permissions.IsAuthenticated]
 
     def get_queryset(self):
         method_name = self.request.query_params.get('method_name', None)
         if method_name is not None:
-            return Method.objects.get_method_tools(method_name)
-        return Method.objects.all()
+            return MethodRelation.objects.get_method_tools(method_name)
+        return MethodRelation.objects.all()
     
     @action(detail=False, methods=['get'])
     def refresh(self, request):
-        res = Method.objects.refresh_methods()
+        res = MethodRelation.objects.refresh_methods()
         return Response({'created': len(res)})

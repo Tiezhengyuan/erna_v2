@@ -16,6 +16,17 @@ class MethodSerializer(serializers.ModelSerializer):
         model = Method
         fields = '__all__'
 
+class MethodToolSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = MethodTool
+        fields = '__all__'
+
+class MethodRelationSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = MethodRelation
+        fields = '__all__'
+
+
 class MethodNameSerializer(serializers.ListSerializer):
     class Meta:
         model = Method
