@@ -7,7 +7,7 @@ from .constants import METHODS
 
 
 class MethodRelationManager(models.Manager):
-  def refresh_methods(self):
+  def refresh(self):
     self.all().delete()
     res = []
     for method in METHODS:

@@ -17,5 +17,5 @@ class MethodRelationViewSet(viewsets.ModelViewSet):
     
     @action(detail=False, methods=['get'])
     def refresh(self, request):
-        res = MethodRelation.objects.refresh_methods()
+        res = MethodRelation.objects.refresh()
         return Response({'created': len(res)})

@@ -4,7 +4,7 @@ process raw data namely fastq
 import os
 from typing import Iterable
 
-from sample.models import RawData, Sample, SampleFile, SampleProject
+from rna_seq.models import RawData, Sample, SampleFile, SampleProject
 from django.core import serializers
 
 class ProcessRawData:
