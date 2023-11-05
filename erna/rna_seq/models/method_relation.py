@@ -27,7 +27,7 @@ class MethodRelation(models.Model):
   )
   child = models.ForeignKey(
     Method,
-    related_name = 'child_methods',
+    related_name = 'children',
     on_delete=models.CASCADE
   )
 

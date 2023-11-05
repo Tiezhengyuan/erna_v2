@@ -22,12 +22,12 @@ class MethodToolManager(models.Manager):
 class MethodTool(models.Model):
   method = models.ForeignKey(
     Method,
-    related_name = 'methods',
+    related_name = 'tools',
     on_delete=models.CASCADE
   )
   tool = models.ForeignKey(
     Tool,
-    related_name = 'tools',
+    related_name = 'methods',
     on_delete=models.CASCADE
   )
 

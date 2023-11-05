@@ -40,7 +40,7 @@ class Tool(models.Model):
     tool_path = models.CharField(max_length=256)
     exe_path = models.CharField(max_length=256)
     # optional
-    default_parameters = models.CharField(
+    default_params = models.CharField(
         max_length=1028,
         blank=True,
         null=True,
