@@ -9,6 +9,7 @@ from .tool_viewset import *
 from .method_viewset import *
 from .method_tool_viewset import *
 from .method_relation_viewset import *
+from .pipeline_viewset import *
 from .commons import *
 
 # app: rna_seq

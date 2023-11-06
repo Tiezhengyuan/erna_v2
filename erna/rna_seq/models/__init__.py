@@ -8,6 +8,7 @@ from .tool import Tool
 from .method import Method
 from .method_tool import MethodTool
 from .method_relation import MethodRelation
+from .pipeline import Pipeline
 
 from .raw_data import RawData
 from .sample_file import SampleFile

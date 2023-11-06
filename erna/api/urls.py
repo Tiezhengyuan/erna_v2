@@ -20,6 +20,7 @@ router.register('tool', ToolViewSet, basename='tool')
 router.register('method', MethodViewSet, basename='method')
 router.register('method_tool', MethodToolViewSet, basename='method_tool')
 router.register('method_relation', MethodRelationViewSet, basename='method_relation')
+router.register('pipeline', PipelineViewSet, basename='pipeline')
 # TODO debug in the future
 # router.register('method_names', MethodNameViewSet, basename='method_names')
 

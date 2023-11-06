@@ -30,8 +30,10 @@ class ToolManager(models.Manager):
             res.append(tool)
         return res
 
-    def get_last_version(self, tool_name):
-        return  self.model.objects.filter(tool_name=tool_name).last()
+    def get_tool(self, tool_name:str, version:str=None):
+        if version:
+            return self.get(tool_name=tool_name, version=version)
+        return self.filter(tool_name=tool_name).last()
 
 class Tool(models.Model):
     # required

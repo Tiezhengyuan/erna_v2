@@ -32,6 +32,10 @@ class MethodSerializer(serializers.ModelSerializer):
         fields = ['method_name', 'description', \
             'children', 'tools']
 
+class PipelineSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Pipeline
+        fields = '__all__'
 
 # class MethodNameSerializer(serializers.ListSerializer):
 #     class Meta:
