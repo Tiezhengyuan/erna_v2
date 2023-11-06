@@ -2,13 +2,14 @@
 Note: order of the classes does matter
 '''
 from rest_framework import serializers
-
 from rna_seq.models import *
 
 class MethodToolSerializer(serializers.ModelSerializer):
     class Meta:
         model = MethodTool
         fields = '__all__'
+    # def get_queryset(self, *args):
+    #     pass
 
 class ToolSerializer(serializers.ModelSerializer):
     methods = MethodToolSerializer(many=True)
@@ -36,6 +37,7 @@ class PipelineSerializer(serializers.ModelSerializer):
     class Meta:
         model = Pipeline
         fields = '__all__'
+        depth = 2
 
 # class MethodNameSerializer(serializers.ListSerializer):
 #     class Meta:

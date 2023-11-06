@@ -3,8 +3,6 @@ from django.db import models
 from django.core.serializers import serialize
 
 # Create your models here.
-from .project import Project
-from .tool import Tool
 from commons.models import CustomUser
 
 class TaskManager(models.Manager):
@@ -58,26 +56,33 @@ class TaskManager(models.Manager):
 class Task(models.Model):
     # project_id + task_id = pk
     project = models.ForeignKey(
-        Project,
+        'rna_seq.Project',
         related_name = 'tasks',
-        on_delete=models.CASCADE
+        on_delete=models.CASCADE,
+        verbose_name="Project ID"
     )
     task_id = models.CharField(
         max_length=10,
-        verbose_name="task ID"
+        verbose_name="Task ID"
+    )
+    is_ready = models.BooleanField(default=False)
+    method_tool = models.ForeignKey(
+        'rna_seq.MethodTool',
+        on_delete=models.CASCADE,
+        null=True,
+        blank=True
     )
     task_name = models.CharField(
         max_length=100,
+        null=True,
         blank=True,
-        default = "task name",
-        verbose_name="task name"
+        verbose_name="Task Name"
     )
     params = models.CharField(
         max_length=1256,
         blank=True, 
         verbose_name="parameters in json string"
     )
-    is_ready = models.BooleanField(default=False)
     create_time = models.DateTimeField(auto_now_add=True)
     modified_time = models.DateTimeField(auto_now=True)
 

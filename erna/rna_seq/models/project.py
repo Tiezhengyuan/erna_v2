@@ -80,12 +80,12 @@ class Project(models.Model):
     )
     sequencing = models.CharField(
         max_length=10,
-        default='M',
+        default='mrna-seq',
         choices=[
-            ('M', 'mRNA-Seq'),
-            ('MI', 'miRNA-Seq'),
-            ('SC', 'scRNA-Seq'),
-            ('O', 'Other')
+            ('mrna-seq', 'mRNA-Seq'),
+            ('mirna-seq', 'miRNA-Seq'),
+            ('scrna-seq', 'scRNA-Seq'),
+            ('other', 'other')
         ],
     )
 

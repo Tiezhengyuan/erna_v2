@@ -1,7 +1,11 @@
+'''
+example:
+    python3 erna/manage.py shell < erna/scripts/demo_project.py
+'''
 import json
-from rna_seq.models import Project, Task, TaskExecution
+from rna_seq.models import *
 from commons.models import CustomUser
-from sample.models import SampleProject Sample, SampleFile, 
+
 
 user = CustomUser.objects.get(pk=1)
 project_id = "P00001"
@@ -24,56 +28,62 @@ print(project)
 tasks = [
     {
         'task_id': 'T001',
-        'task_name': '',
+        'task_name': 'build index',
+        'method_name': 'build_index',
+        'tool_name': 'hisat2-build',
         'params': {
-            'method': 'build_index',
             'data_source': 'NCBI',
             'specie': 'Homo sapiens',
             'version': 'GCF_000001405.40',
-            'aligner': 'hisat2',
-            'child': ['T002'],
         },
+        'child': ['T002'],
         'is_ready': True,
     },
     {
         'task_id': 'T002',
         'task_name': '',
+        'method_name': 'align_transcriptome',
+        'tool_name': 'hisat2',
         'params': {
-            'method': 'genome_alignment',
-            'aligner': 'hisat2',
             'index_path': 'aaa',
-            'parent': ['T001'],
-            'child': ['T003'],
         },
+        'parent': ['T001'],
+        'child': ['T003'],
         'is_ready': False,
     },
     {
         'task_id': 'T003',
         'task_name': '',
-        'params': {
-            'method': 'assemble_transcripts',
-            'assembler': 'hisat2',
-            'parent': ['T002'],
-            'child': ['T004'],
-        },
+        'method_name': 'assemble_transcripts',
+        'tool_name': 'stringtie',
+        'params': {},
+        'parent': ['T002'],
+        'child': ['T004'],
         'is_ready': False,
     },
     {
         'task_id': 'T004',
         'task_name': '',
-        'params': {
-            'method': 'count_reads',
-            'parent': ['T003'],
-        },
+        'method_name': 'count_reads',
+        'parent': ['T003'],
         'is_ready': False,
     },
-
+    {
+        'task_id': 'T006',
+        'is_ready': False,
+    },
 ]
 for task in tasks:
-    task['project'] = project
-    task['params'] = json.dumps(task['params'])
-    task_obj = Task.objects.create(**task)
-    print(task_obj)
+    # update Task
+    method_tool = MethodTool.objects.get_method_tool(
+        task['method_name'], task.get('tool_name'), task.get('version')
+    ) if 'method_name' in task else None
+    task_obj = Task.objects.create(project=project, \
+        method_tool=method_tool, task_id=task['task_id'], \
+        task_name= task.get('task_name'), \
+        params=json.dumps(task.get('params', {})), \
+        is_ready=task.get('id_ready', False))
+    print(task_obj, task_obj.id)
 
 samples = {
     'sample_1': {
