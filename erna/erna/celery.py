@@ -1,8 +1,11 @@
 import os
 import sys
-# import celery
 from celery import Celery
 
+ernav2_dir = os.path.dirname(
+  os.path.dirname(os.path.dirname(__file__))
+)
+sys.path.append(ernav2_dir)
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'erna.settings')
 
 app = Celery('erna');

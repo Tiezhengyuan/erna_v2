@@ -1,4 +1,7 @@
+import json
+from django.shortcuts import render
 from django.http import HttpResponse, JsonResponse
+from django_celery_beat.models import IntervalSchedule, PeriodicTask
 
 from .tasks import *
 
@@ -71,9 +74,29 @@ def BuildIndexView(request):
   return JsonResponse(res, safe=False)
 
 
-def async_test(request):
+
+'''
+for debugging
+'''
+def test_async(request):
   '''
-  for debugging
+  celery task
   '''
   task_id = minus.delay(2, 3)
+  return HttpResponse(task_id)
+
+def test_schedule(request):
+  '''
+  scheduled celery task
+  '''
+  interval, err = IntervalSchedule.objects.get_or_create(
+    every = 30,
+    period = IntervalSchedule.SECONDS
+  )
+  task_id = PeriodicTask.objects.create(
+    interval = interval,
+    name="test_schedule",
+    task = 'celery_tasks.tasks.minus',
+    args = json.dumps([1, 2])
+  )
   return HttpResponse(task_id)

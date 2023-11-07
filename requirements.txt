@@ -1,14 +1,14 @@
-Celery
-Django
+celery==5.3.4
+Django==4.2.6
 djangorestframwork==3.14.0
-django-celery-beat 
-django-celery-results # currently requires Django 4.0 or older
-python-decouple
-redis
+django-celery-beat==2.5.0
+django-celery-results==2.5.1
+python-decouple==3.8
+redis==5.0.1
 sqlalchemy
-django-cors-headers
-pandas
-numpy
+django-cors-headers==4.3.0
+pandas==2.1.2
+numpy==1.26.1
 biopython==1.81
 sh==2.0.6
 python-dotenv==1.0.0

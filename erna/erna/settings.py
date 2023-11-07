@@ -13,6 +13,8 @@ import os
 from pathlib import Path
 from dotenv import load_dotenv
 load_dotenv()
+from celery.schedules import crontab
+import json
 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -34,6 +36,7 @@ ALLOWED_HOSTS = ['*']
 
 # Application definition
 INSTALLED_APPS = [
+    # default apps
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -41,11 +44,9 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
-    # API
+    # additional apps
     'rest_framework',
-    # CORS
     'corsheaders',
-    # celery
     'django_celery_results',
     'django_celery_beat',
 
@@ -110,24 +111,6 @@ DATABASES = {
     }
 }
 
-#celery settings
-# rabbitmq
-# CELERY_BROKER_URL = "http://localhost:15672"
-CELERY_BROKER_URL="redis://127.0.0.1:6379"
-CELERY_RESULT_BACKEND = 'django-db'
-CELERY_RESULT_EXTENDED = True
-CELERY_ACCEPT_CONTENT = ['json']
-CELERY_TASK_SERIALIZER = 'json'
-CELERY_TIMEZONE = "America/New_York"
-CELERY_ALWAYS_EAGER = True
-
-# from celery.schedules import crontab
-# CELERY_BEAT_SCHEDULE = {
-#     "sample_task": {
-#         "task": "core.tasks.sample_task",
-#         "schedule": crontab(minute="*/1"),
-#     },
-# }
 
 # customary user models
 AUTH_USER_MODEL = "commons.CustomUser"
@@ -218,3 +201,23 @@ RESULTS_DIR = os.environ['RESULTS_DIR'] if os.environ.get('RESULTS_DIR') \
 # reference namely genome DNA in fa format
 REFERENCES_DIR = os.environ['REFERENCES_DIR'] if os.environ.get('REFERENCES_DIR') \
     else os.path.join(PROJECT_DIR, 'references')
+
+
+#celery settings
+# rabbitmq
+# CELERY_BROKER_URL = "http://localhost:15672"
+CELERY_BROKER_URL="redis://127.0.0.1:6379"
+CELERY_RESULT_BACKEND = 'django-db'
+CELERY_RESULT_EXTENDED = True
+CELERY_ACCEPT_CONTENT = ['application/json']
+CELERY_RESULT_SERIALIZER = 'json'
+CELERY_TASK_SERIALIZER = 'json'
+CELERY_TIMEZONE = "America/New_York"
+CELERY_ALWAYS_EAGER = True
+CELERY_BEAT_SCHEDULER = 'django_celery_beat.schedulers:DatabaseScheduler'
+CELERY_BEAT_SCHEDULE = {
+    "execute_task": {
+        "task": "celery_tasks.tasks.execute_task",
+        "schedule": crontab(minute="*/1"),
+    },
+}

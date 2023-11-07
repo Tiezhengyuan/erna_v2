@@ -14,7 +14,8 @@ pipelines/test/temp
 
 # migrations
 annot/migrations/
-
+rna_seq/migrations/
+commons/migrations/
 
 # Distribution / packaging
 .Python
