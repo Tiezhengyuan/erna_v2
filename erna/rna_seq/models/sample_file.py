@@ -110,7 +110,7 @@ class SampleFile(models.Model):
     objects = SampleFileManager()
 
     class Meta:
-        app_label = 'sample'
+        app_label = 'rna_seq'
         ordering = ('sample', 'raw_data')
 
     def get_sample(self):

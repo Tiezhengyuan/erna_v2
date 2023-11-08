@@ -61,7 +61,8 @@ class Project(models.Model):
     )
     project_name = models.CharField(
         max_length=50,
-        blank=True
+        blank=True,
+        verbose_name='Project name',
     )
     owner = models.ForeignKey(
         settings.AUTH_USER_MODEL,
@@ -74,9 +75,17 @@ class Project(models.Model):
         blank=True
     )
     status = models.CharField(
-        max_length=1,
-        default='A',
-        choices=[('A', 'active'), ('D', 'deleted')],
+        max_length=10,
+        default='active',
+        choices=[
+            # ready for edit/execution
+            ('active', 'active'),
+            # include ready tasks
+            ('ready', 'ready'),
+            # can't be executed because some tasks are launched
+            ('locked', 'locked'),
+            ('deleted', 'deleted'),
+        ],
     )
     sequencing = models.CharField(
         max_length=10,
@@ -87,6 +96,7 @@ class Project(models.Model):
             ('scrna-seq', 'scRNA-Seq'),
             ('other', 'other')
         ],
+        verbose_name = "Sequencing technique",
     )
 
     objects = ProjectManager()

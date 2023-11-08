@@ -8,6 +8,7 @@ class MethodToolSerializer(serializers.ModelSerializer):
     class Meta:
         model = MethodTool
         fields = '__all__'
+        depth = 1
     # def get_queryset(self, *args):
     #     pass
 

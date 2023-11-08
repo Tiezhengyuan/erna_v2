@@ -64,7 +64,7 @@ class RawData(models.Model):
   objects = RawDataManager()
 
   class Meta:
-    app_label = 'sample'
+    app_label = 'rna_seq'
     ordering = ['batch_name', 'file_path']
   
   def to_dict(self):

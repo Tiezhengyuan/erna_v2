@@ -25,9 +25,9 @@ project = Project.objects.create(**new_project)
 print(project)
 
 # add tasks
-tasks = [
+tasks_data = [
     {
-        'task_id': 'T001',
+        'task_id': 'T01',
         'task_name': 'build index',
         'method_name': 'build_index',
         'tool_name': 'hisat2-build',
@@ -36,54 +36,52 @@ tasks = [
             'specie': 'Homo sapiens',
             'version': 'GCF_000001405.40',
         },
-        'child': ['T002'],
-        'is_ready': True,
+        'child': ['T02'],
     },
     {
-        'task_id': 'T002',
+        'task_id': 'T02',
         'task_name': '',
         'method_name': 'align_transcriptome',
         'tool_name': 'hisat2',
         'params': {
             'index_path': 'aaa',
         },
-        'parent': ['T001'],
-        'child': ['T003'],
-        'is_ready': False,
+        'parent': ['T01'],
+        'child': ['T03'],
     },
     {
-        'task_id': 'T003',
+        'task_id': 'T03',
         'task_name': '',
         'method_name': 'assemble_transcripts',
         'tool_name': 'stringtie',
         'params': {},
-        'parent': ['T002'],
-        'child': ['T004'],
-        'is_ready': False,
+        'parent': ['T02'],
+        'child': ['T04'],
     },
     {
-        'task_id': 'T004',
+        'task_id': 'T04',
         'task_name': '',
         'method_name': 'count_reads',
-        'parent': ['T003'],
-        'is_ready': False,
+        'parent': ['T03'],
     },
     {
-        'task_id': 'T006',
-        'is_ready': False,
+        'task_name': '',
+        'method_name': 'quality_control',
+        "tool_name": "fastqc",
+        'parent': ['T03'],
+    },
+    # empty task without method_name
+    {
+        'task_id': 'T06',
+    },
+    # update task
+    {
+        'task_id': 'T06',
+        'task_name': 'test update',
     },
 ]
-for task in tasks:
-    # update Task
-    method_tool = MethodTool.objects.get_method_tool(
-        task['method_name'], task.get('tool_name'), task.get('version')
-    ) if 'method_name' in task else None
-    task_obj = Task.objects.create(project=project, \
-        method_tool=method_tool, task_id=task['task_id'], \
-        task_name= task.get('task_name'), \
-        params=json.dumps(task.get('params', {})), \
-        is_ready=task.get('id_ready', False))
-    print(task_obj, task_obj.id)
+tasks = Task.objects.load_tasks(project_id, tasks_data)
+print(tasks)
 
 samples = {
     'sample_1': {

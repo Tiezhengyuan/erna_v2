@@ -1,7 +1,7 @@
 import os
 from django.db import models
 from typing import Iterable
-from rna_seq.models import Project
+from .project import Project
 from .sample_file import SampleFile
 
 
@@ -119,7 +119,7 @@ class SampleProject(models.Model):
     objects = SampleProjectManager()
 
     class Meta:
-        app_label = 'sample'
+        app_label = 'rna_seq'
         ordering = ['project', 'sample_file']
     
     def __str__(self):

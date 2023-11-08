@@ -9,6 +9,7 @@ class ExecuteTasks:
     def __init__(self):
         pass
     
-    def run_task(self, x=6, y=5):
-        print(x, y)
-        return x+y
+    def run_task(self):
+        ready_tasks = Task.objects.filter(is_ready=True)
+        for task in ready_tasks:
+            print(task)

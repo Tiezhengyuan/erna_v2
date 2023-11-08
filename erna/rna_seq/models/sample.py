@@ -135,7 +135,7 @@ class Sample(models.Model):
     unique_together = ('study_name', 'sample_name')
 
     class Meta:
-        app_label = 'sample'
+        app_label = 'rna_seq'
         ordering = ('study_name', 'sample_name')
 
     def __str__(self):

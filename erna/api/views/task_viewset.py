@@ -23,21 +23,18 @@ class TaskViewSet(viewsets.ModelViewSet):
       return Task.objects.filter(**config)
     return Task.objects.all()
 
-  def create(self, request):
+  @action(detail=False, methods=['post'])
+  def load_tasks(self, request):
       project_id = request.data.get('project_id')
       if project_id is not None:
-        res = Task.objects.add_new_task(request.data)
+        res = Task.objects.load_tasks(project_id, request.data)
         return Response(res)
       return Response({'error': 'project_id is missing.'})
   
-  @action(detail=False, methods=['get'])
-  def list_tasks(self, request):
-    serialized_data = serializers.serialize('json', self.get_queryset())
-    serialized_data = json.loads(serialized_data)
-    res = []
-    for item in serialized_data:
-      fields = item['fields']
-      fields['params'] = json.loads(fields['params'])
-      res.append(fields)
+  @action(detail=False, methods=['delete'])
+  def delete_tasks(self, request):
+    project_id = request.GET.get('project_id')
+    task_id = request.GET.get('task_id')
+    res = Task.objects.delete_tasks(project_id, task_id)
     return Response(res)
   
