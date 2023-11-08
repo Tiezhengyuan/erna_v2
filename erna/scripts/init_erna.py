@@ -4,7 +4,20 @@ example:
     python3 erna/manage.py shell < erna/scripts/init_erna.py
 '''
 from rna_seq.models import *
+from annot.models import *
 from process.process_raw_data import ProcessRawData
+from process.process_genome import ProcessGenome
+
+# refresh reference
+res = Reference.objects.refresh()
+
+'''
+# annotation-related tables
+
+# refresh Specie and Genome
+ProcessGenome('NCBI').retrieve_assembly_summary()
+#refresh downloaded genome
+res = Genome.objects.refresh()
 
 
 # refresh RawData
@@ -40,4 +53,4 @@ mirna_seq = [
     ("count_reads", None, None),
 ]
 steps = Pipeline.objects.load_pipeline('miRNA-Seq', mirna_seq)
-
+'''

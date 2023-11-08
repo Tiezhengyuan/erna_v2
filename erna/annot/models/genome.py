@@ -6,6 +6,7 @@ from django.core.files import File
 from pathlib import Path
 
 from .specie import Specie
+from process.utils.dir import Dir
 
 class GenomeManager(models.Manager):
     def get_genome(self, organism_name:str, version:str=None):
@@ -22,7 +23,6 @@ class GenomeManager(models.Manager):
     def get_ftp_path(self, specie:str, version:str=None):
         obj = self.get(specie=specie, version=version)
         return obj.ftp_path
-
 
     def load_genome(self, data:dict):
         '''
@@ -41,6 +41,22 @@ class GenomeManager(models.Manager):
                     return existing.update(metadata=data['metadata'])
         return None
 
+    def refresh(self):
+        '''
+        update Genome if genome was downloaded and is available
+        '''
+        res = []
+        ref_dir = settings.REFERENCES_DIR
+        for data_source in os.listdir(ref_dir):
+            genome_dir = os.path.join(ref_dir, data_source, 'genome')
+            for specie in os.listdir(genome_dir):
+                specie_dir = os.path.join(genome_dir, specie)
+                for version in os.listdir(specie_dir):
+                    local_path = os.path.join(specie_dir, version)
+                    obj = self.filter(specie=specie, version=version)\
+                        .update(is_ready=True, local_path=local_path)
+                    res.append(obj)
+        return res
          
 class Genome(models.Model):
     '''

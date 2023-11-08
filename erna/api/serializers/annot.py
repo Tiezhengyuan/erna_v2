@@ -11,6 +11,7 @@ class ReferenceSerializer(serializers.ModelSerializer):
     class Meta:
         model = Reference
         fields = '__all__'
+        depth = 2
 
 class GenomeSerializer(serializers.ModelSerializer):
     annots = AnnotationSerializer(many=True)
