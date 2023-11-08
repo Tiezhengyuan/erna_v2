@@ -42,7 +42,7 @@ class TaskManager(models.Manager):
         )
         return task
 
-    def load_tasks(self, project_id:str, tasks_data:dict):
+    def load_tasks(self, project_id:str, tasks_data:list):
         '''
         load multiple tasks given a existing project
         '''

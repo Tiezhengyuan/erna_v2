@@ -46,7 +46,6 @@ tasks_data = [
         'params': {
             'index_path': 'aaa',
         },
-        'parent': ['T01'],
         'child': ['T03'],
     },
     {
@@ -55,7 +54,6 @@ tasks_data = [
         'method_name': 'assemble_transcripts',
         'tool_name': 'stringtie',
         'params': {},
-        'parent': ['T02'],
         'child': ['T04'],
     },
     {
@@ -68,7 +66,6 @@ tasks_data = [
         'task_name': '',
         'method_name': 'quality_control',
         "tool_name": "fastqc",
-        'parent': ['T03'],
     },
     # empty task without method_name
     {
@@ -82,6 +79,10 @@ tasks_data = [
 ]
 tasks = Task.objects.load_tasks(project_id, tasks_data)
 print(tasks)
+
+tasks_tree = TaskTree.objects.load_tasks_tree(project_id, tasks_data)
+print(tasks_tree)
+
 
 samples = {
     'sample_1': {

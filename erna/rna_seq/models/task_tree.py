@@ -45,45 +45,57 @@ class TaskTreeManager(models.Manager):
                     yield task, child
             i += 1
 
-    def append_task(self, project_id:str, task_id:str, parent_task_id=None):
+    def load_tasks_tree(self, project_id:str, tasks_data:list):
         '''
-        suppose both tasks exist
+        example:
+            tasks_data = {
+                'task_id: 'T002',
+                'parent': ['T01'],
+                'child': ['T03'],
+            }
         '''
-        task = Task.objects.get_task(project_id, task_id)
-        # is root node
-        if parent_task_id is None:
-            return self.model.objects.create(task=task)
-        # is child node
-        parent = Task.objects.get_task(project_id, parent_task_id)
-        self.model.objects.create(task=parent, child=task)
-        return self.model.objects.create(task=task, parent=parent)
+        if not project_id:
+            return []
 
+        res = []
+        project = Project.objects.get(project_id=project_id)
+        for data in tasks_data:
+            if 'task_id' in data:
+                task = Task.objects.get(project=project, task_id=data['task_id'])
+                for parent_task_id in data.get('parent', []):
+                    parent = Task.objects.get(project=project, task_id=parent_task_id)
+                    obj = TaskTree.objects.update_or_create(task=parent, child=task)
+                    res.append(obj)
+                for child_task_id in data.get('child', []):
+                    child = Task.objects.get(project=project, task_id=child_task_id)
+                    obj = TaskTree.objects.update_or_create(task=task, child=child)
+                    res.append(obj)
+        return res
 
 
 class TaskTree(models.Model):
     '''
     task, parent and child must belong to same project
     '''
-    task = models.ForeignKey(Task,
+    task = models.ForeignKey(
+        Task,
         on_delete=models.CASCADE,
-        related_name='current_task'
+        verbose_name='Task',
     )
-    parent = models.ForeignKey(Task,
-        blank=True, null=True,
+    child = models.ForeignKey(
+        Task,
         on_delete=models.CASCADE,
-        related_name='parent_task'
-    )
-    child = models.ForeignKey(Task,
-        blank=True, null=True,
-        on_delete=models.CASCADE,
-        related_name='child_task'
+        related_name='child_tasks',
+        verbose_name='Child task',
+        blank=True,
+        null=True,
     )
 
     objects = TaskTreeManager()
 
     class Meta:
         app_label = 'rna_seq'
-        ordering = ('task',)
+        ordering = ('task', 'child')
     
     def __str__(self):
         return self.task.task_id
