@@ -1,0 +1,23 @@
+version: "1.0"
+services:
+  nginx:
+    image: nginx:lastes
+    container_name: "erna_nginx"
+    networks:
+      - ernanet
+
+  frontend:
+    image: ./frontend
+    container_name: "erna_frontend"
+    networks:
+      - ernanet
+  
+  backend:
+    image: ./backtend
+    container_name: "erna_backend"
+    networks:
+      - ernanet
+ 
+
+networks:
+  - ernanet: {}
