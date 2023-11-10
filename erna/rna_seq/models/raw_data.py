@@ -53,12 +53,21 @@ class RawDataManager(models.Manager):
 class RawData(models.Model):
   file_path = models.CharField(max_length=512)
   file_name = models.CharField(max_length=128)
-  file_format = models.CharField(max_length=10,
-    blank=True, null=True)
-  file_type = models.CharField(max_length=10,
-    blank=True, null=True)
-  batch_name = models.CharField(max_length=20,
-    blank=True, null=True)
+  file_format = models.CharField(
+    max_length=10,
+    blank=True,
+    null=True,
+  )
+  file_type = models.CharField(
+    max_length=10,
+    blank=True,
+    null=True
+  )
+  batch_name = models.CharField(
+    max_length=20,
+    blank=True,
+    null=True
+  )
   parsed = models.BooleanField(default=False)
 
   objects = RawDataManager()

@@ -8,22 +8,19 @@ from annot.models import *
 from process.process_raw_data import ProcessRawData
 from process.process_genome import ProcessGenome
 
-# refresh reference
-res = Reference.objects.refresh()
 
 '''
 # annotation-related tables
 
 # refresh Specie and Genome
-ProcessGenome('NCBI').retrieve_assembly_summary()
+species = ProcessGenome('NCBI').retrieve_assembly_summary()
+
 #refresh downloaded genome
-res = Genome.objects.refresh()
+genomes = Genome.objects.refresh()
 
+# refresh reference
+references = Reference.objects.refresh()
 
-# refresh RawData
-RawData.objects.all().delete()
-raw_data = ProcessRawData().scan_raw_data()
-data = RawData.objects.load_data(raw_data)
 
 # refresh Method
 methods = Method.objects.refresh()
@@ -53,4 +50,10 @@ mirna_seq = [
     ("count_reads", None, None),
 ]
 steps = Pipeline.objects.load_pipeline('miRNA-Seq', mirna_seq)
+
+
 '''
+
+# Delete all data in RawData, Sample, SampleFile, SampleProject
+# refresh RawData
+res = ProcessRawData().reset_sample()

@@ -4,10 +4,10 @@ example:
 '''
 import json
 from rna_seq.models import *
+from annot.models import *
 from commons.models import CustomUser
 
 
-user = CustomUser.objects.get(pk=1)
 project_id = "P00001"
 
 # cretae project
@@ -17,8 +17,8 @@ new_project = {
     "description": "for testing mRNA-seq",
     "status": "A",
     "sequencing": "M",
-    'owner': user
-
+    'owner': CustomUser.objects.get(pk=1),
+    'specie': Specie.objects.get(organism_name='Homo sapiens'),
 }
 Project.objects.filter(project_id=project_id).delete()
 project = Project.objects.create(**new_project)

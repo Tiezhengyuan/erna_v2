@@ -35,7 +35,6 @@ class ReferenceManager(models.Manager):
           index_files = os.listdir(index_path)
           aligner_names = [i.split('.', 1)[0] for i in index_files]
           for aligner in list(set(aligner_names)):
-            print(genome, aligner, index_path)
             defaults = {
               'index_path': index_path,
             }
@@ -43,7 +42,6 @@ class ReferenceManager(models.Manager):
               genome=genome,
               aligner=aligner,
               defaults = defaults)
-            print(obj)
             res.append(obj)
     return res
 

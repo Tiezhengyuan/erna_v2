@@ -59,20 +59,16 @@ class Project(models.Model):
         max_length= 10,
         verbose_name="project ID"
     )
-    project_name = models.CharField(
-        max_length=50,
-        blank=True,
-        verbose_name='Project name',
-    )
     owner = models.ForeignKey(
         settings.AUTH_USER_MODEL,
         on_delete=models.CASCADE,
         verbose_name="owner identified by user_id"
     )
-    create_time = models.DateTimeField(auto_now_add=True)
-    description = models.CharField(
-        max_length=526,
-        blank=True
+    specie = models.ForeignKey(
+        'annot.Specie',
+        on_delete=models.CASCADE,
+        null=True,
+        blank=True,
     )
     status = models.CharField(
         max_length=10,
@@ -97,6 +93,18 @@ class Project(models.Model):
             ('other', 'other')
         ],
         verbose_name = "Sequencing technique",
+    )
+    create_time = models.DateTimeField(auto_now_add=True)
+    project_name = models.CharField(
+        max_length=50,
+        null=True,
+        blank=True,
+        verbose_name='Project name',
+    )
+    description = models.CharField(
+        max_length=526,
+        null=True,
+        blank=True,
     )
 
     objects = ProjectManager()

@@ -38,6 +38,27 @@ class ProcessRawData:
     data = RawData.objects.load_data(raw_data)
     return serializers.serialize('json', data)
 
+  def reset_sample(self):
+    '''
+    Reset all tables defined in the app sample
+    1. Delete all data in RawData, Sample, SampleFile, SampleProject
+    2. RawData: refresh raw data
+    '''
+    res = {
+      'deleted': {},
+      'created': {},
+    }
+    for db in (RawData, Sample, SampleFile, SampleProject):
+      queryset = db.objects.all()
+      res['deleted'][db.__name__] = queryset.count()
+      queryset.delete()
+    # create
+    raw_data = self.scan_raw_data()
+    data = RawData.objects.load_data(raw_data)
+    res['created'][RawData.__name__] = len(data)
+    return res
+
+
   def parse_sample_data(self, study_name, prefix=None, postfix=None):
     '''
     one raw data match one sample
@@ -66,22 +87,3 @@ class ProcessRawData:
           break
     return sample_data
 
-  def reset_sample(self):
-    '''
-    Reset all tables defined in the app sample
-    1. Delete all data in RawData, Sample, SampleFile, SampleProject
-    2. RawData: refresh raw data
-    '''
-    res = {
-      'deleted': {},
-      'created': {},
-    }
-    for db in (RawData, Sample, SampleFile, SampleProject):
-      queryset = db.objects.all()
-      res['deleted'][db.__name__] = queryset.count()
-      queryset.delete()
-    # create
-    raw_data = self.scan_raw_data()
-    data = RawData.objects.load_data(raw_data)
-    res['created'][RawData.__name__] = len(data)
-    return res
