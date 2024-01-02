@@ -132,10 +132,20 @@ bash run_tests.sh
 ln -s /home/yuan/bio/erna_v2/externals/stringtie/2.2.2/stringtie  /home/yuan/bio/erna_v2/externals/bin/stringtie
 
 
-????star
-aligner: https://github.com/alexdobin/STAR
+star
+aligner: https://github.com/alexdobin/STAR/releases
 
-wget https://github.com/alexdobin/STAR/archive/2.7.11a.tar.gz
-tar -xzf 2.7.11a.tar.gz
-cd STAR-2.7.11a
+#install
+git clone https://github.com/alexdobin/STAR.git
+cd STAR/source
+make STAR
 
+./STAR --help
+./STAR --version   2.7.11a
+
+#build index
+./STAR --runMode genomeGenerate \
+--genomeDir chr1_hg38_index \
+--genomeFastaFiles /n/groups/hbctraining/intro_rnaseq_hpc/reference_data_ensembl38/Homo_sapiens.GRCh38.dna.chromosome.1.fa \
+--sjdbGTFfile /n/groups/hbctraining/intro_rnaseq_hpc/reference_data_ensembl38/Homo_sapiens.GRCh38.92.gtf \
+--sjdbOverhang 99

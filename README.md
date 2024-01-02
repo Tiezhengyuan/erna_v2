@@ -16,10 +16,12 @@ Design and programming of eRNA_v2.
 - Bioinformatics pipelins are Python3 tools.
 
 
-Source codes are splitted into two repositories:
-Front-end (JS): https://github.com/Tiezhengyuan/ernav2_frontend/
-Back-end (Python): https://github.com/Tiezhengyuan/ernav2_backend/
-
+Source codes of eRNAv2 are composed of multiple  repositories:
+Front-end (Vue2-JS): https://github.com/Tiezhengyuan/ernav2_frontend/
+Back-end (Djnago4-Python3): https://github.com/Tiezhengyuan/ernav2_backend/
+DataModel: https://github.com/Tiezhengyuan/ernav2_seqdata.git
+FileProcess: https://github.com/Tiezhengyuan/bio_file.git
+SequenceProcess: https://github.com/Tiezhengyuan/bio_sequence.git
 
 
 # Deployment
