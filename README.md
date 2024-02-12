@@ -17,11 +17,13 @@ Design and programming of eRNA_v2.
 
 
 Source codes of eRNAv2 are composed of multiple  repositories:
-Front-end (Vue2-JS): https://github.com/Tiezhengyuan/ernav2_frontend/
-Back-end (Djnago4-Python3): https://github.com/Tiezhengyuan/ernav2_backend/
-DataModel: https://github.com/Tiezhengyuan/ernav2_seqdata.git
-FileProcess: https://github.com/Tiezhengyuan/bio_file.git
-SequenceProcess: https://github.com/Tiezhengyuan/bio_sequence.git
+- Front-end (Vue2-JS): https://github.com/Tiezhengyuan/ernav2_frontend/
+- Back-end (Djnago4-Python3): https://github.com/Tiezhengyuan/ernav2_backend/
+- DataModel: https://github.com/Tiezhengyuan/ernav2_seqdata
+- FileProcess: https://github.com/Tiezhengyuan/bio_file
+- SequenceProcess: https://github.com/Tiezhengyuan/bio_sequence
+- Download and process omics data: https://github.com/Tiezhengyuan/bio_omics
+- Utils: https://github.com/Tiezhengyuan/bio_utils
 
 
 # Deployment
