@@ -10,15 +10,15 @@ eRNA_v2 is a web applicaton for mRNA-seq data analysis. The app aims at fullfill
 - Inegrate genome annotations into bioinformatic pipelines.
 
 Design and programming of eRNA_v2. 
-- Front end is Vue2-JavaScript.
+- Front end is Vue3-JavaScript.
 - Back end is Django4-Python3.
 - Database is Sqlite/MySQL.
-- Bioinformatics pipelins are Python3 tools.
+- Bioinformatics pipelines are Python3 tools.
 
 
 Source codes of eRNAv2 are composed of multiple  repositories:
-- Front-end (Vue2-JS): https://github.com/Tiezhengyuan/ernav2_frontend/
-- Back-end (Djnago4-Python3): https://github.com/Tiezhengyuan/ernav2_backend/
+- Front-end app (Vue3-JS): https://github.com/Tiezhengyuan/ernav2_frontend/
+- Back-end app (Djnago4-Python3): https://github.com/Tiezhengyuan/ernav2_backend/
 - DataModel: https://github.com/Tiezhengyuan/ernav2_seqdata
 - FileProcess: https://github.com/Tiezhengyuan/bio_file
 - SequenceProcess: https://github.com/Tiezhengyuan/bio_sequence
@@ -31,3 +31,25 @@ Source codes of eRNAv2 are composed of multiple  repositories:
 The app is developed in Linux. Front-end, back-end and data processing are decoupled. It is ok to deploy the three components into different VM depending on the scale of data analysis and complexity of user group.
 
 # References
+
+
+#mirna docker
+
+```
+cd mirna/emirna_frontend
+```
+
+```
+yarn install
+yarn build
+```
+
+build image
+```
+docker-compose build
+```
+
+launch instance of container
+```
+docker-compose up
+```

@@ -1,4 +1,11 @@
 
+mirna/devops/nginx/log/*log
+mirna/emirna_backend/
+mirna/emirna_frontend/
 
-frontend/
-backend/
+mirna/raw_data/*
+!mirna/raw_data/readme
+mirna/references/*
+!mirna/references/readme
+mirna/results/*
+!mirna/results/readme
