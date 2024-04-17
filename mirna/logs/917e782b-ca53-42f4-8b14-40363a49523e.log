@@ -1,0 +1,569 @@
+2024-04-16 17:58:26,262 | INFO | ForkPoolWorker-16 | celery_tasks.tasks.execute_tasks | 917e782b-ca53-42f4-8b14-40363a49523e | Initialize task T00
+2024-04-16 17:58:26,271 | INFO | ForkPoolWorker-16 | celery_tasks.tasks.execute_tasks | 917e782b-ca53-42f4-8b14-40363a49523e | Try to run task=T00.
+2024-04-16 17:58:26,703 | INFO | ForkPoolWorker-16 | celery_tasks.tasks.execute_tasks | 917e782b-ca53-42f4-8b14-40363a49523e | 
+The task T00 ends. execution=200
+
+
+2024-04-16 17:58:27,097 | INFO | ForkPoolWorker-16 | celery_tasks.tasks.execute_tasks | 917e782b-ca53-42f4-8b14-40363a49523e | Initialize task T01
+2024-04-16 17:58:27,113 | INFO | ForkPoolWorker-16 | celery_tasks.tasks.execute_tasks | 917e782b-ca53-42f4-8b14-40363a49523e | Try to run task=T01.
+2024-04-16 17:58:28,595 | INFO | ForkPoolWorker-16 | celery_tasks.tasks.execute_tasks | 917e782b-ca53-42f4-8b14-40363a49523e | Trim 3-end sequences: {'total_reads': 25000, 'trimmed_reads': 18983, 'short_trimmed_reads': 3127, 'trim_percentage': 0.7593}
+2024-04-16 17:58:29,457 | INFO | ForkPoolWorker-16 | celery_tasks.tasks.execute_tasks | 917e782b-ca53-42f4-8b14-40363a49523e | Trim 3-end sequences: {'total_reads': 25000, 'trimmed_reads': 17725, 'short_trimmed_reads': 3821, 'trim_percentage': 0.709}
+2024-04-16 17:58:30,185 | INFO | ForkPoolWorker-16 | celery_tasks.tasks.execute_tasks | 917e782b-ca53-42f4-8b14-40363a49523e | Trim 3-end sequences: {'total_reads': 25000, 'trimmed_reads': 9, 'short_trimmed_reads': 7, 'trim_percentage': 0.0004}
+2024-04-16 17:58:30,185 | INFO | ForkPoolWorker-16 | celery_tasks.tasks.execute_tasks | 917e782b-ca53-42f4-8b14-40363a49523e | 
+The task T01 ends. execution=201
+
+
+2024-04-16 17:58:30,745 | INFO | ForkPoolWorker-16 | celery_tasks.tasks.execute_tasks | 917e782b-ca53-42f4-8b14-40363a49523e | Initialize task T02
+2024-04-16 17:58:30,761 | INFO | ForkPoolWorker-16 | celery_tasks.tasks.execute_tasks | 917e782b-ca53-42f4-8b14-40363a49523e | Try to run task=T02.
+2024-04-16 17:58:31,049 | INFO | ForkPoolWorker-16 | celery_tasks.tasks.execute_tasks | 917e782b-ca53-42f4-8b14-40363a49523e | Settings:
+  Output files: "/code/references/index/10/Homo_sapiens.*.bt2"
+  Line rate: 6 (line is 64 bytes)
+  Lines per side: 1 (side is 64 bytes)
+  Offset rate: 4 (one in 16)
+  FTable chars: 10
+  Strings: unpacked
+  Max bucket size: default
+  Max bucket size, sqrt multiplier: default
+  Max bucket size, len divisor: 4
+  Difference-cover sample period: 1024
+  Endianness: little
+  Actual local endianness: little
+  Sanity checking: disabled
+  Assertions: disabled
+  Random seed: 0
+  Sizeofs: void*:8, int:4, long:8, size_t:8
+Input files DNA, FASTA:
+  /code/references/miRBase/miRNA_mature/Homo_sapiens.fa
+Reading reference sizes
+  Time reading reference sizes: 00:00:00
+Calculating joined length
+Writing header
+Reserving space for joined string
+Joining reference sequences
+  Time to join reference sequences: 00:00:00
+bmax according to bmaxDivN setting: 53590
+Using parameters --bmax 40193 --dcv 1024
+  Doing ahead-of-time memory usage test
+  Passed!  Constructing with these parameters: --bmax 40193 --dcv 1024
+Constructing suffix-array element generator
+Building DifferenceCoverSample
+  Building sPrime
+  Building sPrimeOrder
+  V-Sorting samples
+  V-Sorting samples time: 00:00:00
+  Allocating rank array
+  Ranking v-sort output
+  Ranking v-sort output time: 00:00:00
+  Invoking Larsson-Sadakane on ranks
+  Invoking Larsson-Sadakane on ranks time: 00:00:00
+  Sanity-checking and returning
+Building samples
+Reserving space for 12 sample suffixes
+Generating random suffixes
+QSorting 12 sample offsets, eliminating duplicates
+QSorting sample offsets, eliminating duplicates time: 00:00:00
+Multikey QSorting 12 samples
+  (Using difference cover)
+  Multikey QSorting samples time: 00:00:00
+Calculating bucket sizes
+Splitting and merging
+  Splitting and merging time: 00:00:00
+Split 1, merged 5; iterating...
+Splitting and merging
+  Splitting and merging time: 00:00:00
+Avg bucket size: 23817.2 (target: 40192)
+Converting suffix-array elements to index image
+Allocating ftab, absorbFtab
+Entering Ebwt loop
+Getting block 1 of 9
+  Reserving size (40193) for bucket 1
+  Calculating Z arrays for bucket 1
+  Entering block accumulator loop for bucket 1:
+  bucket 1: 10%
+  bucket 1: 20%
+  bucket 1: 30%
+  bucket 1: 40%
+  bucket 1: 50%
+  bucket 1: 60%
+  bucket 1: 70%
+  bucket 1: 80%
+  bucket 1: 90%
+  bucket 1: 100%
+  Sorting block of length 3643 for bucket 1
+  (Using difference cover)
+  Sorting block time: 00:00:00
+Returning block of 3644 for bucket 1
+Getting block 2 of 9
+  Reserving size (40193) for bucket 2
+  Calculating Z arrays for bucket 2
+  Entering block accumulator loop for bucket 2:
+  bucket 2: 10%
+  bucket 2: 20%
+  bucket 2: 30%
+  bucket 2: 40%
+  bucket 2: 50%
+  bucket 2: 60%
+  bucket 2: 70%
+  bucket 2: 80%
+  bucket 2: 90%
+  bucket 2: 100%
+  Sorting block of length 38998 for bucket 2
+  (Using difference cover)
+  Sorting block time: 00:00:00
+Returning block of 38999 for bucket 2
+Getting block 3 of 9
+  Reserving size (40193) for bucket 3
+  Calculating Z arrays for bucket 3
+  Entering block accumulator loop for bucket 3:
+  bucket 3: 10%
+  bucket 3: 20%
+  bucket 3: 30%
+  bucket 3: 40%
+  bucket 3: 50%
+  bucket 3: 60%
+  bucket 3: 70%
+  bucket 3: 80%
+  bucket 3: 90%
+  bucket 3: 100%
+  Sorting block of length 5658 for bucket 3
+  (Using difference cover)
+  Sorting block time: 00:00:00
+Returning block of 5659 for bucket 3
+Getting block 4 of 9
+  Reserving size (40193) for bucket 4
+  Calculating Z arrays for bucket 4
+  Entering block accumulator loop for bucket 4:
+  bucket 4: 10%
+  bucket 4: 20%
+  bucket 4: 30%
+  bucket 4: 40%
+  bucket 4: 50%
+  bucket 4: 60%
+  bucket 4: 70%
+  bucket 4: 80%
+  bucket 4: 90%
+  bucket 4: 100%
+  Sorting block of length 38466 for bucket 4
+  (Using difference cover)
+  Sorting block time: 00:00:00
+Returning block of 38467 for bucket 4
+Getting block 5 of 9
+  Reserving size (40193) for bucket 5
+  Calculating Z arrays for bucket 5
+  Entering block accumulator loop for bucket 5:
+  bucket 5: 10%
+  bucket 5: 20%
+  bucket 5: 30%
+  bucket 5: 40%
+  bucket 5: 50%
+  bucket 5: 60%
+  bucket 5: 70%
+  bucket 5: 80%
+  bucket 5: 90%
+  bucket 5: 100%
+  Sorting block of length 21718 for bucket 5
+  (Using difference cover)
+  Sorting block time: 00:00:00
+Returning block of 21719 for bucket 5
+Getting block 6 of 9
+  Reserving size (40193) for bucket 6
+  Calculating Z arrays for bucket 6
+  Entering block accumulator loop for bucket 6:
+  bucket 6: 10%
+  bucket 6: 20%
+  bucket 6: 30%
+  bucket 6: 40%
+  bucket 6: 50%
+  bucket 6: 60%
+  bucket 6: 70%
+  bucket 6: 80%
+  bucket 6: 90%
+  bucket 6: 100%
+  Sorting block of length 26698 for bucket 6
+  (Using difference cover)
+  Sorting block time: 00:00:00
+Returning block of 26699 for bucket 6
+Getting block 7 of 9
+  Reserving size (40193) for bucket 7
+  Calculating Z arrays for bucket 7
+  Entering block accumulator loop for bucket 7:
+  bucket 7: 10%
+  bucket 7: 20%
+  bucket 7: 30%
+  bucket 7: 40%
+  bucket 7: 50%
+  bucket 7: 60%
+  bucket 7: 70%
+  bucket 7: 80%
+  bucket 7: 90%
+  bucket 7: 100%
+  Sorting block of length 37010 for bucket 7
+  (Using difference cover)
+  Sorting block time: 00:00:00
+Returning block of 37011 for bucket 7
+Getting block 8 of 9
+  Reserving size (40193) for bucket 8
+  Calculating Z arrays for bucket 8
+  Entering block accumulator loop for bucket 8:
+  bucket 8: 10%
+  bucket 8: 20%
+  bucket 8: 30%
+  bucket 8: 40%
+  bucket 8: 50%
+  bucket 8: 60%
+  bucket 8: 70%
+  bucket 8: 80%
+  bucket 8: 90%
+  bucket 8: 100%
+  Sorting block of length 34213 for bucket 8
+  (Using difference cover)
+  Sorting block time: 00:00:00
+Returning block of 34214 for bucket 8
+Getting block 9 of 9
+  Reserving size (40193) for bucket 9
+  Calculating Z arrays for bucket 9
+  Entering block accumulator loop for bucket 9:
+  bucket 9: 10%
+  bucket 9: 20%
+  bucket 9: 30%
+  bucket 9: 40%
+  bucket 9: 50%
+  bucket 9: 60%
+  bucket 9: 70%
+  bucket 9: 80%
+  bucket 9: 90%
+  bucket 9: 100%
+  Sorting block of length 7951 for bucket 9
+  (Using difference cover)
+  Sorting block time: 00:00:00
+Returning block of 7952 for bucket 9
+Exited Ebwt loop
+fchr[A]: 0
+fchr[C]: 48325
+fchr[G]: 99380
+fchr[T]: 158519
+fchr[$]: 214363
+Exiting Ebwt::buildToDisk()
+Returning from initFromVector
+Wrote 4403948 bytes to primary EBWT file: /code/references/index/10/Homo_sapiens.1.bt2.tmp
+Wrote 53596 bytes to secondary EBWT file: /code/references/index/10/Homo_sapiens.2.bt2.tmp
+Re-opening _in1 and _in2 as input streams
+Returning from Ebwt constructor
+Headers:
+    len: 214363
+    bwtLen: 214364
+    sz: 53591
+    bwtSz: 53591
+    lineRate: 6
+    offRate: 4
+    offMask: 0xfffffff0
+    ftabChars: 10
+    eftabLen: 20
+    eftabSz: 80
+    ftabLen: 1048577
+    ftabSz: 4194308
+    offsLen: 13398
+    offsSz: 53592
+    lineSz: 64
+    sideSz: 64
+    sideBwtSz: 48
+    sideBwtLen: 192
+    numSides: 1117
+    numLines: 1117
+    ebwtTotLen: 71488
+    ebwtTotSz: 71488
+    color: 0
+    reverse: 0
+Total time for call to driver() for forward index: 00:00:00
+Reading reference sizes
+  Time reading reference sizes: 00:00:00
+Calculating joined length
+Writing header
+Reserving space for joined string
+Joining reference sequences
+  Time to join reference sequences: 00:00:00
+  Time to reverse reference sequence: 00:00:00
+bmax according to bmaxDivN setting: 53590
+Using parameters --bmax 40193 --dcv 1024
+  Doing ahead-of-time memory usage test
+  Passed!  Constructing with these parameters: --bmax 40193 --dcv 1024
+Constructing suffix-array element generator
+Building DifferenceCoverSample
+  Building sPrime
+  Building sPrimeOrder
+  V-Sorting samples
+  V-Sorting samples time: 00:00:00
+  Allocating rank array
+  Ranking v-sort output
+  Ranking v-sort output time: 00:00:00
+  Invoking Larsson-Sadakane on ranks
+  Invoking Larsson-Sadakane on ranks time: 00:00:00
+  Sanity-checking and returning
+Building samples
+Reserving space for 12 sample suffixes
+Generating random suffixes
+QSorting 12 sample offsets, eliminating duplicates
+QSorting sample offsets, eliminating duplicates time: 00:00:00
+Multikey QSorting 12 samples
+  (Using difference cover)
+  Multikey QSorting samples time: 00:00:00
+Calculating bucket sizes
+Splitting and merging
+  Splitting and merging time: 00:00:00
+Split 2, merged 7; iterating...
+Splitting and merging
+  Splitting and merging time: 00:00:00
+Split 2, merged 1; iterating...
+Splitting and merging
+  Splitting and merging time: 00:00:00
+Avg bucket size: 30622.4 (target: 40192)
+Converting suffix-array elements to index image
+Allocating ftab, absorbFtab
+Entering Ebwt loop
+Getting block 1 of 7
+  Reserving size (40193) for bucket 1
+  Calculating Z arrays for bucket 1
+  Entering block accumulator loop for bucket 1:
+  bucket 1: 10%
+  bucket 1: 20%
+  bucket 1: 30%
+  bucket 1: 40%
+  bucket 1: 50%
+  bucket 1: 60%
+  bucket 1: 70%
+  bucket 1: 80%
+  bucket 1: 90%
+  bucket 1: 100%
+  Sorting block of length 39277 for bucket 1
+  (Using difference cover)
+  Sorting block time: 00:00:00
+Returning block of 39278 for bucket 1
+Getting block 2 of 7
+  Reserving size (40193) for bucket 2
+  Calculating Z arrays for bucket 2
+  Entering block accumulator loop for bucket 2:
+  bucket 2: 10%
+  bucket 2: 20%
+  bucket 2: 30%
+  bucket 2: 40%
+  bucket 2: 50%
+  bucket 2: 60%
+  bucket 2: 70%
+  bucket 2: 80%
+  bucket 2: 90%
+  bucket 2: 100%
+  Sorting block of length 38303 for bucket 2
+  (Using difference cover)
+  Sorting block time: 00:00:00
+Returning block of 38304 for bucket 2
+Getting block 3 of 7
+  Reserving size (40193) for bucket 3
+  Calculating Z arrays for bucket 3
+  Entering block accumulator loop for bucket 3:
+  bucket 3: 10%
+  bucket 3: 20%
+  bucket 3: 30%
+  bucket 3: 40%
+  bucket 3: 50%
+  bucket 3: 60%
+  bucket 3: 70%
+  bucket 3: 80%
+  bucket 3: 90%
+  bucket 3: 100%
+  Sorting block of length 17402 for bucket 3
+  (Using difference cover)
+  Sorting block time: 00:00:00
+Returning block of 17403 for bucket 3
+Getting block 4 of 7
+  Reserving size (40193) for bucket 4
+  Calculating Z arrays for bucket 4
+  Entering block accumulator loop for bucket 4:
+  bucket 4: 10%
+  bucket 4: 20%
+  bucket 4: 30%
+  bucket 4: 40%
+  bucket 4: 50%
+  bucket 4: 60%
+  bucket 4: 70%
+  bucket 4: 80%
+  bucket 4: 90%
+  bucket 4: 100%
+  Sorting block of length 38767 for bucket 4
+  (Using difference cover)
+  Sorting block time: 00:00:00
+Returning block of 38768 for bucket 4
+Getting block 5 of 7
+  Reserving size (40193) for bucket 5
+  Calculating Z arrays for bucket 5
+  Entering block accumulator loop for bucket 5:
+  bucket 5: 10%
+  bucket 5: 20%
+  bucket 5: 30%
+  bucket 5: 40%
+  bucket 5: 50%
+  bucket 5: 60%
+  bucket 5: 70%
+  bucket 5: 80%
+  bucket 5: 90%
+  bucket 5: 100%
+  Sorting block of length 25663 for bucket 5
+  (Using difference cover)
+  Sorting block time: 00:00:00
+Returning block of 25664 for bucket 5
+Getting block 6 of 7
+  Reserving size (40193) for bucket 6
+  Calculating Z arrays for bucket 6
+  Entering block accumulator loop for bucket 6:
+  bucket 6: 10%
+  bucket 6: 20%
+  bucket 6: 30%
+  bucket 6: 40%
+  bucket 6: 50%
+  bucket 6: 60%
+  bucket 6: 70%
+  bucket 6: 80%
+  bucket 6: 90%
+  bucket 6: 100%
+  Sorting block of length 22030 for bucket 6
+  (Using difference cover)
+  Sorting block time: 00:00:00
+Returning block of 22031 for bucket 6
+Getting block 7 of 7
+  Reserving size (40193) for bucket 7
+  Calculating Z arrays for bucket 7
+  Entering block accumulator loop for bucket 7:
+  bucket 7: 10%
+  bucket 7: 20%
+  bucket 7: 30%
+  bucket 7: 40%
+  bucket 7: 50%
+  bucket 7: 60%
+  bucket 7: 70%
+  bucket 7: 80%
+  bucket 7: 90%
+  bucket 7: 100%
+  Sorting block of length 32915 for bucket 7
+  (Using difference cover)
+  Sorting block time: 00:00:00
+Returning block of 32916 for bucket 7
+Exited Ebwt loop
+fchr[A]: 0
+fchr[C]: 48325
+fchr[G]: 99380
+fchr[T]: 158519
+fchr[$]: 214363
+Exiting Ebwt::buildToDisk()
+Returning from initFromVector
+Wrote 4403948 bytes to primary EBWT file: /code/references/index/10/Homo_sapiens.rev.1.bt2.tmp
+Wrote 53596 bytes to secondary EBWT file: /code/references/index/10/Homo_sapiens.rev.2.bt2.tmp
+Re-opening _in1 and _in2 as input streams
+Returning from Ebwt constructor
+Headers:
+    len: 214363
+    bwtLen: 214364
+    sz: 53591
+    bwtSz: 53591
+    lineRate: 6
+    offRate: 4
+    offMask: 0xfffffff0
+    ftabChars: 10
+    eftabLen: 20
+    eftabSz: 80
+    ftabLen: 1048577
+    ftabSz: 4194308
+    offsLen: 13398
+    offsSz: 53592
+    lineSz: 64
+    sideSz: 64
+    sideBwtSz: 48
+    sideBwtLen: 192
+    numSides: 1117
+    numLines: 1117
+    ebwtTotLen: 71488
+    ebwtTotSz: 71488
+    color: 0
+    reverse: 1
+Total time for backward call to driver() for mirror index: 00:00:01
+
+[1;31m2024-04-16 17:58:31,050 | ERROR | ForkPoolWorker-16 | celery_tasks.tasks.execute_tasks | 917e782b-ca53-42f4-8b14-40363a49523e | Building a SMALL index
+Renaming /code/references/index/10/Homo_sapiens.3.bt2.tmp to /code/references/index/10/Homo_sapiens.3.bt2
+Renaming /code/references/index/10/Homo_sapiens.4.bt2.tmp to /code/references/index/10/Homo_sapiens.4.bt2
+Renaming /code/references/index/10/Homo_sapiens.1.bt2.tmp to /code/references/index/10/Homo_sapiens.1.bt2
+Renaming /code/references/index/10/Homo_sapiens.2.bt2.tmp to /code/references/index/10/Homo_sapiens.2.bt2
+Renaming /code/references/index/10/Homo_sapiens.rev.1.bt2.tmp to /code/references/index/10/Homo_sapiens.rev.1.bt2
+Renaming /code/references/index/10/Homo_sapiens.rev.2.bt2.tmp to /code/references/index/10/Homo_sapiens.rev.2.bt2
+[0m
+2024-04-16 17:58:31,058 | INFO | ForkPoolWorker-16 | celery_tasks.tasks.execute_tasks | 917e782b-ca53-42f4-8b14-40363a49523e | 
+The task T02 ends. execution=202
+
+
+2024-04-16 17:58:31,064 | INFO | ForkPoolWorker-16 | celery_tasks.tasks.execute_tasks | 917e782b-ca53-42f4-8b14-40363a49523e | Initialize task T07
+2024-04-16 17:58:31,072 | INFO | ForkPoolWorker-16 | celery_tasks.tasks.execute_tasks | 917e782b-ca53-42f4-8b14-40363a49523e | Try to run task=T07.
+[1;31m2024-04-16 17:58:31,113 | ERROR | ForkPoolWorker-16 | celery_tasks.tasks.execute_tasks | 917e782b-ca53-42f4-8b14-40363a49523e | Option d is ambiguous (delete, dir, dup_length)
+Can't exec "java": No such file or directory at /code/externals/fastqc/0.12.1/fastqc line 350.
+[0m
+[1;31m2024-04-16 17:58:31,124 | ERROR | ForkPoolWorker-16 | celery_tasks.tasks.execute_tasks | 917e782b-ca53-42f4-8b14-40363a49523e | Option d is ambiguous (delete, dir, dup_length)
+Can't exec "java": No such file or directory at /code/externals/fastqc/0.12.1/fastqc line 350.
+[0m
+[1;31m2024-04-16 17:58:31,135 | ERROR | ForkPoolWorker-16 | celery_tasks.tasks.execute_tasks | 917e782b-ca53-42f4-8b14-40363a49523e | Option d is ambiguous (delete, dir, dup_length)
+Can't exec "java": No such file or directory at /code/externals/fastqc/0.12.1/fastqc line 350.
+[0m
+2024-04-16 17:58:31,135 | INFO | ForkPoolWorker-16 | celery_tasks.tasks.execute_tasks | 917e782b-ca53-42f4-8b14-40363a49523e | 
+The task T07 ends. execution=203
+
+
+2024-04-16 17:58:31,142 | INFO | ForkPoolWorker-16 | celery_tasks.tasks.execute_tasks | 917e782b-ca53-42f4-8b14-40363a49523e | Initialize task T03
+2024-04-16 17:58:31,149 | INFO | ForkPoolWorker-16 | celery_tasks.tasks.execute_tasks | 917e782b-ca53-42f4-8b14-40363a49523e | Try to run task=T03.
+2024-04-16 17:58:31,158 | INFO | ForkPoolWorker-16 | celery_tasks.tasks.execute_tasks | 917e782b-ca53-42f4-8b14-40363a49523e | Get index path form parent_params={'project': <Project: P00001>, 'task': <Task: Task object (28)>, 'parents': [<Task: Task object (27)>], 'seqdata': <rnaseqdata.seq_data.SeqData object at 0x7cf3121af810>, 'seqdata_path': '/code/results/P00001/T00_import_data/seqdata.obj', 'parent_outputs': [{'sample_name': 'AB_1', 'R1': ['/code/raw_data/demo_mirnaseq/AB_1_CCGTCC_L004_R1.fastq']}, {'sample_name': 'AI_1', 'R1': ['/code/raw_data/demo_mirnaseq/AI_1_AGTCAA_L004_R1.fastq']}, {'sample_name': 'AN_1', 'R1': ['/code/raw_data/demo_mirnaseq/AN_1_GCCAAT_L004_R1.fastq']}], 'children': [<Task: Task object (30)>], 'method': <Method: Method object (trim_sequences)>, 'tool': None, 'parent_params': {'project': <Project: P00001>, 'task': <Task: Task object (27)>, 'parents': [], 'seqdata': <rnaseqdata.seq_data.SeqData object at 0x7cf312002490>, 'seqdata_path': '/code/results/P00001/T00_import_data/seqdata.obj', 'parent_outputs': [], 'children': [<Task: Task object (28)>, <Task: Task object (29)>, <Task: Task object (34)>], 'method': <Method: Method object (import_data)>, 'tool': None, 'parent_params': None, 'cmd': None, 'force_run': True, 'output': [{'sample_name': 'AB_1', 'R1': ['/code/raw_data/demo_mirnaseq/AB_1_CCGTCC_L004_R1.fastq']}, {'sample_name': 'AI_1', 'R1': ['/code/raw_data/demo_mirnaseq/AI_1_AGTCAA_L004_R1.fastq']}, {'sample_name': 'AN_1', 'R1': ['/code/raw_data/demo_mirnaseq/AN_1_GCCAAT_L004_R1.fastq']}], 'output_dir': '/code/results/P00001/T00_import_data', 'task_execution': <TaskExecution: TaskExecution object (200)>, 'sample_files': [<SampleFile: SampleFile object (10)>, <SampleFile: SampleFile object (11)>, <SampleFile: SampleFile object (12)>]}, 'cmd': None, 'force_run': True, 'output': [{'sample_name': 'AB_1', 'R1': ['/code/results/P00001/T01_trim_sequences/AB_1_CCGTCC_L004_R1.fastq']}, {'sample_name': 'AI_1', 'R1': ['/code/results/P00001/T01_trim_sequences/AI_1_AGTCAA_L004_R1.fastq']}, {'sample_name': 'AN_1', 'R1': ['/code/results/P00001/T01_trim_sequences/AN_1_GCCAAT_L004_R1.fastq']}], 'output_dir': '/code/results/P00001/T01_trim_sequences', 'task_execution': <TaskExecution: TaskExecution object (201)>}.
+2024-04-16 17:58:31,158 | INFO | ForkPoolWorker-16 | celery_tasks.tasks.execute_tasks | 917e782b-ca53-42f4-8b14-40363a49523e | Get index path from parent_outputs={'sample_name': 'AB_1', 'R1': ['/code/results/P00001/T01_trim_sequences/AB_1_CCGTCC_L004_R1.fastq'], 'fa_path': '/code/references/miRBase/miRNA_mature/Homo_sapiens.fa', 'index_path': '/code/references/index/10/Homo_sapiens', 'model_name': 'RNA', 'model_id': None, 'model_query': {'specie': 'Homo_sapiens', 'data_source': 'miRBase', 'annot_type': 'miRNA_mature'}, 'tool_query': {'exe_name': 'bowtie2-build', 'version': '2.5.2'}, 'index_dir_path': '/code/references/index/10', 'cmd': '/code/externals/bowtie/2.5.2/bowtie2-build /code/references/miRBase/miRNA_mature/Homo_sapiens.fa /code/references/index/10/Homo_sapiens'}
+[1;31m2024-04-16 17:58:31,293 | ERROR | ForkPoolWorker-16 | celery_tasks.tasks.execute_tasks | 917e782b-ca53-42f4-8b14-40363a49523e | 21873 reads; of these:
+  21873 (100.00%) were unpaired; of these:
+    7556 (34.54%) aligned 0 times
+    443 (2.03%) aligned exactly 1 time
+    13874 (63.43%) aligned >1 times
+65.46% overall alignment rate
+[0m
+2024-04-16 17:58:31,294 | INFO | ForkPoolWorker-16 | celery_tasks.tasks.execute_tasks | 917e782b-ca53-42f4-8b14-40363a49523e | Get index path form parent_params={'project': <Project: P00001>, 'task': <Task: Task object (28)>, 'parents': [<Task: Task object (27)>], 'seqdata': <rnaseqdata.seq_data.SeqData object at 0x7cf3121af810>, 'seqdata_path': '/code/results/P00001/T00_import_data/seqdata.obj', 'parent_outputs': [{'sample_name': 'AB_1', 'R1': ['/code/raw_data/demo_mirnaseq/AB_1_CCGTCC_L004_R1.fastq']}, {'sample_name': 'AI_1', 'R1': ['/code/raw_data/demo_mirnaseq/AI_1_AGTCAA_L004_R1.fastq']}, {'sample_name': 'AN_1', 'R1': ['/code/raw_data/demo_mirnaseq/AN_1_GCCAAT_L004_R1.fastq']}], 'children': [<Task: Task object (30)>], 'method': <Method: Method object (trim_sequences)>, 'tool': None, 'parent_params': {'project': <Project: P00001>, 'task': <Task: Task object (27)>, 'parents': [], 'seqdata': <rnaseqdata.seq_data.SeqData object at 0x7cf312002490>, 'seqdata_path': '/code/results/P00001/T00_import_data/seqdata.obj', 'parent_outputs': [], 'children': [<Task: Task object (28)>, <Task: Task object (29)>, <Task: Task object (34)>], 'method': <Method: Method object (import_data)>, 'tool': None, 'parent_params': None, 'cmd': None, 'force_run': True, 'output': [{'sample_name': 'AB_1', 'R1': ['/code/raw_data/demo_mirnaseq/AB_1_CCGTCC_L004_R1.fastq']}, {'sample_name': 'AI_1', 'R1': ['/code/raw_data/demo_mirnaseq/AI_1_AGTCAA_L004_R1.fastq']}, {'sample_name': 'AN_1', 'R1': ['/code/raw_data/demo_mirnaseq/AN_1_GCCAAT_L004_R1.fastq']}], 'output_dir': '/code/results/P00001/T00_import_data', 'task_execution': <TaskExecution: TaskExecution object (200)>, 'sample_files': [<SampleFile: SampleFile object (10)>, <SampleFile: SampleFile object (11)>, <SampleFile: SampleFile object (12)>]}, 'cmd': None, 'force_run': True, 'output': [{'sample_name': 'AB_1', 'R1': ['/code/results/P00001/T01_trim_sequences/AB_1_CCGTCC_L004_R1.fastq']}, {'sample_name': 'AI_1', 'R1': ['/code/results/P00001/T01_trim_sequences/AI_1_AGTCAA_L004_R1.fastq']}, {'sample_name': 'AN_1', 'R1': ['/code/results/P00001/T01_trim_sequences/AN_1_GCCAAT_L004_R1.fastq']}], 'output_dir': '/code/results/P00001/T01_trim_sequences', 'task_execution': <TaskExecution: TaskExecution object (201)>}.
+2024-04-16 17:58:31,294 | INFO | ForkPoolWorker-16 | celery_tasks.tasks.execute_tasks | 917e782b-ca53-42f4-8b14-40363a49523e | Get index path from parent_outputs={'sample_name': 'AB_1', 'R1': ['/code/results/P00001/T01_trim_sequences/AB_1_CCGTCC_L004_R1.fastq'], 'fa_path': '/code/references/miRBase/miRNA_mature/Homo_sapiens.fa', 'index_path': '/code/references/index/10/Homo_sapiens', 'model_name': 'RNA', 'model_id': None, 'model_query': {'specie': 'Homo_sapiens', 'data_source': 'miRBase', 'annot_type': 'miRNA_mature'}, 'tool_query': {'exe_name': 'bowtie2-build', 'version': '2.5.2'}, 'index_dir_path': '/code/references/index/10', 'cmd': '/code/externals/bowtie/2.5.2/bowtie2 -x /code/references/index/10/Homo_sapiens -U /code/results/P00001/T01_trim_sequences/AB_1_CCGTCC_L004_R1.fastq -S /code/results/P00001/T03_align_short_reads/AB_1.sam', 'output_prefix': '/code/results/P00001/T03_align_short_reads/AB_1', 'sam_file': '/code/results/P00001/T03_align_short_reads/AB_1.sam'}
+[1;31m2024-04-16 17:58:31,409 | ERROR | ForkPoolWorker-16 | celery_tasks.tasks.execute_tasks | 917e782b-ca53-42f4-8b14-40363a49523e | 21179 reads; of these:
+  21179 (100.00%) were unpaired; of these:
+    9902 (46.75%) aligned 0 times
+    362 (1.71%) aligned exactly 1 time
+    10915 (51.54%) aligned >1 times
+53.25% overall alignment rate
+[0m
+2024-04-16 17:58:31,410 | INFO | ForkPoolWorker-16 | celery_tasks.tasks.execute_tasks | 917e782b-ca53-42f4-8b14-40363a49523e | Get index path form parent_params={'project': <Project: P00001>, 'task': <Task: Task object (28)>, 'parents': [<Task: Task object (27)>], 'seqdata': <rnaseqdata.seq_data.SeqData object at 0x7cf3121af810>, 'seqdata_path': '/code/results/P00001/T00_import_data/seqdata.obj', 'parent_outputs': [{'sample_name': 'AB_1', 'R1': ['/code/raw_data/demo_mirnaseq/AB_1_CCGTCC_L004_R1.fastq']}, {'sample_name': 'AI_1', 'R1': ['/code/raw_data/demo_mirnaseq/AI_1_AGTCAA_L004_R1.fastq']}, {'sample_name': 'AN_1', 'R1': ['/code/raw_data/demo_mirnaseq/AN_1_GCCAAT_L004_R1.fastq']}], 'children': [<Task: Task object (30)>], 'method': <Method: Method object (trim_sequences)>, 'tool': None, 'parent_params': {'project': <Project: P00001>, 'task': <Task: Task object (27)>, 'parents': [], 'seqdata': <rnaseqdata.seq_data.SeqData object at 0x7cf312002490>, 'seqdata_path': '/code/results/P00001/T00_import_data/seqdata.obj', 'parent_outputs': [], 'children': [<Task: Task object (28)>, <Task: Task object (29)>, <Task: Task object (34)>], 'method': <Method: Method object (import_data)>, 'tool': None, 'parent_params': None, 'cmd': None, 'force_run': True, 'output': [{'sample_name': 'AB_1', 'R1': ['/code/raw_data/demo_mirnaseq/AB_1_CCGTCC_L004_R1.fastq']}, {'sample_name': 'AI_1', 'R1': ['/code/raw_data/demo_mirnaseq/AI_1_AGTCAA_L004_R1.fastq']}, {'sample_name': 'AN_1', 'R1': ['/code/raw_data/demo_mirnaseq/AN_1_GCCAAT_L004_R1.fastq']}], 'output_dir': '/code/results/P00001/T00_import_data', 'task_execution': <TaskExecution: TaskExecution object (200)>, 'sample_files': [<SampleFile: SampleFile object (10)>, <SampleFile: SampleFile object (11)>, <SampleFile: SampleFile object (12)>]}, 'cmd': None, 'force_run': True, 'output': [{'sample_name': 'AB_1', 'R1': ['/code/results/P00001/T01_trim_sequences/AB_1_CCGTCC_L004_R1.fastq']}, {'sample_name': 'AI_1', 'R1': ['/code/results/P00001/T01_trim_sequences/AI_1_AGTCAA_L004_R1.fastq']}, {'sample_name': 'AN_1', 'R1': ['/code/results/P00001/T01_trim_sequences/AN_1_GCCAAT_L004_R1.fastq']}], 'output_dir': '/code/results/P00001/T01_trim_sequences', 'task_execution': <TaskExecution: TaskExecution object (201)>}.
+2024-04-16 17:58:31,410 | INFO | ForkPoolWorker-16 | celery_tasks.tasks.execute_tasks | 917e782b-ca53-42f4-8b14-40363a49523e | Get index path from parent_outputs={'sample_name': 'AB_1', 'R1': ['/code/results/P00001/T01_trim_sequences/AB_1_CCGTCC_L004_R1.fastq'], 'fa_path': '/code/references/miRBase/miRNA_mature/Homo_sapiens.fa', 'index_path': '/code/references/index/10/Homo_sapiens', 'model_name': 'RNA', 'model_id': None, 'model_query': {'specie': 'Homo_sapiens', 'data_source': 'miRBase', 'annot_type': 'miRNA_mature'}, 'tool_query': {'exe_name': 'bowtie2-build', 'version': '2.5.2'}, 'index_dir_path': '/code/references/index/10', 'cmd': '/code/externals/bowtie/2.5.2/bowtie2 -x /code/references/index/10/Homo_sapiens -U /code/results/P00001/T01_trim_sequences/AB_1_CCGTCC_L004_R1.fastq -S /code/results/P00001/T03_align_short_reads/AB_1.sam', 'output_prefix': '/code/results/P00001/T03_align_short_reads/AB_1', 'sam_file': '/code/results/P00001/T03_align_short_reads/AB_1.sam'}
+[1;31m2024-04-16 17:58:31,605 | ERROR | ForkPoolWorker-16 | celery_tasks.tasks.execute_tasks | 917e782b-ca53-42f4-8b14-40363a49523e | 24993 reads; of these:
+  24993 (100.00%) were unpaired; of these:
+    24986 (99.97%) aligned 0 times
+    0 (0.00%) aligned exactly 1 time
+    7 (0.03%) aligned >1 times
+0.03% overall alignment rate
+[0m
+2024-04-16 17:58:31,606 | INFO | ForkPoolWorker-16 | celery_tasks.tasks.execute_tasks | 917e782b-ca53-42f4-8b14-40363a49523e | 
+The task T03 ends. execution=204
+
+
+2024-04-16 17:58:31,618 | INFO | ForkPoolWorker-16 | celery_tasks.tasks.execute_tasks | 917e782b-ca53-42f4-8b14-40363a49523e | Initialize task T04
+2024-04-16 17:58:31,623 | INFO | ForkPoolWorker-16 | celery_tasks.tasks.execute_tasks | 917e782b-ca53-42f4-8b14-40363a49523e | Try to run task=T04.
+2024-04-16 17:58:32,109 | INFO | ForkPoolWorker-16 | celery_tasks.tasks.execute_tasks | 917e782b-ca53-42f4-8b14-40363a49523e | 
+The task T04 ends. execution=205
+
+
+2024-04-16 17:58:32,122 | INFO | ForkPoolWorker-16 | celery_tasks.tasks.execute_tasks | 917e782b-ca53-42f4-8b14-40363a49523e | Initialize task T05
+2024-04-16 17:58:32,128 | INFO | ForkPoolWorker-16 | celery_tasks.tasks.execute_tasks | 917e782b-ca53-42f4-8b14-40363a49523e | Try to run task=T05.
+2024-04-16 17:58:32,361 | INFO | ForkPoolWorker-16 | celery_tasks.tasks.execute_tasks | 917e782b-ca53-42f4-8b14-40363a49523e | 
+The task T05 ends. execution=206
+
+
+2024-04-16 17:58:32,659 | INFO | ForkPoolWorker-16 | celery_tasks.tasks.execute_tasks | 917e782b-ca53-42f4-8b14-40363a49523e | Initialize task T06
+2024-04-16 17:58:32,680 | INFO | ForkPoolWorker-16 | celery_tasks.tasks.execute_tasks | 917e782b-ca53-42f4-8b14-40363a49523e | Try to run task=T06.
+2024-04-16 17:58:32,724 | INFO | ForkPoolWorker-16 | celery_tasks.tasks.execute_tasks | 917e782b-ca53-42f4-8b14-40363a49523e | 
+The task T06 ends. execution=207
+
+
+2024-04-16 17:58:32,736 | INFO | ForkPoolWorker-16 | celery_tasks.tasks.execute_tasks | 917e782b-ca53-42f4-8b14-40363a49523e | Project execution is done.
+
+
+2024-04-16 17:58:32,737 | INFO | ForkPoolWorker-16 | celery_tasks.tasks.execute_tasks | 917e782b-ca53-42f4-8b14-40363a49523e | Try to launch execute_task. project=P00001

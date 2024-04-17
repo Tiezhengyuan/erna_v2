@@ -1,4 +1,4 @@
-
+venv
 mirna/devops/nginx/log/*log
 mirna/emirna_backend/
 mirna/emirna_frontend/

@@ -1,0 +1,88 @@
+2024-04-17 14:46:43,653 | INFO | ForkPoolWorker-16 | celery_tasks.tasks.execute_tasks | abb7faf3-4c75-4af3-af67-09540a043ba4 | Initialize task T00
+2024-04-17 14:46:43,663 | INFO | ForkPoolWorker-16 | celery_tasks.tasks.execute_tasks | abb7faf3-4c75-4af3-af67-09540a043ba4 | Try to run task=T00.
+2024-04-17 14:46:43,679 | INFO | ForkPoolWorker-16 | celery_tasks.tasks.execute_tasks | abb7faf3-4c75-4af3-af67-09540a043ba4 | 
+The task T00 ends. execution=210
+
+
+2024-04-17 14:46:43,687 | INFO | ForkPoolWorker-16 | celery_tasks.tasks.execute_tasks | abb7faf3-4c75-4af3-af67-09540a043ba4 | Initialize task T01
+2024-04-17 14:46:43,695 | INFO | ForkPoolWorker-16 | celery_tasks.tasks.execute_tasks | abb7faf3-4c75-4af3-af67-09540a043ba4 | Try to run task=T01.
+2024-04-17 14:46:43,704 | INFO | ForkPoolWorker-16 | celery_tasks.tasks.execute_tasks | abb7faf3-4c75-4af3-af67-09540a043ba4 | 
+The task T01 ends. execution=211
+
+
+2024-04-17 14:46:43,710 | INFO | ForkPoolWorker-16 | celery_tasks.tasks.execute_tasks | abb7faf3-4c75-4af3-af67-09540a043ba4 | Initialize task T02
+2024-04-17 14:46:43,718 | INFO | ForkPoolWorker-16 | celery_tasks.tasks.execute_tasks | abb7faf3-4c75-4af3-af67-09540a043ba4 | Try to run task=T02.
+2024-04-17 14:46:43,742 | INFO | ForkPoolWorker-16 | celery_tasks.tasks.execute_tasks | abb7faf3-4c75-4af3-af67-09540a043ba4 | 
+The task T02 ends. execution=212
+
+
+2024-04-17 14:46:43,748 | INFO | ForkPoolWorker-16 | celery_tasks.tasks.execute_tasks | abb7faf3-4c75-4af3-af67-09540a043ba4 | Initialize task T07
+2024-04-17 14:46:43,754 | INFO | ForkPoolWorker-16 | celery_tasks.tasks.execute_tasks | abb7faf3-4c75-4af3-af67-09540a043ba4 | Try to run task=T07.
+[1;31m2024-04-17 14:46:43,775 | ERROR | ForkPoolWorker-16 | celery_tasks.tasks.execute_tasks | abb7faf3-4c75-4af3-af67-09540a043ba4 | Option d is ambiguous (delete, dir, dup_length)
+Can't exec "java": No such file or directory at /code/externals/fastqc/0.12.1/fastqc line 350.
+[0m
+[1;31m2024-04-17 14:46:43,786 | ERROR | ForkPoolWorker-16 | celery_tasks.tasks.execute_tasks | abb7faf3-4c75-4af3-af67-09540a043ba4 | Option d is ambiguous (delete, dir, dup_length)
+Can't exec "java": No such file or directory at /code/externals/fastqc/0.12.1/fastqc line 350.
+[0m
+[1;31m2024-04-17 14:46:43,797 | ERROR | ForkPoolWorker-16 | celery_tasks.tasks.execute_tasks | abb7faf3-4c75-4af3-af67-09540a043ba4 | Option d is ambiguous (delete, dir, dup_length)
+Can't exec "java": No such file or directory at /code/externals/fastqc/0.12.1/fastqc line 350.
+[0m
+2024-04-17 14:46:43,798 | INFO | ForkPoolWorker-16 | celery_tasks.tasks.execute_tasks | abb7faf3-4c75-4af3-af67-09540a043ba4 | 
+The task T07 ends. execution=213
+
+
+2024-04-17 14:46:43,804 | INFO | ForkPoolWorker-16 | celery_tasks.tasks.execute_tasks | abb7faf3-4c75-4af3-af67-09540a043ba4 | Initialize task T03
+2024-04-17 14:46:43,812 | INFO | ForkPoolWorker-16 | celery_tasks.tasks.execute_tasks | abb7faf3-4c75-4af3-af67-09540a043ba4 | Try to run task=T03.
+2024-04-17 14:46:43,821 | INFO | ForkPoolWorker-16 | celery_tasks.tasks.execute_tasks | abb7faf3-4c75-4af3-af67-09540a043ba4 | Get index path form parent_params={'project': <Project: P00001>, 'task': <Task: Task object (28)>, 'parents': [<Task: Task object (27)>], 'seqdata': <rnaseqdata.seq_data.SeqData object at 0x7a20e3f0a6d0>, 'seqdata_path': '/code/results/P00001/T00_import_data/seqdata.obj', 'parent_outputs': [{'sample_name': 'AB_1', 'R1': ['/code/raw_data/demo_mirnaseq/AB_1_CCGTCC_L004_R1.fastq']}, {'sample_name': 'AI_1', 'R1': ['/code/raw_data/demo_mirnaseq/AI_1_AGTCAA_L004_R1.fastq']}, {'sample_name': 'AN_1', 'R1': ['/code/raw_data/demo_mirnaseq/AN_1_GCCAAT_L004_R1.fastq']}], 'children': [<Task: Task object (30)>], 'method': <Method: Method object (trim_sequences)>, 'tool': None, 'parent_params': {'project': <Project: P00001>, 'task': <Task: Task object (27)>, 'parents': [], 'seqdata': <rnaseqdata.seq_data.SeqData object at 0x7a20e39cf990>, 'seqdata_path': '/code/results/P00001/T00_import_data/seqdata.obj', 'parent_outputs': [], 'children': [<Task: Task object (28)>, <Task: Task object (29)>, <Task: Task object (34)>], 'method': <Method: Method object (import_data)>, 'tool': None, 'parent_params': None, 'cmd': None, 'force_run': True, 'output': [{'sample_name': 'AB_1', 'R1': ['/code/raw_data/demo_mirnaseq/AB_1_CCGTCC_L004_R1.fastq']}, {'sample_name': 'AI_1', 'R1': ['/code/raw_data/demo_mirnaseq/AI_1_AGTCAA_L004_R1.fastq']}, {'sample_name': 'AN_1', 'R1': ['/code/raw_data/demo_mirnaseq/AN_1_GCCAAT_L004_R1.fastq']}], 'output_dir': '/code/results/P00001/T00_import_data', 'task_execution': <TaskExecution: TaskExecution object (210)>, 'sample_files': [<SampleFile: SampleFile object (10)>, <SampleFile: SampleFile object (11)>, <SampleFile: SampleFile object (12)>]}, 'cmd': None, 'force_run': True, 'output': [{'sample_name': 'AB_1', 'R1': ['/code/results/P00001/T01_trim_sequences/AB_1_CCGTCC_L004_R1.fastq']}, {'sample_name': 'AI_1', 'R1': ['/code/results/P00001/T01_trim_sequences/AI_1_AGTCAA_L004_R1.fastq']}, {'sample_name': 'AN_1', 'R1': ['/code/results/P00001/T01_trim_sequences/AN_1_GCCAAT_L004_R1.fastq']}], 'output_dir': '/code/results/P00001/T01_trim_sequences', 'task_execution': <TaskExecution: TaskExecution object (211)>}.
+2024-04-17 14:46:43,821 | INFO | ForkPoolWorker-16 | celery_tasks.tasks.execute_tasks | abb7faf3-4c75-4af3-af67-09540a043ba4 | Get index path from parent_outputs={'sample_name': 'AB_1', 'R1': ['/code/results/P00001/T01_trim_sequences/AB_1_CCGTCC_L004_R1.fastq'], 'fa_path': '/code/references/miRBase/miRNA_mature/Homo_sapiens.fa', 'index_path': '/code/references/index/10/Homo_sapiens', 'model_name': 'RNA', 'model_id': None, 'model_query': {'specie': 'Homo_sapiens', 'data_source': 'miRBase', 'annot_type': 'miRNA_mature'}, 'tool_query': {'exe_name': 'bowtie2-build', 'version': '2.5.2'}}
+[1;31m2024-04-17 14:46:43,949 | ERROR | ForkPoolWorker-16 | celery_tasks.tasks.execute_tasks | abb7faf3-4c75-4af3-af67-09540a043ba4 | 21873 reads; of these:
+  21873 (100.00%) were unpaired; of these:
+    7556 (34.54%) aligned 0 times
+    443 (2.03%) aligned exactly 1 time
+    13874 (63.43%) aligned >1 times
+65.46% overall alignment rate
+[0m
+2024-04-17 14:46:43,949 | INFO | ForkPoolWorker-16 | celery_tasks.tasks.execute_tasks | abb7faf3-4c75-4af3-af67-09540a043ba4 | Get index path form parent_params={'project': <Project: P00001>, 'task': <Task: Task object (28)>, 'parents': [<Task: Task object (27)>], 'seqdata': <rnaseqdata.seq_data.SeqData object at 0x7a20e3f0a6d0>, 'seqdata_path': '/code/results/P00001/T00_import_data/seqdata.obj', 'parent_outputs': [{'sample_name': 'AB_1', 'R1': ['/code/raw_data/demo_mirnaseq/AB_1_CCGTCC_L004_R1.fastq']}, {'sample_name': 'AI_1', 'R1': ['/code/raw_data/demo_mirnaseq/AI_1_AGTCAA_L004_R1.fastq']}, {'sample_name': 'AN_1', 'R1': ['/code/raw_data/demo_mirnaseq/AN_1_GCCAAT_L004_R1.fastq']}], 'children': [<Task: Task object (30)>], 'method': <Method: Method object (trim_sequences)>, 'tool': None, 'parent_params': {'project': <Project: P00001>, 'task': <Task: Task object (27)>, 'parents': [], 'seqdata': <rnaseqdata.seq_data.SeqData object at 0x7a20e39cf990>, 'seqdata_path': '/code/results/P00001/T00_import_data/seqdata.obj', 'parent_outputs': [], 'children': [<Task: Task object (28)>, <Task: Task object (29)>, <Task: Task object (34)>], 'method': <Method: Method object (import_data)>, 'tool': None, 'parent_params': None, 'cmd': None, 'force_run': True, 'output': [{'sample_name': 'AB_1', 'R1': ['/code/raw_data/demo_mirnaseq/AB_1_CCGTCC_L004_R1.fastq']}, {'sample_name': 'AI_1', 'R1': ['/code/raw_data/demo_mirnaseq/AI_1_AGTCAA_L004_R1.fastq']}, {'sample_name': 'AN_1', 'R1': ['/code/raw_data/demo_mirnaseq/AN_1_GCCAAT_L004_R1.fastq']}], 'output_dir': '/code/results/P00001/T00_import_data', 'task_execution': <TaskExecution: TaskExecution object (210)>, 'sample_files': [<SampleFile: SampleFile object (10)>, <SampleFile: SampleFile object (11)>, <SampleFile: SampleFile object (12)>]}, 'cmd': None, 'force_run': True, 'output': [{'sample_name': 'AB_1', 'R1': ['/code/results/P00001/T01_trim_sequences/AB_1_CCGTCC_L004_R1.fastq']}, {'sample_name': 'AI_1', 'R1': ['/code/results/P00001/T01_trim_sequences/AI_1_AGTCAA_L004_R1.fastq']}, {'sample_name': 'AN_1', 'R1': ['/code/results/P00001/T01_trim_sequences/AN_1_GCCAAT_L004_R1.fastq']}], 'output_dir': '/code/results/P00001/T01_trim_sequences', 'task_execution': <TaskExecution: TaskExecution object (211)>}.
+2024-04-17 14:46:43,949 | INFO | ForkPoolWorker-16 | celery_tasks.tasks.execute_tasks | abb7faf3-4c75-4af3-af67-09540a043ba4 | Get index path from parent_outputs={'sample_name': 'AB_1', 'R1': ['/code/results/P00001/T01_trim_sequences/AB_1_CCGTCC_L004_R1.fastq'], 'fa_path': '/code/references/miRBase/miRNA_mature/Homo_sapiens.fa', 'index_path': '/code/references/index/10/Homo_sapiens', 'model_name': 'RNA', 'model_id': None, 'model_query': {'specie': 'Homo_sapiens', 'data_source': 'miRBase', 'annot_type': 'miRNA_mature'}, 'tool_query': {'exe_name': 'bowtie2-build', 'version': '2.5.2'}, 'output_prefix': '/code/results/P00001/T03_align_short_reads/AB_1', 'cmd': '/code/externals/bowtie/2.5.2/bowtie2 -x /code/references/index/10/Homo_sapiens -U /code/results/P00001/T01_trim_sequences/AB_1_CCGTCC_L004_R1.fastq -S /code/results/P00001/T03_align_short_reads/AB_1.sam', 'sam_file': '/code/results/P00001/T03_align_short_reads/AB_1.sam'}
+[1;31m2024-04-17 14:46:44,068 | ERROR | ForkPoolWorker-16 | celery_tasks.tasks.execute_tasks | abb7faf3-4c75-4af3-af67-09540a043ba4 | 21179 reads; of these:
+  21179 (100.00%) were unpaired; of these:
+    9902 (46.75%) aligned 0 times
+    362 (1.71%) aligned exactly 1 time
+    10915 (51.54%) aligned >1 times
+53.25% overall alignment rate
+[0m
+2024-04-17 14:46:44,068 | INFO | ForkPoolWorker-16 | celery_tasks.tasks.execute_tasks | abb7faf3-4c75-4af3-af67-09540a043ba4 | Get index path form parent_params={'project': <Project: P00001>, 'task': <Task: Task object (28)>, 'parents': [<Task: Task object (27)>], 'seqdata': <rnaseqdata.seq_data.SeqData object at 0x7a20e3f0a6d0>, 'seqdata_path': '/code/results/P00001/T00_import_data/seqdata.obj', 'parent_outputs': [{'sample_name': 'AB_1', 'R1': ['/code/raw_data/demo_mirnaseq/AB_1_CCGTCC_L004_R1.fastq']}, {'sample_name': 'AI_1', 'R1': ['/code/raw_data/demo_mirnaseq/AI_1_AGTCAA_L004_R1.fastq']}, {'sample_name': 'AN_1', 'R1': ['/code/raw_data/demo_mirnaseq/AN_1_GCCAAT_L004_R1.fastq']}], 'children': [<Task: Task object (30)>], 'method': <Method: Method object (trim_sequences)>, 'tool': None, 'parent_params': {'project': <Project: P00001>, 'task': <Task: Task object (27)>, 'parents': [], 'seqdata': <rnaseqdata.seq_data.SeqData object at 0x7a20e39cf990>, 'seqdata_path': '/code/results/P00001/T00_import_data/seqdata.obj', 'parent_outputs': [], 'children': [<Task: Task object (28)>, <Task: Task object (29)>, <Task: Task object (34)>], 'method': <Method: Method object (import_data)>, 'tool': None, 'parent_params': None, 'cmd': None, 'force_run': True, 'output': [{'sample_name': 'AB_1', 'R1': ['/code/raw_data/demo_mirnaseq/AB_1_CCGTCC_L004_R1.fastq']}, {'sample_name': 'AI_1', 'R1': ['/code/raw_data/demo_mirnaseq/AI_1_AGTCAA_L004_R1.fastq']}, {'sample_name': 'AN_1', 'R1': ['/code/raw_data/demo_mirnaseq/AN_1_GCCAAT_L004_R1.fastq']}], 'output_dir': '/code/results/P00001/T00_import_data', 'task_execution': <TaskExecution: TaskExecution object (210)>, 'sample_files': [<SampleFile: SampleFile object (10)>, <SampleFile: SampleFile object (11)>, <SampleFile: SampleFile object (12)>]}, 'cmd': None, 'force_run': True, 'output': [{'sample_name': 'AB_1', 'R1': ['/code/results/P00001/T01_trim_sequences/AB_1_CCGTCC_L004_R1.fastq']}, {'sample_name': 'AI_1', 'R1': ['/code/results/P00001/T01_trim_sequences/AI_1_AGTCAA_L004_R1.fastq']}, {'sample_name': 'AN_1', 'R1': ['/code/results/P00001/T01_trim_sequences/AN_1_GCCAAT_L004_R1.fastq']}], 'output_dir': '/code/results/P00001/T01_trim_sequences', 'task_execution': <TaskExecution: TaskExecution object (211)>}.
+2024-04-17 14:46:44,068 | INFO | ForkPoolWorker-16 | celery_tasks.tasks.execute_tasks | abb7faf3-4c75-4af3-af67-09540a043ba4 | Get index path from parent_outputs={'sample_name': 'AB_1', 'R1': ['/code/results/P00001/T01_trim_sequences/AB_1_CCGTCC_L004_R1.fastq'], 'fa_path': '/code/references/miRBase/miRNA_mature/Homo_sapiens.fa', 'index_path': '/code/references/index/10/Homo_sapiens', 'model_name': 'RNA', 'model_id': None, 'model_query': {'specie': 'Homo_sapiens', 'data_source': 'miRBase', 'annot_type': 'miRNA_mature'}, 'tool_query': {'exe_name': 'bowtie2-build', 'version': '2.5.2'}, 'output_prefix': '/code/results/P00001/T03_align_short_reads/AB_1', 'cmd': '/code/externals/bowtie/2.5.2/bowtie2 -x /code/references/index/10/Homo_sapiens -U /code/results/P00001/T01_trim_sequences/AB_1_CCGTCC_L004_R1.fastq -S /code/results/P00001/T03_align_short_reads/AB_1.sam', 'sam_file': '/code/results/P00001/T03_align_short_reads/AB_1.sam'}
+[1;31m2024-04-17 14:46:44,280 | ERROR | ForkPoolWorker-16 | celery_tasks.tasks.execute_tasks | abb7faf3-4c75-4af3-af67-09540a043ba4 | 24993 reads; of these:
+  24993 (100.00%) were unpaired; of these:
+    24986 (99.97%) aligned 0 times
+    0 (0.00%) aligned exactly 1 time
+    7 (0.03%) aligned >1 times
+0.03% overall alignment rate
+[0m
+2024-04-17 14:46:44,281 | INFO | ForkPoolWorker-16 | celery_tasks.tasks.execute_tasks | abb7faf3-4c75-4af3-af67-09540a043ba4 | 
+The task T03 ends. execution=214
+
+
+2024-04-17 14:46:44,292 | INFO | ForkPoolWorker-16 | celery_tasks.tasks.execute_tasks | abb7faf3-4c75-4af3-af67-09540a043ba4 | Initialize task T04
+2024-04-17 14:46:44,302 | INFO | ForkPoolWorker-16 | celery_tasks.tasks.execute_tasks | abb7faf3-4c75-4af3-af67-09540a043ba4 | Try to run task=T04.
+2024-04-17 14:46:44,312 | INFO | ForkPoolWorker-16 | celery_tasks.tasks.execute_tasks | abb7faf3-4c75-4af3-af67-09540a043ba4 | 
+The task T04 ends. execution=215
+
+
+2024-04-17 14:46:44,319 | INFO | ForkPoolWorker-16 | celery_tasks.tasks.execute_tasks | abb7faf3-4c75-4af3-af67-09540a043ba4 | Initialize task T05
+2024-04-17 14:46:44,333 | INFO | ForkPoolWorker-16 | celery_tasks.tasks.execute_tasks | abb7faf3-4c75-4af3-af67-09540a043ba4 | Try to run task=T05.
+2024-04-17 14:46:44,571 | INFO | ForkPoolWorker-16 | celery_tasks.tasks.execute_tasks | abb7faf3-4c75-4af3-af67-09540a043ba4 | 
+The task T05 ends. execution=216
+
+
+2024-04-17 14:46:44,582 | INFO | ForkPoolWorker-16 | celery_tasks.tasks.execute_tasks | abb7faf3-4c75-4af3-af67-09540a043ba4 | Initialize task T06
+2024-04-17 14:46:44,589 | INFO | ForkPoolWorker-16 | celery_tasks.tasks.execute_tasks | abb7faf3-4c75-4af3-af67-09540a043ba4 | Try to run task=T06.
+2024-04-17 14:46:44,629 | INFO | ForkPoolWorker-16 | celery_tasks.tasks.execute_tasks | abb7faf3-4c75-4af3-af67-09540a043ba4 | 
+The task T06 ends. execution=217
+
+
+2024-04-17 14:46:44,641 | INFO | ForkPoolWorker-16 | celery_tasks.tasks.execute_tasks | abb7faf3-4c75-4af3-af67-09540a043ba4 | Project execution is done.
+
+
+2024-04-17 14:46:44,641 | INFO | ForkPoolWorker-16 | celery_tasks.tasks.execute_tasks | abb7faf3-4c75-4af3-af67-09540a043ba4 | Try to launch execute_task. project=P00001

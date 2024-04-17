@@ -1,0 +1,13 @@
+2024-04-17 14:42:34,357 | INFO | ForkPoolWorker-16 | celery_tasks.tasks.execute_tasks | dcf8f23f-41f7-4aef-982b-e4561c1f122c | Initialize task T00
+2024-04-17 14:42:34,366 | INFO | ForkPoolWorker-16 | celery_tasks.tasks.execute_tasks | dcf8f23f-41f7-4aef-982b-e4561c1f122c | Try to run task=T00.
+2024-04-17 14:42:34,492 | INFO | ForkPoolWorker-16 | celery_tasks.tasks.execute_tasks | dcf8f23f-41f7-4aef-982b-e4561c1f122c | 
+The task T00 ends. execution=200
+
+
+2024-04-17 14:42:34,612 | INFO | ForkPoolWorker-16 | celery_tasks.tasks.execute_tasks | dcf8f23f-41f7-4aef-982b-e4561c1f122c | Initialize task T01
+2024-04-17 14:42:34,619 | INFO | ForkPoolWorker-16 | celery_tasks.tasks.execute_tasks | dcf8f23f-41f7-4aef-982b-e4561c1f122c | Try to run task=T01.
+[1;31m2024-04-17 14:42:34,845 | ERROR | ForkPoolWorker-16 | celery_tasks.tasks.execute_tasks | dcf8f23f-41f7-4aef-982b-e4561c1f122c | Failed in execution project: error='NoneType' object is not iterable.[0m
+2024-04-17 14:42:34,845 | INFO | ForkPoolWorker-16 | celery_tasks.tasks.execute_tasks | dcf8f23f-41f7-4aef-982b-e4561c1f122c | Project execution is done.
+
+
+2024-04-17 14:42:34,846 | INFO | ForkPoolWorker-16 | celery_tasks.tasks.execute_tasks | dcf8f23f-41f7-4aef-982b-e4561c1f122c | Try to launch execute_task. project=P00001

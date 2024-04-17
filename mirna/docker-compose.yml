@@ -1,35 +1,84 @@
+# envirnomental variables are defined in .env file
 version: "3"
+
 
 # default connection is bridge rather than links
 networks:
   web_network:
     driver: bridge
+  app_network:
+    driver: bridge
 
 services:
+  redis:
+    restart: always
+    image: redis:alpine
+    container_name: mirna-redis
+    networks:
+      - app_network
+
   app:
     restart: always
     build: ./emirna_backend
     container_name: mirna-back
-    command: bash -c "python3 erna/manage.py migrate && 
-      python3 erna/manage.py makemigrations && 
-      python3 erna/manage.py runserver 0.0.0.0:8000"
-    expose:
-      - "8000"
+    environment:
+      - mode=${mode}
+      - DEBUG=${DEBUG}
+      - REDIS_HOST=redis
+      - REDIS_PORT=6379
+    command: bash -c "
+        python3 erna/manage.py makemigrations
+        && python3 erna/manage.py migrate
+        && python3 erna/manage.py shell < erna/scripts/init_erna.py
+        && python3 erna/manage.py shell < erna/scripts/init_raw_data.py
+        && python3 erna/manage.py shell < erna/scripts/init_references.py
+        && python3 erna/manage.py runserver 0.0.0.0:8000
+      "
     volumes:
       - ./emirna_backend:/code
+      - ${RAW_DATA_DIR}:/code/raw_data
+      - ${RESULTS_DIR}:/code/results
+      - ${REFERENCES_DIR}:/code/references
+      - ${LOGS_DIR}:/code/logs
+    expose:
+      - "8000"
     networks:
       - web_network
+      - app_network
+
+  celery:
+    restart: always
+    build: ./emirna_backend
+    container_name: mirna-celery
+    environment:
+      - mode=${mode}
+      - DEBUG=${DEBUG}
+      - REDIS_HOST=redis
+      - REDIS_PORT=6379
+    command: ["bash", "-c", "cd erna && celery -A erna worker --loglevel=info"]
+    volumes:
+      - ./emirna_backend:/code
+      - ${RAW_DATA_DIR}:/code/raw_data
+      - ${RESULTS_DIR}:/code/results
+      - ${REFERENCES_DIR}:/code/references
+      - ${LOGS_DIR}:/code/logs
+    depends_on:
+      - app
+      - redis
+    networks:
+      - web_network
+      - app_network
 
   vue_nginx:
     restart: always
     image: nginx:latest
     container_name: mirna-front
-    ports:
-      - "8080:8080"
     volumes:
-      - ./emirna_frontend/dist/:/usr/share/nginx/html/ # vues dist
+      - ./emirna_frontend/dist/:/usr/share/nginx/html/
       - ./devops/nginx/conf:/etc/nginx/conf.d
       - ./devops/nginx/log:/var/log/nginx
+    ports:
+      - "8080:8080"
     depends_on:
       - app
     networks:

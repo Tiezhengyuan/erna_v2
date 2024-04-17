@@ -1,0 +1,6 @@
+2024-04-16 19:39:55,607 | INFO | ForkPoolWorker-16 | celery_tasks.tasks.execute_tasks | fd48f28a-d457-4063-b046-676851db9c6e | Initialize task T00
+[1;31m2024-04-16 19:39:55,608 | ERROR | ForkPoolWorker-16 | celery_tasks.tasks.execute_tasks | fd48f28a-d457-4063-b046-676851db9c6e | Failed in execution project: error=Task matching query does not exist..[0m
+2024-04-16 19:39:55,608 | INFO | ForkPoolWorker-16 | celery_tasks.tasks.execute_tasks | fd48f28a-d457-4063-b046-676851db9c6e | Project execution is done.
+
+
+2024-04-16 19:39:55,608 | INFO | ForkPoolWorker-16 | celery_tasks.tasks.execute_tasks | fd48f28a-d457-4063-b046-676851db9c6e | Try to launch execute_task. project=P00001
