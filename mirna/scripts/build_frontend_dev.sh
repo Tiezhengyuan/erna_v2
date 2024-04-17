@@ -1,12 +1,14 @@
 #! /usr/bin/bash
 
-echo "### Pull source code of front-end..."
-if [ -d $PWD/emirna_frontend ]; then
-    cd $PWD/emirna_frontend
+echo "### Pull or update source code of front-end..."
+repo_name=emirna_frontend
+path=${PWD}/${repo_name}
+if [ -d $path ]; then
+    cd $path
     git pull origin main
 else
     git clone git@github.com:Tiezhengyuan/emirna_frontend.git
-    cd $PWD/emirna_frontend
+    cd $path
 fi
 
 echo "### Build dist from production:"
@@ -14,4 +16,4 @@ yarn install
 yarn build
 
 # rollback path
-cd ..
+cd $PWD

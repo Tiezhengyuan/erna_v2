@@ -26,12 +26,16 @@ services:
       - DEBUG=${DEBUG}
       - REDIS_HOST=redis
       - REDIS_PORT=6379
+      - DJANGO_SUPERUSER_USERNAME=${DJANGO_SUPERUSER_USERNAME}
+      - DJANGO_SUPERUSER_PASSWORD=${DJANGO_SUPERUSER_PASSWORD}
+      - DJANGO_SUPERUSER_EMAIL=${DJANGO_SUPERUSER_EMAIL}
     command: bash -c "
-        python3 erna/manage.py makemigrations
+        python3 erna/manage.py makemigrations commons rna_seq api
         && python3 erna/manage.py migrate
         && python3 erna/manage.py shell < erna/scripts/init_erna.py
         && python3 erna/manage.py shell < erna/scripts/init_raw_data.py
         && python3 erna/manage.py shell < erna/scripts/init_references.py
+        && python3 erna/manage.py createsuperuser --noinput
         && python3 erna/manage.py runserver 0.0.0.0:8000
       "
     volumes:

@@ -3,12 +3,14 @@
 
 if [ "$1" = build ]; then
     echo "### Pull source code, download references and build database..."
-    if [ "$2" = dev ]; then
-        bash scripts/build_frontend_dev.sh || true
-        bash scripts/build_backend_dev.sh || true
-    elif [ "$2" = local ]; then
+    # test local deployment
+    if [ "$2" = local ]; then
         bash scripts/build_frontend_local.sh || true
         bash scripts/build_backend_local.sh || true
+    # local deployment
+    elif [ "$2" = dev ]; then
+        # bash scripts/build_frontend_dev.sh || true
+        bash scripts/build_backend_dev.sh || true
     fi
 
 elif [ "$1" = start ]; then
